@@ -12,12 +12,18 @@ public class ALSBaseLayout: UIView {
     
     internal var layoutParamsMap = [Int: ALSLayoutParams]()
     
-    func getLayoutParams(view: UIView) -> ALSLayoutParams? {
+    public func addSubview(view: UIView, configure: (ALSLayoutParams) -> Void) {
+        var lp = obtainLayoutParams(view)
+        configure(lp)
+        addSubview(view)
+    }
+    
+    public func getLayoutParams(view: UIView) -> ALSLayoutParams? {
         return layoutParamsMap[view.hash]
     }
     
     // Get layout params, create a new one if not exists
-    func obtainLayoutParams(view: UIView) -> ALSLayoutParams {
+    internal func obtainLayoutParams(view: UIView) -> ALSLayoutParams {
         if let params = layoutParamsMap[view.hash] {
             return params
         }

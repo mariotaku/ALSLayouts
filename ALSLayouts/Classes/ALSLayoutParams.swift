@@ -10,20 +10,42 @@ import Foundation
 
 public class ALSLayoutParams {
     
-    var gravity: Int = ALSGravity.NO_GRAVITY
+    public var gravity: Int = ALSGravity.NO_GRAVITY
     
-    var marginTop: CGFloat = 0
-    var marginBottom: CGFloat = 0
-    var marginLeading: CGFloat = 0
-    var marginTrailng: CGFloat = 0
+    public var marginTop: CGFloat = 0
+    public var marginBottom: CGFloat = 0
+    public var marginLeft: CGFloat = 0
+    public var marginRight: CGFloat = 0
+    public var marginLeading: CGFloat = 0
+    public var marginTrailng: CGFloat = 0
     
-    var alignParentTop: Bool = false
-    var alignParentBottom: Bool = false
-    var alignParentLeading: Bool = false
-    var alignParentTrailng: Bool = false
+    public var alignParentTop: Bool = false
+    public var alignParentBottom: Bool = false
+    public var alignParentLeading: Bool = false
+    public var alignParentTrailng: Bool = false
     
-    var widthMode: SizeMode = .StaticSize
-    var heightMode: SizeMode = .StaticSize
+    public var widthMode: SizeMode = .StaticSize
+    public var heightMode: SizeMode = .StaticSize
+    
+    func resolveMarginLeftAbsolute(layoutDirection: UIUserInterfaceLayoutDirection) -> CGFloat {
+        if (marginLeft != 0) {
+            return marginLeft
+        } else if (layoutDirection == .RightToLeft) {
+            return marginTrailng
+        } else {
+            return marginLeading
+        }
+    }
+    
+    func resolveMarginRightAbsolute(layoutDirection: UIUserInterfaceLayoutDirection) -> CGFloat {
+        if (marginRight != 0) {
+            return marginRight
+        } else if (layoutDirection == .RightToLeft) {
+            return marginLeading
+        } else {
+            return marginTrailng
+        }
+    }
     
     public enum SizeMode: String {
         case StaticSize, WrapContent, MatchParent

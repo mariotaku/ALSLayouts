@@ -23,7 +23,11 @@ public class ALSFrameLayout: ALSBaseLayout {
             let subContentSize = subview.intrinsicContentSize()
             let subFrame = subview.frame
             
-            let subWidth = resolveSize(lp.widthMode, contentSize: subContentSize.width, frameSize: subFrame.width, parentSize: parentFrame.width, margin: lp.marginLeading + lp.marginTrailng)
+            let leftMargin = lp.resolveMarginLeftAbsolute(layoutDirection)
+            let rightMargin = lp.resolveMarginRightAbsolute(layoutDirection)
+            
+            
+            let subWidth = resolveSize(lp.widthMode, contentSize: subContentSize.width, frameSize: subFrame.width, parentSize: parentFrame.width, margin: leftMargin + rightMargin)
             let subHeight = resolveSize(lp.heightMode, contentSize: subContentSize.height, frameSize: subFrame.height, parentSize: parentFrame.height, margin: lp.marginTop + lp.marginBottom)
             
             var gravity = lp.gravity
@@ -39,16 +43,16 @@ public class ALSFrameLayout: ALSBaseLayout {
             
             switch (absoluteGravity & ALSGravity.HORIZONTAL_GRAVITY_MASK) {
             case ALSGravity.CENTER_HORIZONTAL:
-                xAdj = 0
+                xAdj = leftMargin - rightMargin
             case ALSGravity.RIGHT:
-                xAdj = lp.marginTrailng
+                xAdj = rightMargin
             default:
-                xAdj = lp.marginLeading
+                xAdj = leftMargin
             }
             
             switch (verticalGravity) {
             case ALSGravity.CENTER_VERTICAL:
-                yAdj = 0
+                yAdj = lp.marginTop - lp.marginBottom
             case ALSGravity.BOTTOM:
                 yAdj = lp.marginBottom
             default:
