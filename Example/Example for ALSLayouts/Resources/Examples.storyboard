@@ -123,5 +123,61 @@
             </objects>
             <point key="canvasLocation" x="194" y="400"/>
         </scene>
+        <!--RelativeLayout IB-->
+        <scene sceneID="61V-n2-UxM">
+            <objects>
+                <viewController storyboardIdentifier="RelativeLayoutIB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q0i-F2-vB3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cxU-zo-eqO" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Align parent leading and align parent top" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UAB-S4-p0q">
+                                <rect key="frame" x="20" y="20" width="144" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTop" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthModeString" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightModeString" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="topLeading"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center in parent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QIK-Jz-F7f">
+                                <rect key="frame" x="103" y="241" width="114" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightModeString" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthModeString" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterInParent" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="centerLabel"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Below centerLabel and center horizontal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dff-yi-ixY">
+                                <rect key="frame" x="79" y="271" width="163" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterHorizontal" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="centerLabel"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RelativeLayout IB" id="thI-bB-lju"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HYW-ZH-U0i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="599" y="400"/>
+        </scene>
     </scenes>
 </document>

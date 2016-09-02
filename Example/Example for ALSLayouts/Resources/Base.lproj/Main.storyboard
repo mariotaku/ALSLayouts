@@ -54,6 +54,30 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="RelativeLayout" id="WP8-8s-37t">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4kx-HZ-Joo" style="IBUITableViewCellStyleDefault" id="LEE-YI-0uT">
+                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LEE-YI-0uT" id="I8a-8F-d4K">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="By Interface Builder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4kx-HZ-Joo">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="2VL-LL-KLN" kind="show" id="9qg-KD-xIm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="UG1-uf-KSc" id="Za6-TA-Vcr"/>
@@ -72,7 +96,15 @@
                 <viewControllerPlaceholder storyboardName="Examples" referencedIdentifier="FrameLayoutIB" id="NdA-1K-EAA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5T-5p-pHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1421.5" y="-109"/>
+            <point key="canvasLocation" x="1455.5" y="15"/>
+        </scene>
+        <!--RelativeLayoutIB-->
+        <scene sceneID="ZQg-v9-jY4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Examples" referencedIdentifier="RelativeLayoutIB" id="2VL-LL-KLN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wg5-jX-EYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zlt-wh-g2h">

@@ -15,9 +15,7 @@ public extension UIView {
             if (self.tag == 0 || self.tag < 0 || self.tag >= UIView.tagPoll.count) {
                 return nil
             } else {
-                return UIView.tagPoll.filter { (k, v) -> Bool in
-                    return v == self.tag
-                }.first?.0
+                return UIView.tagPoll.filter { (k, v) -> Bool in return v == self.tag }.first?.0
             }
         }
         set {
@@ -42,5 +40,19 @@ public extension UIView {
         return viewWithTag(intTag)
     }
 
+    static func getTag(byStringTag tag: String?) -> Int {
+        if (tag == nil) {
+            return 0
+        }
+        return tagPoll[tag!] ?? 0
+    }
+    
+    static func getStringTag(byTag tag: Int) -> String? {
+        if (tag == 0) {
+            return nil
+        }
+        return tagPoll.filter { (k, v) -> Bool in return v == tag }.first?.0
+    }
+    
     private static var tagPoll = [String: Int]()
 }

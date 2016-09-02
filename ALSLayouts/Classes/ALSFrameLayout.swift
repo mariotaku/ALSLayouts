@@ -11,7 +11,13 @@ import UIKit
 @IBDesignable
 public class ALSFrameLayout: ALSBaseLayout {
 
+    public override func sizeThatFits(size: CGSize) -> CGSize {
+        print("sizeThatFits")
+        return super.sizeThatFits(size)
+    }
+    
     override public func layoutSubviews() {
+        print("layoutSubviews")
         let layoutDirection = UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(self.semanticContentAttribute)
         
         var parentFrame = self.bounds
