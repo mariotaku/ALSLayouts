@@ -27,8 +27,8 @@ public class ALSFrameLayout: ALSBaseLayout {
             let rightMargin = lp.resolveMarginRightAbsolute(layoutDirection)
             
             
-            let subWidth = resolveSize(lp.widthMode, contentSize: subContentSize.width, frameSize: subFrame.width, parentSize: parentFrame.width, margin: leftMargin + rightMargin)
-            let subHeight = resolveSize(lp.heightMode, contentSize: subContentSize.height, frameSize: subFrame.height, parentSize: parentFrame.height, margin: lp.marginTop + lp.marginBottom)
+            let subWidth = lp.hidden ? 0 : resolveSize(lp.widthMode, contentSize: subContentSize.width, frameSize: subFrame.width, parentSize: parentFrame.width, margin: leftMargin + rightMargin)
+            let subHeight = lp.hidden ? 0 : resolveSize(lp.heightMode, contentSize: subContentSize.height, frameSize: subFrame.height, parentSize: parentFrame.height, margin: lp.marginTop + lp.marginBottom)
             
             var gravity = lp.gravity
             if (gravity == -1) {

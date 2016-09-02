@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIView {
     
-    @IBInspectable var stringTag: String? {
+    @IBInspectable public var stringTag: String? {
         get {
             if (self.tag == 0 || self.tag < 0 || self.tag >= UIView.tagPoll.count) {
                 return nil

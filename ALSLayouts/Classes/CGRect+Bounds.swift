@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension CGRect {
+internal extension CGRect {
     var top: CGFloat {
         get { return origin.y }
         set {

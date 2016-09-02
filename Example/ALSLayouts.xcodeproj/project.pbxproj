@@ -112,15 +112,9 @@
 		607FACD21AFB9204008FA782 /* Example for ALSLayouts */ = {
 			isa = PBXGroup;
 			children = (
+				CED7F77D1D794EE40000C274 /* Resources */,
+				CED7F77C1D794ED80000C274 /* Classes */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				CED7F7761D791FBD0000C274 /* DemoViewController.swift */,
-				607FACD71AFB9204008FA782 /* DemosController.swift */,
-				CED7F7621D78471C0000C274 /* Examples.storyboard */,
-				CED7F7781D79489D0000C274 /* FrameLayoutByCodeController.swift */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
 			);
 			path = "Example for ALSLayouts";
 			sourceTree = "<group>";
@@ -159,6 +153,28 @@
 				D816BB282EE6ACA05F85FD89 /* README.md */,
 			);
 			path = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		CED7F77C1D794ED80000C274 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				CED7F7761D791FBD0000C274 /* DemoViewController.swift */,
+				607FACD71AFB9204008FA782 /* DemosController.swift */,
+				CED7F7781D79489D0000C274 /* FrameLayoutByCodeController.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		CED7F77D1D794EE40000C274 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CED7F7621D78471C0000C274 /* Examples.storyboard */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		D13B7E937472261D596DF67C /* Frameworks */ = {
