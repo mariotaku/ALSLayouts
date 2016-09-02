@@ -5,19 +5,19 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Demos-->
         <scene sceneID="WEx-Bk-YdZ">
             <objects>
                 <tableViewController id="UG1-uf-KSc" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Q4k-vM-R46">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="FrameLayout" id="rvC-E4-QGY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="fnx-qJ-kSZ" style="IBUITableViewCellStyleDefault" id="CK8-KU-m2d">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CK8-KU-m2d" id="oyT-9j-cUk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -44,7 +44,7 @@
                             <outlet property="delegate" destination="UG1-uf-KSc" id="Yu3-DG-AXi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="M1U-ge-t9H"/>
+                    <navigationItem key="navigationItem" title="Demos" id="M1U-ge-t9H"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KyY-FD-g2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,7 +62,7 @@
         <scene sceneID="zlt-wh-g2h">
             <objects>
                 <navigationController id="ObO-fa-1hT" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LZ4-pG-Y4F">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="LZ4-pG-Y4F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

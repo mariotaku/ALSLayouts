@@ -6,11 +6,11 @@
 //
 //
 
-import Foundation
+import UIKit
 
-class ALSBaseLayout: UIView {
+public class ALSBaseLayout: UIView {
     
-    private var layoutParamsMap = [Int: ALSLayoutParams]()
+    internal var layoutParamsMap = [Int: ALSLayoutParams]()
     
     func getLayoutParams(view: UIView) -> ALSLayoutParams? {
         return layoutParamsMap[view.hash]
@@ -24,6 +24,17 @@ class ALSBaseLayout: UIView {
         let newParams = ALSLayoutParams()
         layoutParamsMap[view.hash] = newParams
         return newParams
+    }
+    
+    internal func resolveSize(sizeMode: ALSLayoutParams.SizeMode, contentSize: CGFloat, frameSize: CGFloat, parentSize: CGFloat, margin: CGFloat) -> CGFloat {
+        switch sizeMode {
+        case .StaticSize:
+            return frameSize
+        case .WrapContent:
+            return contentSize
+        case .MatchParent:
+            return parentSize - margin
+        }
     }
     
 }

@@ -8,7 +8,9 @@
 
 import Foundation
 
-class ALSLayoutParams {
+public class ALSLayoutParams {
+    
+    var gravity: Int = ALSGravity.NO_GRAVITY
     
     var marginTop: CGFloat = 0
     var marginBottom: CGFloat = 0
@@ -20,4 +22,10 @@ class ALSLayoutParams {
     var alignParentLeading: Bool = false
     var alignParentTrailng: Bool = false
     
+    var widthMode: SizeMode = .StaticSize
+    var heightMode: SizeMode = .StaticSize
+    
+    public enum SizeMode: String {
+        case StaticSize, WrapContent, MatchParent
+    }
 }

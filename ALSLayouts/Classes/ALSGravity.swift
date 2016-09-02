@@ -19,7 +19,7 @@ import Foundation
  * Standard constants and tools for placing an object within a potentially
  * larger container.
  */
-class ALSGravity {
+public class ALSGravity {
     
     /** Constant indicating that no gravity has been set **/
     static let NO_GRAVITY: Int = 0x0000
@@ -105,7 +105,7 @@ class ALSGravity {
     static let CLIP_HORIZONTAL = AXIS_CLIP << AXIS_X_SHIFT
     
     /**
-     * Raw bit controlling whether the layout direction is relative or not (START/END instead of
+     * Raw bit controlling whether the layout direction is relative or not (LEADING/TRAILING instead of
      * absolute LEFT/RIGHT).
      */
     static let RELATIVE_LAYOUT_DIRECTION = 0x00800000
@@ -138,102 +138,53 @@ class ALSGravity {
     /**
      * Push object to x-axis position at the start of its container, not changing its size.
      */
-    static let START = RELATIVE_LAYOUT_DIRECTION | LEFT
+    static let LEADING = RELATIVE_LAYOUT_DIRECTION | LEFT
     
     /**
      * Push object to x-axis position at the end of its container, not changing its size.
      */
-    static let END = RELATIVE_LAYOUT_DIRECTION | RIGHT
+    static let TRAILING = RELATIVE_LAYOUT_DIRECTION | RIGHT
     
     /**
      * Binary mask for the horizontal gravity and script specific direction bit.
      */
-    static let RELATIVE_HORIZONTAL_GRAVITY_MASK = START | END
-    
-    
-    /**
-     * Apply a gravity constant to an object. This supposes that the layout direction is LTR.
-     
-     * @param gravity   The desired placement of the object, as defined by the
-     * *                  constants in this class.
-     * *
-     * @param w         The horizontal size of the object.
-     * *
-     * @param h         The vertical size of the object.
-     * *
-     * @param container The frame of the containing space, in which the object
-     * *                  will be placed.  Should be large enough to contain the
-     * *                  width and height of the object.
-     * *
-     * @param outRect   Receives the computed frame of the object in its
-     * *                  container.
-     */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, outRect: CGRect) {
-        apply(gravity, w: w, h: h, container: container, xAdj: 0, yAdj: 0, outRect: outRect)
-    }
-    
-    /**
-     * Apply a gravity constant to an object and take care if layout direction is RTL or not.
-     
-     * @param gravity         The desired placement of the object, as defined by the
-     * *                        constants in this class.
-     * *
-     * @param w               The horizontal size of the object.
-     * *
-     * @param h               The vertical size of the object.
-     * *
-     * @param container       The frame of the containing space, in which the object
-     * *                        will be placed.  Should be large enough to contain the
-     * *                        width and height of the object.
-     * *
-     * @param outRect         Receives the computed frame of the object in its
-     * *                        container.
-     * *
-     * @param layoutDirection The layout direction.
-     * *
-     * @see View.LAYOUT_DIRECTION_LTR
-     
-     * @see View.LAYOUT_DIRECTION_RTL
-     */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect,
-               outRect: CGRect, layoutDirection: UIUserInterfaceLayoutDirection) {
-        let absGravity = getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
-        apply(absGravity, w: w, h: h, container: container, xAdj: 0, yAdj: 0, outRect: outRect)
-    }
+    static let RELATIVE_HORIZONTAL_GRAVITY_MASK = LEADING | TRAILING
+
     
     /**
      * Apply a gravity constant to an object.
-     
+     *
      * @param gravity   The desired placement of the object, as defined by the
-     * *                  constants in this class.
-     * *
+     *                  constants in this class.
+     *
      * @param w         The horizontal size of the object.
-     * *
+     *
      * @param h         The vertical size of the object.
-     * *
+     *
      * @param container The frame of the containing space, in which the object
-     * *                  will be placed.  Should be large enough to contain the
-     * *                  width and height of the object.
-     * *
+     *                  will be placed.  Should be large enough to contain the
+     *                  width and height of the object.
+     *
      * @param xAdj      Offset to apply to the X axis.  If gravity is LEFT this
-     * *                  pushes it to the right; if gravity is RIGHT it pushes it to
-     * *                  the left; if gravity is CENTER_HORIZONTAL it pushes it to the
-     * *                  right or left; otherwise it is ignored.
-     * *
+     *                  pushes it to the right; if gravity is RIGHT it pushes it to
+     *                  the left; if gravity is CENTER_HORIZONTAL it pushes it to the
+     *                  right or left; otherwise it is ignored.
+     *
      * @param yAdj      Offset to apply to the Y axis.  If gravity is TOP this pushes
-     * *                  it down; if gravity is BOTTOM it pushes it up; if gravity is
-     * *                  CENTER_VERTICAL it pushes it down or up; otherwise it is
-     * *                  ignored.
-     * *
+     *                  it down; if gravity is BOTTOM it pushes it up; if gravity is
+     *                  CENTER_VERTICAL it pushes it down or up; otherwise it is
+     *                  ignored.
+     *
      * @param outRect   Receives the computed frame of the object in its
-     * *                  container.
+     *                  container.
      */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, xAdj: CGFloat, yAdj: CGFloat, var outRect: CGRect) {
+    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0) -> CGRect {
+        var outRect = CGRectZero
         switch (gravity & ((AXIS_PULL_BEFORE | AXIS_PULL_AFTER) << AXIS_X_SHIFT)) {
         case 0:
             outRect.left = container.left + ((container.right - container.left - w) / 2) + xAdj
             outRect.right = outRect.left + w
-            if (gravity & (AXIS_CLIP << AXIS_X_SHIFT) == AXIS_CLIP << AXIS_X_SHIFT) {
+            if ((gravity & (AXIS_CLIP << AXIS_X_SHIFT)) == (AXIS_CLIP << AXIS_X_SHIFT)) {
                 if (outRect.left < container.left) {
                     outRect.left = container.left
                 }
@@ -244,7 +195,7 @@ class ALSGravity {
         case AXIS_PULL_BEFORE << AXIS_X_SHIFT:
             outRect.left = container.left + xAdj
             outRect.right = outRect.left + w
-            if (gravity & (AXIS_CLIP << AXIS_X_SHIFT) == AXIS_CLIP << AXIS_X_SHIFT) {
+            if ((gravity & (AXIS_CLIP << AXIS_X_SHIFT)) == (AXIS_CLIP << AXIS_X_SHIFT)) {
                 if (outRect.right > container.right) {
                     outRect.right = container.right
                 }
@@ -253,7 +204,7 @@ class ALSGravity {
         case AXIS_PULL_AFTER << AXIS_X_SHIFT:
             outRect.right = container.right - xAdj
             outRect.left = outRect.right - w
-            if (gravity & (AXIS_CLIP << AXIS_X_SHIFT) == AXIS_CLIP << AXIS_X_SHIFT) {
+            if ((gravity & (AXIS_CLIP << AXIS_X_SHIFT)) == (AXIS_CLIP << AXIS_X_SHIFT)) {
                 if (outRect.left < container.left) {
                     outRect.left = container.left
                 }
@@ -266,11 +217,11 @@ class ALSGravity {
         }
         
         
-        switch (gravity & (AXIS_PULL_BEFORE | AXIS_PULL_AFTER << AXIS_Y_SHIFT)) {
+        switch (gravity & ((AXIS_PULL_BEFORE | AXIS_PULL_AFTER) << AXIS_Y_SHIFT)) {
         case 0:
             outRect.top = container.top + ((container.bottom - container.top - h) / 2) + yAdj
             outRect.bottom = outRect.top + h
-            if (gravity & (AXIS_CLIP << AXIS_Y_SHIFT) == AXIS_CLIP << AXIS_Y_SHIFT) {
+            if ((gravity & (AXIS_CLIP << AXIS_Y_SHIFT)) == (AXIS_CLIP << AXIS_Y_SHIFT)) {
                 if (outRect.top < container.top) {
                     outRect.top = container.top
                 }
@@ -282,7 +233,7 @@ class ALSGravity {
         case AXIS_PULL_BEFORE << AXIS_Y_SHIFT:
             outRect.top = container.top + yAdj
             outRect.bottom = outRect.top + h
-            if (gravity & (AXIS_CLIP << AXIS_Y_SHIFT) == AXIS_CLIP << AXIS_Y_SHIFT) {
+            if ((gravity & (AXIS_CLIP << AXIS_Y_SHIFT)) == (AXIS_CLIP << AXIS_Y_SHIFT)) {
                 if (outRect.bottom > container.bottom) {
                     outRect.bottom = container.bottom
                 }
@@ -291,7 +242,7 @@ class ALSGravity {
         case AXIS_PULL_AFTER << AXIS_Y_SHIFT:
             outRect.bottom = container.bottom - yAdj
             outRect.top = outRect.bottom - h
-            if (gravity & (AXIS_CLIP << AXIS_Y_SHIFT) == AXIS_CLIP << AXIS_Y_SHIFT) {
+            if ((gravity & (AXIS_CLIP << AXIS_Y_SHIFT)) == (AXIS_CLIP << AXIS_Y_SHIFT)) {
                 if (outRect.top < container.top) {
                     outRect.top = container.top
                 }
@@ -300,46 +251,47 @@ class ALSGravity {
         default:
             outRect.top = container.top + yAdj
             outRect.bottom = container.bottom + yAdj
-            
         }
+        
+        return outRect
     }
     
     /**
      * Apply a gravity constant to an object.
-     
+     *
      * @param gravity         The desired placement of the object, as defined by the
-     * *                        constants in this class.
-     * *
+     *                        constants in this class.
+     *
      * @param w               The horizontal size of the object.
-     * *
+     *
      * @param h               The vertical size of the object.
-     * *
+     *
      * @param container       The frame of the containing space, in which the object
-     * *                        will be placed.  Should be large enough to contain the
-     * *                        width and height of the object.
-     * *
+     *                        will be placed.  Should be large enough to contain the
+     *                        width and height of the object.
+     *
      * @param xAdj            Offset to apply to the X axis.  If gravity is LEFT this
-     * *                        pushes it to the right; if gravity is RIGHT it pushes it to
-     * *                        the left; if gravity is CENTER_HORIZONTAL it pushes it to the
-     * *                        right or left; otherwise it is ignored.
-     * *
+     *                        pushes it to the right; if gravity is RIGHT it pushes it to
+     *                        the left; if gravity is CENTER_HORIZONTAL it pushes it to the
+     *                        right or left; otherwise it is ignored.
+     *
      * @param yAdj            Offset to apply to the Y axis.  If gravity is TOP this pushes
-     * *                        it down; if gravity is BOTTOM it pushes it up; if gravity is
-     * *                        CENTER_VERTICAL it pushes it down or up; otherwise it is
-     * *                        ignored.
-     * *
+     *                        it down; if gravity is BOTTOM it pushes it up; if gravity is
+     *                        CENTER_VERTICAL it pushes it down or up; otherwise it is
+     *                        ignored.
+     *
      * @param outRect         Receives the computed frame of the object in its
-     * *                        container.
-     * *
+     *                        container.
+     *
      * @param layoutDirection The layout direction.
-     * *
+     *
      * @see View.LAYOUT_DIRECTION_LTR
-     
+     *
      * @see View.LAYOUT_DIRECTION_RTL
      */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, xAdj: CGFloat, yAdj: CGFloat, outRect: CGRect, layoutDirection: UIUserInterfaceLayoutDirection) {
+    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0, layoutDirection: UIUserInterfaceLayoutDirection) -> CGRect {
         let absGravity = getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
-        apply(absGravity, w: w, h: h, container: container, xAdj: xAdj, yAdj: yAdj, outRect: outRect)
+        return apply(absGravity, w: w, h: h, container: container, xAdj: xAdj, yAdj: yAdj)
     }
     
     /**
@@ -350,17 +302,18 @@ class ALSGravity {
      * to be visible in the display; the gravity flags
      * [.DISPLAY_CLIP_HORIZONTAL] and [.DISPLAY_CLIP_VERTICAL]
      * can be used to change this behavior.
-     
+     *
      * @param gravity  Gravity constants to modify the placement within the
-     * *                 display.
-     * *
+     *                 display.
+     *
      * @param display  The rectangle of the display in which the object is
-     * *                 being placed.
-     * *
+     *                 being placed.
+     *
      * @param inoutObj Supplies the current object position; returns with it
-     * *                 modified if needed to fit in the display.
+     *                 modified if needed to fit in the display.
      */
-    static func applyDisplay(gravity: Int, display: CGRect, var inoutObj: CGRect) {
+    static func applyDisplay(gravity: Int, display: CGRect) -> CGRect {
+        var inoutObj = CGRectZero
         if (gravity & DISPLAY_CLIP_VERTICAL != 0) {
             if (inoutObj.top < display.top) {
                 inoutObj.top = display.top
@@ -410,6 +363,8 @@ class ALSGravity {
                 }
             }
         }
+        
+        return inoutObj
     }
     
     /**
@@ -420,33 +375,33 @@ class ALSGravity {
      * to be visible in the display; the gravity flags
      * [.DISPLAY_CLIP_HORIZONTAL] and [.DISPLAY_CLIP_VERTICAL]
      * can be used to change this behavior.
-     
+     *
      * @param gravity         Gravity constants to modify the placement within the
-     * *                        display.
-     * *
+     *                        display.
+     *
      * @param display         The rectangle of the display in which the object is
-     * *                        being placed.
-     * *
+     *                        being placed.
+     *
      * @param inoutObj        Supplies the current object position; returns with it
-     * *                        modified if needed to fit in the display.
-     * *
+     *                        modified if needed to fit in the display.
+     *
      * @param layoutDirection The layout direction.
-     * *
+     *
      * @see View.LAYOUT_DIRECTION_LTR
-     
+     *
      * @see View.LAYOUT_DIRECTION_RTL
      */
-    static func applyDisplay(gravity: Int, display: CGRect, inoutObj: CGRect, layoutDirection: UIUserInterfaceLayoutDirection) {
+    static func applyDisplay(gravity: Int, display: CGRect, inoutObj: CGRect, layoutDirection: UIUserInterfaceLayoutDirection) -> CGRect {
         let absGravity = getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
-        applyDisplay(absGravity, display: display, inoutObj: inoutObj)
+        return applyDisplay(absGravity, display: display)
     }
     
     /**
      *
      * Indicate whether the supplied gravity has a vertical pull.
-     
+     *
      * @param gravity the gravity to check for vertical pull
-     * *
+     *
      * @return true if the supplied gravity has a vertical pull
      */
     static func isVertical(gravity: Int) -> Bool {
@@ -456,9 +411,9 @@ class ALSGravity {
     /**
      *
      * Indicate whether the supplied gravity has an horizontal pull.
-     
+     *
      * @param gravity the gravity to check for horizontal pull
-     * *
+     *
      * @return true if the supplied gravity has an horizontal pull
      */
     static func isHorizontal(gravity: Int) -> Bool {
@@ -470,22 +425,22 @@ class ALSGravity {
      * Convert script specific gravity to absolute horizontal value.
      *
      *
-     * if horizontal direction is LTR, then START will set LEFT and END will set RIGHT.
-     * if horizontal direction is RTL, then START will set RIGHT and END will set LEFT.
-     
+     * if horizontal direction is LTR, then LEADING will set LEFT and TRAILING will set RIGHT.
+     * if horizontal direction is RTL, then LEADING will set RIGHT and TRAILING will set LEFT.
+     *
      * @param gravity         The gravity to convert to absolute (horizontal) values.
-     * *
+     *
      * @param layoutDirection The layout direction.
-     * *
+     *
      * @return gravity converted to absolute (horizontal) values.
      */
     static func getAbsoluteGravity(gravity: Int, layoutDirection: UIUserInterfaceLayoutDirection) -> Int {
         var result = gravity
-        // If layout is script specific and gravity is horizontal relative (START or END)
+        // If layout is script specific and gravity is horizontal relative (LEADING or TRAILING)
         if ((result & RELATIVE_LAYOUT_DIRECTION) > 0) {
-            if (result & ALSGravity.START == ALSGravity.START) {
-                // Remove the START bit
-                result = result & ~START
+            if (result & ALSGravity.LEADING == ALSGravity.LEADING) {
+                // Remove the LEADING bit
+                result = result & ~LEADING
                 if (layoutDirection == .RightToLeft) {
                     // Set the RIGHT bit
                     result = result | RIGHT
@@ -493,9 +448,9 @@ class ALSGravity {
                     // Set the LEFT bit
                     result = result | LEFT
                 }
-            } else if (result & ALSGravity.END == ALSGravity.END) {
-                // Remove the END bit
-                result = result & ~END
+            } else if (result & ALSGravity.TRAILING == ALSGravity.TRAILING) {
+                // Remove the TRAILING bit
+                result = result & ~TRAILING
                 if (layoutDirection == .RightToLeft) {
                     // Set the LEFT bit
                     result = result | LEFT

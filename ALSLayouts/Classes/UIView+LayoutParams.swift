@@ -8,53 +8,78 @@
 
 import Foundation
 
-extension UIView {
+public extension UIView {
     
-    @IBInspectable var layoutGravity: Int {
+    public var layoutWidthMode: ALSLayoutParams.SizeMode {
+        get { return self.getLayoutParams()?.widthMode ?? .StaticSize }
+        set { obtainLayoutParams().widthMode = newValue }
+    }
+    
+    internal var layoutHeightMode: ALSLayoutParams.SizeMode {
+        get { return self.getLayoutParams()?.heightMode ?? .StaticSize }
+        set { obtainLayoutParams().heightMode = newValue }
+    }
+    
+    @IBInspectable internal var layoutWidthModeString: String {
+        get { return layoutWidthMode.rawValue }
+        set { self.layoutWidthMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
+    }
+    
+    @IBInspectable internal var layoutHeightModeString: String {
+        get { return layoutHeightMode.rawValue }
+        set { self.layoutHeightMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
+    }
+    
+    public var layoutGravity: Int {
+        get { return self.getLayoutParams()?.gravity ?? 0 }
+        set { obtainLayoutParams().gravity = newValue }
+    }
+    
+    @IBInspectable internal var layoutGravityString: String {
         get {
-            return 0
+            return ALSGravity.format(layoutGravity)
         }
         set {
-            
+            self.layoutGravity = ALSGravity.parse(newValue)
         }
     }
     
-    @IBInspectable var layoutMarginTop: CGFloat {
+    @IBInspectable public var layoutMarginTop: CGFloat {
         get { return self.getLayoutParams()?.marginTop ?? 0 }
         set { obtainLayoutParams().marginTop = newValue }
     }
     
-    @IBInspectable var layoutMarginBottom: CGFloat {
+    @IBInspectable public var layoutMarginBottom: CGFloat {
         get { return self.getLayoutParams()?.marginBottom ?? 0 }
         set { obtainLayoutParams().marginBottom = newValue }
     }
     
-    @IBInspectable var layoutMarginLeading: CGFloat {
+    @IBInspectable public var layoutMarginLeading: CGFloat {
         get { return self.getLayoutParams()?.marginLeading ?? 0 }
         set { obtainLayoutParams().marginLeading = newValue }
     }
     
-    @IBInspectable var layoutMarginTrailing: CGFloat {
+    @IBInspectable public var layoutMarginTrailing: CGFloat {
         get { return self.getLayoutParams()?.marginTrailng ?? 0 }
         set { obtainLayoutParams().marginTrailng = newValue }
     }
     
-    @IBInspectable var layoutAlignParentTop: Bool {
+    @IBInspectable public var layoutAlignParentTop: Bool {
         get { return self.getLayoutParams()?.alignParentTop ?? false }
         set { obtainLayoutParams().alignParentTop = newValue }
     }
     
-    @IBInspectable var layoutAlignParentBottom: Bool {
+    @IBInspectable public var layoutAlignParentBottom: Bool {
         get { return self.getLayoutParams()?.alignParentBottom ?? false }
         set { obtainLayoutParams().alignParentBottom = newValue }
     }
     
-    @IBInspectable var layoutAlignParentLeading: Bool {
+    @IBInspectable public var layoutAlignParentLeading: Bool {
         get { return self.getLayoutParams()?.alignParentLeading ?? false }
         set { obtainLayoutParams().alignParentLeading = newValue }
     }
     
-    @IBInspectable var layoutAlignParentTrailing: Bool {
+    @IBInspectable public var layoutAlignParentTrailing: Bool {
         get { return self.getLayoutParams()?.alignParentTrailng ?? false }
         set { obtainLayoutParams().alignParentTrailng = newValue }
     }

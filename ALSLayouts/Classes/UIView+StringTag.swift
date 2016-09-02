@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
     @IBInspectable var stringTag: String? {
         get {

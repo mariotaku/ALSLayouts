@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ALSLayoutProtocol {
+public protocol ALSLayoutProtocol {
     
 }

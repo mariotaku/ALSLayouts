@@ -21,14 +21,14 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/ALSLayouts'
+  s.homepage         = 'https://github.com/mariotaku/ALSLayouts'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Mariotaku Lee' => 'mariotaku.lee@gmail.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/ALSLayouts.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/mariotaku/ALSLayouts.git', :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/mariotaku'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'ALSLayouts/Classes/**/*'
   
