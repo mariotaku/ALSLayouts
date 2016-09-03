@@ -76,6 +76,26 @@
                                             <segue destination="2VL-LL-KLN" kind="show" id="9qg-KD-xIm"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="pMP-Ui-pN8" style="IBUITableViewCellStyleDefault" id="Ka2-r1-QQc">
+                                        <rect key="frame" x="0.0" y="231.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ka2-r1-QQc" id="J25-1r-gXJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Table view cell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pMP-Ui-pN8">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="uoi-RR-1d0" kind="show" id="nCu-8l-O1I"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -105,6 +125,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wg5-jX-EYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1461" y="150"/>
+        </scene>
+        <!--RelativeLayoutTableCell-->
+        <scene sceneID="0Nm-Kw-9UN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Examples" referencedIdentifier="RelativeLayoutTableCell" id="uoi-RR-1d0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vI6-kj-gcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482.5" y="280"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zlt-wh-g2h">

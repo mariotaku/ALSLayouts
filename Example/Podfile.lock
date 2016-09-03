@@ -11,6 +11,7 @@ PODS:
     - Nimble
     - Quick
   - Quick (0.9.3)
+  - UITableView+FDTemplateLayoutCell (1.5.beta)
 
 DEPENDENCIES:
   - ALSLayouts (from `../`)
@@ -18,18 +19,20 @@ DEPENDENCIES:
   - Nimble (~> 3.0)
   - Nimble-Snapshots
   - Quick (~> 0.8)
+  - UITableView+FDTemplateLayoutCell (~> 1.5.beta)
 
 EXTERNAL SOURCES:
   ALSLayouts:
     :path: ../
 
 SPEC CHECKSUMS:
-  ALSLayouts: d0df92fa0903ea1d65c342eb269e55f849b1c421
+  ALSLayouts: 7f5436ee22e7fc7e44790e291104eb5f500de52d
   FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
-PODFILE CHECKSUM: cbb909dde1e2f57564f6c1ecbf932608cf7a56da
+PODFILE CHECKSUM: ec1f7737084b64db04649a599469eff5824946df
 
 COCOAPODS: 1.0.1

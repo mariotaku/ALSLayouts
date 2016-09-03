@@ -28,7 +28,11 @@ public class ALSBaseLayout: UIView {
     }
     
     internal var actualLayoutMargins: UIEdgeInsets {
-        return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
+        if #available(iOS 8.0, *) {
+            return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
+        } else {
+            return UIEdgeInsetsZero
+        }
     }
     
     public func addSubview(view: UIView, configure: (ALSLayoutParams) -> Void) {

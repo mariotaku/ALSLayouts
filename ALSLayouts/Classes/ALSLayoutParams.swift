@@ -233,7 +233,6 @@ public class ALSLayoutParams {
     }
     
     internal func measure(view: UIView, widthSpec: MeasureSpec, heightSpec: MeasureSpec) {
-//        debugPrint("Measuring \(view), width \(widthMeasureSpec.0):\(widthMeasureSpec.1), height \(heightMeasureSpec.0):\(heightMeasureSpec.1)")
         if (widthSpec.1 == .Exactly || heightSpec.1 == .Exactly) {
             if (widthSpec.1 != .Exactly) {
                 // Exact height

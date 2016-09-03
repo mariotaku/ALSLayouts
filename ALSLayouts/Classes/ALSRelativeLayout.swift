@@ -163,11 +163,24 @@ public class ALSRelativeLayout: ALSBaseLayout {
     private var sortedHorizontalSubviews: [UIView!]! = nil
     private var sortedVerticalSubviews: [UIView!]! = nil
     private let graph = DependencyGraph()
-    
 
     public override func setNeedsLayout() {
         super.setNeedsLayout()
         dirtyHierarchy = true
+    }
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        dirtyHierarchy = true
+    }
+    
+    public override func sizeThatFits(size: CGSize) -> CGSize {
+        // Resolve int view tags
+        for (k, lp) in layoutParamsMap {
+            lp.resolveViewTags()
+        }
+        measureSubviews(size)
+        return frame.size
     }
     
     public override func layoutSubviews() {
@@ -176,7 +189,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         
-        measureSubviews()
+        measureSubviews(frame.size)
         
         // Final step, do actual layout
         for subview in subviews {
@@ -189,8 +202,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
     }
     
-    
-    func measureSubviews() {
+    func measureSubviews(size: CGSize) {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
             sortChildren()
@@ -202,12 +214,11 @@ public class ALSRelativeLayout: ALSBaseLayout {
         var width: CGFloat = 0
         var height: CGFloat = 0
         
+        let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
+        let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
         
-        let widthSpec: ALSLayoutParams.MeasureSpecMode = .Exactly
-        let heightSpec: ALSLayoutParams.MeasureSpecMode = .Exactly
-        
-        let widthSize = bounds.width
-        let heightSize = bounds.height
+        let widthSize = size.width
+        let heightSize = size.height
         
         // Record our dimensions if they are known;
         if (widthSpec != .Unspecified) {
@@ -220,10 +231,22 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         if (widthMode == .StaticSize) {
             width = myWidth
+        } else if (widthMode == .MatchParent) {
+            if let parent = superview where !(parent is ALSBaseLayout) {
+                width = parent.frame.width - parent.compatLayoutMargins.left - parent.compatLayoutMargins.right
+            } else {
+                width = myWidth
+            }
         }
         
         if (heightMode == .StaticSize) {
             height = myHeight
+        } else if (heightMode == .MatchParent) {
+            if let parent = superview where !(parent is ALSBaseLayout) {
+                height = parent.frame.height - parent.compatLayoutMargins.top - parent.compatLayoutMargins.bottom
+            } else {
+                height = myHeight
+            }
         }
         
         var ignore: UIView? = nil
@@ -369,7 +392,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
                 for subview in sortedVerticalSubviews {
                     let params = subview.layoutParams!
                     if (!params.hidden) {
-                        var rules = params.getRules(layoutDirection)
+                        let rules = params.getRules(layoutDirection)
                         if (rules[ALSRelativeLayout.CENTER_IN_PARENT] != 0 || rules[ALSRelativeLayout.CENTER_VERTICAL] != 0) {
                             ALSRelativeLayout.centerVertical(subview, params: params, myHeight: height)
                         } else if (rules[ALSRelativeLayout.ALIGN_PARENT_BOTTOM] != 0) {
@@ -421,10 +444,17 @@ public class ALSRelativeLayout: ALSBaseLayout {
             }
         }
         
-        frame.size.width = width
-        frame.size.height = height
+        if (isWrapContentWidth) {
+            frame.size.width = right - left + actualLayoutMargins.left + actualLayoutMargins.right
+        } else {
+            frame.size.width = width
+        }
+        if (isWrapContentHeight) {
+            frame.size.height = bottom - top + actualLayoutMargins.top + actualLayoutMargins.bottom
+        } else {
+            frame.size.height = height
+        }
     }
-    
     
     /**
      * @return a negative number if the top of `p1` is above the top of

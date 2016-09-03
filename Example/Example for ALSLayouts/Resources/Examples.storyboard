@@ -123,6 +123,108 @@
             </objects>
             <point key="canvasLocation" x="194" y="400"/>
         </scene>
+        <!--RelativeLayout TableCell-->
+        <scene sceneID="cxs-QL-tmU">
+            <objects>
+                <tableViewController storyboardIdentifier="RelativeLayoutTableCell" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uU2-am-jfc" customClass="RelativeLayoutTableController" customModule="ALSLayouts_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="237" sectionHeaderHeight="28" sectionFooterHeight="28" id="PXR-9J-TMt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExampleItem" id="yvD-Z9-Whh" customClass="RelativeLayoutTableCell" customModule="ALSLayouts_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="237"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yvD-Z9-Whh" id="MZa-mp-HV5">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="236.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="liZ-6H-MuO" customClass="ALSRelativeLayout" customModule="ALSLayouts">
+                                            <rect key="frame" x="8" y="8" width="304" height="220.5"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" id="2ZO-S7-CWG" userLabel="Avatar">
+                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTop" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthModeString" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightModeString" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="profileImage"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a7b-oF-1PT">
+                                                    <rect key="frame" x="64" y="8" width="232" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.64095463139999997" green="1" blue="0.75529109179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Name @screenname">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="name"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTop" value="profileImage"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImage"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightModeString" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthModeString" value="WrapContent"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IUe-oK-KDJ">
+                                                    <rect key="frame" x="64" y="30" width="232" height="152"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis metus non massa eleifend, a ornare nisi vestibulum. Sed malesuada lorem eget ex viverra, ac egestas arcu vehicula. </string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="text"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignLeading" value="name"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="name"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightModeString" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthModeString" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="0.5" colorSpace="calibratedRGB"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uU2-am-jfc" id="kod-Vl-ssu"/>
+                            <outlet property="delegate" destination="uU2-am-jfc" id="Ma6-DY-C1h"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="RelativeLayout TableCell" id="ShB-3m-1C0"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uVm-Jh-jg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="400"/>
+        </scene>
         <!--RelativeLayout IB-->
         <scene sceneID="61V-n2-UxM">
             <objects>

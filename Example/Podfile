@@ -3,7 +3,8 @@ use_frameworks!
 
 target 'ALSLayouts_Example' do
   pod 'ALSLayouts', :path => '../'
-
+  pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
+  
   target 'ALSLayouts_Tests' do
     inherit! :search_paths
 

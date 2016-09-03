@@ -212,12 +212,14 @@ public extension UIView {
     
     
     public var layoutParams: ALSLayoutParams? {
-        get {
-            return (superview as! ALSBaseLayout).getLayoutParams(self)
-        }
+        return (superview as! ALSBaseLayout).getLayoutParams(self)
     }
     
-    private func obtainLayoutParams() -> ALSLayoutParams {
+    internal var layoutParamsOrNull: ALSLayoutParams? {
+        return (superview as? ALSBaseLayout)?.getLayoutParams(self)
+    }
+    
+    internal func obtainLayoutParams() -> ALSLayoutParams {
         return (superview as! ALSBaseLayout).obtainLayoutParams(self)
     }
     

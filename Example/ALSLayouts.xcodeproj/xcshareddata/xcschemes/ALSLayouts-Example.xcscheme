@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "ALSLayouts_Example.app"
-               BlueprintName = "ALSLayouts_Example"
+               BuildableName = "ALSLayouts Example.app"
+               BlueprintName = "ALSLayouts Example"
                ReferencedContainer = "container:ALSLayouts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "ALSLayouts_Tests.xctest"
-               BlueprintName = "ALSLayouts_Tests"
+               BuildableName = "ALSLayouts Tests.xctest"
+               BlueprintName = "ALSLayouts Tests"
                ReferencedContainer = "container:ALSLayouts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "ALSLayouts_Tests.xctest"
-               BlueprintName = "ALSLayouts_Tests"
+               BuildableName = "ALSLayouts Tests.xctest"
+               BlueprintName = "ALSLayouts Tests"
                ReferencedContainer = "container:ALSLayouts.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ALSLayouts_Example.app"
-            BlueprintName = "ALSLayouts_Example"
+            BuildableName = "ALSLayouts Example.app"
+            BlueprintName = "ALSLayouts Example"
             ReferencedContainer = "container:ALSLayouts.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -81,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ALSLayouts_Example.app"
-            BlueprintName = "ALSLayouts_Example"
+            BuildableName = "ALSLayouts Example.app"
+            BlueprintName = "ALSLayouts Example"
             ReferencedContainer = "container:ALSLayouts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -100,8 +100,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ALSLayouts_Example.app"
-            BlueprintName = "ALSLayouts_Example"
+            BuildableName = "ALSLayouts Example.app"
+            BlueprintName = "ALSLayouts Example"
             ReferencedContainer = "container:ALSLayouts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
