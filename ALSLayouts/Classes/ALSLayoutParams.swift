@@ -177,6 +177,7 @@ public class ALSLayoutParams {
         
         marginsChanged = true
         rulesChanged = true
+
     }
     
     internal func resolveViewTags() {

@@ -15,6 +15,8 @@ public class ALSBaseLayout: UIView {
     public var widthMode: ALSLayoutParams.SizeMode = .StaticSize
     public var heightMode: ALSLayoutParams.SizeMode = .StaticSize
     
+    @IBInspectable public var ignoreLayoutMargins: Bool = false
+    
     @IBInspectable internal var widthModeString: String {
         get { return widthMode.rawValue }
         set { self.widthMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
@@ -23,6 +25,10 @@ public class ALSBaseLayout: UIView {
     @IBInspectable internal var heightModeString: String {
         get { return heightMode.rawValue }
         set { self.heightMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
+    }
+    
+    internal var actualLayoutMargins: UIEdgeInsets {
+        return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
     }
     
     public func addSubview(view: UIView, configure: (ALSLayoutParams) -> Void) {
