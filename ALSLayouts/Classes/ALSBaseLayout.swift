@@ -40,7 +40,7 @@ public class ALSBaseLayout: UIView {
         if let params = layoutParamsMap[view.hash] {
             return params
         }
-        let newParams = ALSLayoutParams()
+        let newParams = ALSLayoutParams(view: view)
         layoutParamsMap[view.hash] = newParams
         return newParams
     }

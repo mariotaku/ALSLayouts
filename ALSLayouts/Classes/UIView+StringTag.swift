@@ -12,21 +12,21 @@ public extension UIView {
     
     @IBInspectable public var stringTag: String? {
         get {
-            if (self.tag == 0 || self.tag < 0 || self.tag >= UIView.tagPoll.count) {
+            if (self.tag == 0) {
                 return nil
             } else {
-                return UIView.tagPoll.filter { (k, v) -> Bool in return v == self.tag }.first?.0
+                return UIView.tagPool.filter { (k, v) -> Bool in return v == self.tag }.first!.0
             }
         }
         set {
             if (newValue == nil) {
                 self.tag = 0
             } else {
-                if let intTag = UIView.tagPoll[newValue!] {
+                if let intTag = UIView.tagPool[newValue!] {
                     self.tag = intTag
                 } else {
-                    let newTag = UIView.tagPoll.count + 1
-                    UIView.tagPoll[newValue!] = newTag
+                    let newTag = UIView.tagPool.count + 101
+                    UIView.tagPool[newValue!] = newTag
                     self.tag = newTag
                 }
             }
@@ -34,7 +34,7 @@ public extension UIView {
     }
     
     func viewWithStringTag(stringTag: String) -> UIView? {
-        guard let intTag = UIView.tagPoll[stringTag] else {
+        guard let intTag = UIView.tagPool[stringTag] else {
             return nil
         }
         return viewWithTag(intTag)
@@ -44,15 +44,15 @@ public extension UIView {
         if (tag == nil) {
             return 0
         }
-        return tagPoll[tag!] ?? 0
+        return tagPool[tag!]!
     }
     
     static func getStringTag(byTag tag: Int) -> String? {
         if (tag == 0) {
             return nil
         }
-        return tagPoll.filter { (k, v) -> Bool in return v == tag }.first?.0
+        return tagPool.filter { (k, v) -> Bool in return v == tag }.first?.0
     }
     
-    private static var tagPoll = [String: Int]()
+    private static var tagPool = [String: Int]()
 }

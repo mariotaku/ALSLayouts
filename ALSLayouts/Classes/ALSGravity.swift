@@ -178,8 +178,7 @@ public class ALSGravity {
      * @param outRect   Receives the computed frame of the object in its
      *                  container.
      */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0) -> CGRect {
-        var outRect = CGRectZero
+    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, inout outRect: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0) {
         switch (gravity & ((AXIS_PULL_BEFORE | AXIS_PULL_AFTER) << AXIS_X_SHIFT)) {
         case 0:
             outRect.left = container.left + ((container.right - container.left - w) / 2) + xAdj
@@ -252,8 +251,6 @@ public class ALSGravity {
             outRect.top = container.top + yAdj
             outRect.bottom = container.bottom + yAdj
         }
-        
-        return outRect
     }
     
     /**
@@ -289,9 +286,9 @@ public class ALSGravity {
      *
      * @see View.LAYOUT_DIRECTION_RTL
      */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0, layoutDirection: UIUserInterfaceLayoutDirection) -> CGRect {
+    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, inout outRect: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0, layoutDirection: UIUserInterfaceLayoutDirection) {
         let absGravity = getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
-        return apply(absGravity, w: w, h: h, container: container, xAdj: xAdj, yAdj: yAdj)
+        return apply(absGravity, w: w, h: h, container: container, outRect: &outRect, xAdj: xAdj, yAdj: yAdj)
     }
     
     /**

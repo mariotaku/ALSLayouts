@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 public class ALSFrameLayout: ALSBaseLayout {
 
     public override func sizeThatFits(size: CGSize) -> CGSize {
@@ -18,7 +17,7 @@ public class ALSFrameLayout: ALSBaseLayout {
     
     override public func layoutSubviews() {
         print("layoutSubviews")
-        let layoutDirection = UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(self.semanticContentAttribute)
+        let layoutDirection = self.layoutDirection
         
         var parentFrame = self.bounds
 
@@ -26,11 +25,13 @@ public class ALSFrameLayout: ALSBaseLayout {
             guard let lp = getLayoutParams(subview) else {
                 continue
             }
+            lp.resolveLayoutDirection(layoutDirection)
+            
             let subContentSize = subview.intrinsicContentSize()
             let subFrame = subview.frame
             
-            let leftMargin = lp.resolveMarginLeftAbsolute(layoutDirection)
-            let rightMargin = lp.resolveMarginRightAbsolute(layoutDirection)
+            let leftMargin = lp.marginAbsLeft
+            let rightMargin = lp.marginAbsRight
             
             
             let subWidth = lp.hidden ? 0 : resolveSize(lp.widthMode, contentSize: subContentSize.width, frameSize: subFrame.width, parentSize: parentFrame.width, margin: leftMargin + rightMargin)
@@ -65,7 +66,7 @@ public class ALSFrameLayout: ALSBaseLayout {
                 yAdj = lp.marginTop
             }
             
-            subview.frame = ALSGravity.apply(lp.gravity, w: subWidth, h: subHeight, container: parentFrame, xAdj: xAdj, yAdj: yAdj, layoutDirection: layoutDirection)
+            ALSGravity.apply(lp.gravity, w: subWidth, h: subHeight, container: parentFrame, outRect: &subview.frame, xAdj: xAdj, yAdj: yAdj, layoutDirection: layoutDirection)
         }
     }
 
