@@ -143,8 +143,8 @@ public class ALSLayoutParams {
         set { self.setBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL, subjectBool: newValue) }
     }
     
-    internal var marginAbsLeft: CGFloat = 0
-    internal var marginAbsRight: CGFloat = 0
+    internal private(set) var marginAbsLeft: CGFloat = 0
+    internal private(set) var marginAbsRight: CGFloat = 0
     
     internal var left: CGFloat = 0
     internal var top: CGFloat = 0
@@ -231,13 +231,34 @@ public class ALSLayoutParams {
         self.layoutDirection = layoutDirection
     }
     
-    internal func measure(view: UIView, widthMeasureSpec: MeasureSpec, heightMeasureSpec: MeasureSpec) {
+    internal func measure(view: UIView, widthSpec: MeasureSpec, heightSpec: MeasureSpec) {
 //        debugPrint("Measuring \(view), width \(widthMeasureSpec.0):\(widthMeasureSpec.1), height \(heightMeasureSpec.0):\(heightMeasureSpec.1)")
-        let intrinsicContentSize = view.intrinsicContentSize()
-        measuredWidth = view.frame.width
-        measuredHeight = view.frame.height
-        measuredWidthSpec = .Exactly
-        measuredHeightSpec = .Exactly
+        if (widthSpec.1 == .Exactly || heightSpec.1 == .Exactly) {
+            if (widthSpec.1 != .Exactly) {
+                // Exact height
+                let sizeThatFits = view.sizeThatFits(CGSizeMake(widthSpec.0, heightSpec.0))
+                self.measuredWidth = sizeThatFits.width
+                self.measuredHeight = heightSpec.0
+            } else if (heightSpec.1 != .Exactly) {
+                // Exact width
+                let sizeThatFits = view.sizeThatFits(CGSizeMake(widthSpec.0, heightSpec.0))
+                self.measuredWidth = widthSpec.0
+                self.measuredHeight = sizeThatFits.height
+            } else {
+                // Exact both
+                self.measuredWidth = widthSpec.0
+                self.measuredHeight = heightSpec.0
+            }
+        } else if (widthSpec.1 == .AtMost || heightSpec.1 == .AtMost) {
+            let sizeThatFits = view.sizeThatFits(CGSizeMake(widthSpec.0, heightSpec.0))
+            self.measuredWidth = sizeThatFits.width
+            self.measuredHeight = sizeThatFits.height
+        } else {
+            self.measuredWidth = widthSpec.0
+            self.measuredHeight = heightSpec.0
+        }
+        self.measuredWidthSpec = widthSpec.1
+        self.measuredHeightSpec = heightSpec.1
     }
     
     internal func getRules(layoutDirection: UIUserInterfaceLayoutDirection) -> [Int] {

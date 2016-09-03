@@ -176,19 +176,21 @@ public class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         
-        measure()
+        measureSubviews()
         
         // Final step, do actual layout
         for subview in subviews {
             let st = subview.layoutParams!
             if (!st.hidden) {
                 subview.frame = CGRectMake(st.left, st.top, st.right - st.left, st.bottom - st.top)
+            } else {
+                subview.frame = CGRectZero
             }
         }
     }
     
     
-    func measure() {
+    func measureSubviews() {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
             sortChildren()
@@ -283,9 +285,9 @@ public class ALSRelativeLayout: ALSBaseLayout {
                 
                 if (isWrapContentWidth) {
                     if (isLayoutRtl) {
-                        width = max(width, myWidth - params.left - params.marginLeft)
+                        width = max(width, myWidth - params.left - params.marginAbsLeft)
                     } else {
-                        width = max(width, params.right + params.marginRight)
+                        width = max(width, params.right + params.marginAbsRight)
                     }
                 }
                 
@@ -294,12 +296,12 @@ public class ALSRelativeLayout: ALSBaseLayout {
                 }
                 
                 if (subview !== ignore || verticalGravity) {
-                    left = min(left, params.left - params.marginLeft)
+                    left = min(left, params.left - params.marginAbsLeft)
                     top = min(top, params.top - params.marginTop)
                 }
                 
                 if (subview !== ignore || horizontalGravity) {
-                    right = max(right, params.right + params.marginRight)
+                    right = max(right, params.right + params.marginAbsRight)
                     bottom = max(bottom, params.bottom + params.marginBottom)
                 }
             }
@@ -475,15 +477,15 @@ public class ALSRelativeLayout: ALSBaseLayout {
      * @param myHeight Height of the RelativeLayout
      */
     private func measureChild(child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
-        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginLeft, endMargin: params.marginRight, startPadding: layoutMargins.left, endPadding: layoutMargins.right, mySize: myWidth)
+        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: layoutMargins.left, endPadding: layoutMargins.right, mySize: myWidth)
         
         let childHeightMeasureSpec = getChildMeasureSpec(params.top, childEnd: params.bottom, childSize: params.height, childSizeMode: params.heightMode, startMargin: params.marginTop, endMargin: params.marginBottom, startPadding: layoutMargins.top, endPadding: layoutMargins.bottom, mySize: myHeight)
 
-        params.measure(child, widthMeasureSpec: childWidthMeasureSpec, heightMeasureSpec: childHeightMeasureSpec)
+        params.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     
     private func measureChildHorizontal(child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
-        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginLeft, endMargin: params.marginRight, startPadding: layoutMargins.left, endPadding: layoutMargins.right, mySize: myWidth)
+        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: layoutMargins.left, endPadding: layoutMargins.right, mySize: myWidth)
         
         var measuredHeight: CGFloat = 0
         var measuredHeightSpec: ALSLayoutParams.MeasureSpecMode = .Unspecified
@@ -511,7 +513,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             measuredHeight = maxHeight
         }
         
-        params.measure(child, widthMeasureSpec: childWidthMeasureSpec, heightMeasureSpec: (measuredHeight, measuredHeightSpec))
+        params.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: (measuredHeight, measuredHeightSpec))
     }
     
     /**
@@ -643,7 +645,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
                 if (!wrapContent) {
                     ALSRelativeLayout.centerHorizontal(child, params: params, myWidth: myWidth)
                 } else {
-                    params.left = layoutMargins.left + params.marginLeft
+                    params.left = layoutMargins.left + params.marginAbsLeft
                     params.right = params.left + params.measuredWidth
                 }
                 return true
@@ -652,10 +654,10 @@ public class ALSRelativeLayout: ALSBaseLayout {
                 // from the left. This will give LEFT/TOP for LTR and RIGHT/TOP for RTL.
                 if (layoutDirection == .RightToLeft) {
                     
-                    params.right = myWidth - layoutMargins.right - params.marginRight
+                    params.right = myWidth - layoutMargins.right - params.marginAbsRight
                     params.left = params.right - params.measuredWidth
                 } else {
-                    params.left = layoutMargins.left + params.marginLeft
+                    params.left = layoutMargins.left + params.marginAbsLeft
                     params.right = params.left + params.measuredWidth
                 }
             }
@@ -708,43 +710,43 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         anchorParams = getRelatedViewParams(rules, relation: ALSRelativeLayout.LEFT_OF)
         if (anchorParams != nil) {
-            childParams.right = anchorParams.left - (anchorParams.marginLeft + childParams.marginRight)
+            childParams.right = anchorParams.left - (anchorParams.marginAbsLeft + childParams.marginAbsRight)
         } else if (childParams.alignWithParentIfMissing && rules[ALSRelativeLayout.LEFT_OF] != 0) {
             if (myWidth >= 0) {
-                childParams.right = myWidth - layoutMargins.right - childParams.marginRight
+                childParams.right = myWidth - layoutMargins.right - childParams.marginAbsRight
             }
         }
         
         anchorParams = getRelatedViewParams(rules, relation: ALSRelativeLayout.RIGHT_OF)
         if (anchorParams != nil) {
-            childParams.left = anchorParams.right + (anchorParams.marginRight + childParams.marginLeft)
+            childParams.left = anchorParams.right + (anchorParams.marginAbsRight + childParams.marginAbsLeft)
         } else if (childParams.alignWithParentIfMissing && rules[ALSRelativeLayout.RIGHT_OF] != 0) {
-            childParams.left = layoutMargins.left + childParams.marginLeft
+            childParams.left = layoutMargins.left + childParams.marginAbsLeft
         }
         
         anchorParams = getRelatedViewParams(rules, relation: ALSRelativeLayout.ALIGN_LEFT)
         if (anchorParams != nil) {
-            childParams.left = anchorParams.left + childParams.marginLeft
+            childParams.left = anchorParams.left + childParams.marginAbsLeft
         } else if (childParams.alignWithParentIfMissing && rules[ALSRelativeLayout.ALIGN_LEFT] != 0) {
-            childParams.left = layoutMargins.left + childParams.marginLeft
+            childParams.left = layoutMargins.left + childParams.marginAbsLeft
         }
         
         anchorParams = getRelatedViewParams(rules, relation: ALSRelativeLayout.ALIGN_RIGHT)
         if (anchorParams != nil) {
-            childParams.right = anchorParams.right - childParams.marginRight
+            childParams.right = anchorParams.right - childParams.marginAbsRight
         } else if (childParams.alignWithParentIfMissing && rules[ALSRelativeLayout.ALIGN_RIGHT] != 0) {
             if (myWidth >= 0) {
-                childParams.right = myWidth - layoutMargins.right - childParams.marginRight
+                childParams.right = myWidth - layoutMargins.right - childParams.marginAbsRight
             }
         }
         
         if (0 != rules[ALSRelativeLayout.ALIGN_PARENT_LEFT]) {
-            childParams.left = layoutMargins.left + childParams.marginLeft
+            childParams.left = layoutMargins.left + childParams.marginAbsLeft
         }
         
         if (0 != rules[ALSRelativeLayout.ALIGN_PARENT_RIGHT]) {
             if (myWidth >= 0) {
-                childParams.right = myWidth - layoutMargins.right - childParams.marginRight
+                childParams.right = myWidth - layoutMargins.right - childParams.marginAbsRight
             }
         }
     }
