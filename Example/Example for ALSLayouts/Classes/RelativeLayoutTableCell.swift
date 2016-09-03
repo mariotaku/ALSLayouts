@@ -11,6 +11,13 @@ import ALSLayouts
 
 class RelativeLayoutTableCell: UITableViewCell {
     
+    @IBOutlet weak var profileImageView: UIView!
+    @IBOutlet weak var textView: UILabel!
+    
+    func display(text: String) {
+        textView.text = text
+    }
+    
     override func sizeThatFits(size: CGSize) -> CGSize {
         let layout = contentView.subviews.first as! ALSRelativeLayout
         var contentSize = layout.sizeThatFits(size)

@@ -180,7 +180,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         measureSubviews(size)
-        return frame.size
+        return self.bounds.size
     }
     
     public override func layoutSubviews() {
@@ -189,7 +189,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         
-        measureSubviews(frame.size)
+        measureSubviews(self.bounds.size)
         
         // Final step, do actual layout
         for subview in subviews {
