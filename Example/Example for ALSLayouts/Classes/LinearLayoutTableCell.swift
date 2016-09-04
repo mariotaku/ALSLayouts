@@ -1,5 +1,5 @@
 //
-//  FrameLayoutCell.swift
+//  LinearLayoutTableCell.swift
 //  ALSLayouts
 //
 //  Created by Mariotaku Lee on 16/9/4.
@@ -9,13 +9,13 @@
 import UIKit
 import ALSLayouts
 
-class FrameLayoutTableCell: UITableViewCell {
+class LinearLayoutTableCell: UITableViewCell {
     
-    @IBOutlet weak var centerLabel: UILabel!
+    @IBOutlet weak var textView: UILabel!
     
-    func display(hideCenter: Bool) {
+    func display(data: String) {
+        textView.text = data
         let layout = contentView.subviews.first as! ALSBaseLayout
-        centerLabel.layoutParams.hidden = hideCenter
         layout.setNeedsLayout()
     }
     
@@ -29,5 +29,4 @@ class FrameLayoutTableCell: UITableViewCell {
         contentSize.height += contentView.layoutMargins.top + contentView.layoutMargins.bottom
         return contentSize
     }
-    
 }

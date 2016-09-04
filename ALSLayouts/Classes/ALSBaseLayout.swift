@@ -85,6 +85,10 @@ public class ALSBaseLayout: UIView {
         return layoutParamsMap[view.hash]
     }
     
+    public override func sizeThatFits(size: CGSize) -> CGSize {
+        return measureSubviews(size)
+    }
+    
     internal func measureSubviews(size: CGSize) -> CGSize {
         return size
     }
@@ -95,8 +99,13 @@ public class ALSBaseLayout: UIView {
             return params
         }
         let newParams = ALSLayoutParams(view: view)
+        initLayoutParams(view, newParams: newParams)
         layoutParamsMap[view.hash] = newParams
         return newParams
+    }
+    
+    internal func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
+    
     }
     
     internal func resolveSize(sizeMode: ALSLayoutParams.SizeMode, contentSize: CGFloat, frameSize: CGFloat, parentSize: CGFloat, margin: CGFloat) -> CGFloat {

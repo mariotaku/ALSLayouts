@@ -16,10 +16,6 @@ public class ALSFrameLayout: ALSBaseLayout {
     
     private var matchParentSubviews: [UIView] = [UIView]()
     
-    public override func sizeThatFits(size: CGSize) -> CGSize {
-        return measureSubviews(size)
-    }
-    
     override public func layoutSubviews() {
         
         self.frame.size = measureSubviews(self.bounds.size)

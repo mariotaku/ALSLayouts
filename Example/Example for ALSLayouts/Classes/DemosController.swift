@@ -44,6 +44,15 @@ class DemosController: UITableViewController {
             default:
                 return false
             }
+        case 2:
+            switch indexPath.item {
+            case 1:
+                let vc = LinearLayoutByCodeController()
+                navigationController?.showViewController(vc, sender: self)
+                return true
+            default:
+                return false
+            }
         default:
             return false
         }

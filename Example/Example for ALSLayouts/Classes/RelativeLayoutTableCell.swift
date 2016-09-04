@@ -21,7 +21,7 @@ class RelativeLayoutTableCell: UITableViewCell {
     }
     
     override func sizeThatFits(size: CGSize) -> CGSize {
-        let layout = contentView.subviews.first as! ALSRelativeLayout
+        let layout = contentView.subviews.first as! ALSBaseLayout
         var layoutSize = size
         layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right
         layoutSize.height -= contentView.layoutMargins.top + contentView.layoutMargins.bottom

@@ -145,7 +145,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         for (_, lp) in layoutParamsMap {
             lp.resolveViewTags()
         }
-        return measureSubviews(size)
+        return super.sizeThatFits(size)
     }
     
     public override func layoutSubviews() {

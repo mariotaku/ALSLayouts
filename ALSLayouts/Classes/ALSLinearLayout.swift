@@ -10,7 +10,6 @@ import Foundation
 
 public class ALSLinearLayout: ALSBaseLayout {
     
-    
     /**
      * Don't show any dividers.
      */
@@ -35,11 +34,11 @@ public class ALSLinearLayout: ALSBaseLayout {
     private static let INDEX_BOTTOM = 2
     private static let INDEX_FILL = 3
     
-    public enum Orientation {
+    public enum Orientation: String {
         case Horizontal, Vertical
     }
     
-    public var baselineAligned = true
+    @IBInspectable public var baselineAligned = true
     
     /**
      * If this layout is part of another layout that is baseline aligned,
@@ -49,9 +48,9 @@ public class ALSLinearLayout: ALSBaseLayout {
      * Note: this is orthogonal to [.baselineAligned], which is concerned
      * with whether the children of this layout are baseline aligned.
      */
-    public var baselineAlignedChildIndex = -1
+    @IBInspectable public var baselineAlignedChildIndex = -1
     
-    public var weightSum: CGFloat = 0
+    @IBInspectable public var weightSum: CGFloat = 0
     
     /**
      * When set to true, all children with a weight will be considered having
@@ -60,8 +59,19 @@ public class ALSLinearLayout: ALSBaseLayout {
      *
      * Disabled by default.
      */
-    public var measureWithLargestChild: Bool = false
+    @IBInspectable public var measureWithLargestChild: Bool = false
     
+    
+    @IBInspectable internal var orientationString: String {
+        get { return self.orientation.rawValue }
+        set { self.orientation = Orientation(rawValue: newValue)! }
+    }
+    
+    /**
+     * Should the layout be a column or a row.
+     * Default value is .Horizontal
+     */
+    public var orientation: ALSLinearLayout.Orientation = .Horizontal
     
     /**
      * The additional offset to the child's baseline.
@@ -70,18 +80,12 @@ public class ALSLinearLayout: ALSBaseLayout {
      */
     private var baselineChildTop: CGFloat = 0
     
-    /**
-     * Should the layout be a column or a row.
-     * Default value is .Horizontal
-     */
-    public var orientation: ALSLinearLayout.Orientation = .Horizontal
-    
     private var totalLength: CGFloat = 0
     
     private var maxAscent: [CGFloat]!
     private var maxDescent: [CGFloat]!
     
-    public var divider: UIImage! = nil{
+    public var divider: UIImage! = nil {
         didSet {
             if (divider === oldValue) {
                 return
@@ -95,13 +99,14 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
+    public var showDividers: Int = 0
+    
+    @IBInspectable public var dividerPadding: CGFloat = 0
+    
     /**
      * Get the size of the current divider size.
      */
     private(set) var dividerSize: CGSize = CGSizeZero
-    
-    var showDividers: Int = 0
-    var dividerPadding: Int = 0
     
     override func calculateBaselineBottomValue() -> CGFloat {
         if (baselineAlignedChildIndex < 0) {
@@ -151,7 +156,6 @@ public class ALSLinearLayout: ALSBaseLayout {
     }
     
     override func measureSubviews(size: CGSize) -> CGSize {
-        
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
         let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
         
@@ -164,6 +168,20 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
+    public override func layoutSubviews() {
+        self.frame.size = measureSubviews(self.bounds.size)
+        
+        if (orientation == .Vertical) {
+            return layoutVertical(self.frame)
+        } else {
+            return layoutHorizontal(self.frame)
+        }
+    }
+    
+    override func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
+        // LinarLayout.LayoutParams' default gravity is -1
+        newParams.gravity = -1
+    }
     
     /**
      * Measures the children when the orientation of this LinearLayout is set
@@ -201,6 +219,8 @@ public class ALSLinearLayout: ALSBaseLayout {
         var largestChildHeight: CGFloat = CGFloat.min
         var consumedExcessSpace: CGFloat = 0
         
+        let layoutDirection = self.layoutDirection
+        
         for var i = 0; i < count; i++ {
             guard let child = getVirtualChildAt(i) else {
                 totalLength += measureNullChild(i)
@@ -208,6 +228,8 @@ public class ALSLinearLayout: ALSBaseLayout {
             }
             
             let lp = child.layoutParams
+            
+            lp.resolveLayoutDirection(layoutDirection)
             
             if (lp.hidden) {
                 i += getChildrenSkipCount(child, index: i)
@@ -217,7 +239,6 @@ public class ALSLinearLayout: ALSBaseLayout {
             if (hasDividerBeforeChildAt(i)) {
                 self.totalLength += dividerSize.height
             }
-            
             
             totalWeight += lp.weight
             
@@ -449,7 +470,11 @@ public class ALSLinearLayout: ALSBaseLayout {
             forceUniformWidth(count, heightMeasureSpec: heightMeasureSpec)
         }
         
-        return CGSizeMake(finalSize.0, heightSizeAndState.0)
+        if (heightMode == .WrapContent) {
+            return CGSizeMake(finalSize.0, self.totalLength)
+        } else {
+            return CGSizeMake(finalSize.0, heightSizeAndState.0)
+        }
     }
     
     internal func measureHorizontal(widthMeasureSpec: ALSLayoutParams.MeasureSpec, _ heightMeasureSpec: ALSLayoutParams.MeasureSpec) -> CGSize {
@@ -474,7 +499,6 @@ public class ALSLinearLayout: ALSBaseLayout {
             self.maxDescent = [CGFloat](count: ALSLinearLayout.VERTICAL_GRAVITY_COUNT, repeatedValue: CGFloat.NaN)
         }
         
-        
         var maxAscent = self.maxAscent!
         var maxDescent = self.maxDescent!
         
@@ -491,131 +515,135 @@ public class ALSLinearLayout: ALSBaseLayout {
         var largestChildWidth: CGFloat = CGFloat.min
         var usedExcessSpace: CGFloat = 0
         
+        let layoutDirection = self.layoutDirection
+        
         // See how wide everyone is. Also remember max height.
         
-            for var i = 0; i < count; i++ {
-                guard let child = getVirtualChildAt(i) else {
-                    totalLength += measureNullChild(i)
-                    continue
-                }
-                let lp = child.layoutParams
-                
-                if (lp.hidden) {
-                    i += getChildrenSkipCount(child, index: i)
-                    continue
-                }
-                
-                if (hasDividerBeforeChildAt(i)) {
-                    totalLength += dividerSize.width
-                }
-                
-                
-                totalWeight += lp.weight
-                
-                let useExcessSpace = lp.width == 0 && lp.weight > 0
-                if (widthSpec == .Exactly && useExcessSpace) {
-                    // Optimization: don't bother measuring children who are only
-                    // laid out using excess space. These views will get measured
-                    // later if we have space to distribute.
-                    if (isExactly) {
-                        totalLength += lp.marginAbsLeft + lp.marginAbsRight
-                    } else {
-                        let total = self.totalLength
-                        self.totalLength = max(total, total + lp.marginAbsLeft + lp.marginAbsRight)
-                    }
-                    
-                    // Baseline alignment requires to measure widgets to obtain the
-                    // baseline offset (in particular for TextViews). The following
-                    // defeats the optimization mentioned above. Allow the child to
-                    // use as much space as it wants because we can shrink things
-                    // later (and re-measure).
-                    if (baselineAligned) {
-                        let freeWidthSpec: ALSLayoutParams.MeasureSpec = (widthMeasureSpec.0, .Unspecified)
-                        let freeHeightSpec: ALSLayoutParams.MeasureSpec = (heightMeasureSpec.0, .Unspecified)
-                        child.measure(freeWidthSpec, freeHeightSpec)
-                    } else {
-                        skippedMeasure = true
-                    }
-                } else {
-                    if (useExcessSpace) {
-                        // The widthMode is either UNSPECIFIED or AT_MOST, and
-                        // this child is only laid out using excess space. Measure
-                        // using WRAP_CONTENT so that we can find out the view's
-                        // optimal width. We'll restore the original width of 0
-                        // after measurement.
-                        lp.widthMode = .WrapContent
-                    }
-                    
-                    // Determine how big this child would like to be. If this or
-                    // previous children have given a weight, then we allow it to
-                    // use all available space (and we will shrink things later
-                    // if needed).
-                    let usedWidth = totalWeight.isZero ? totalLength : 0
-                    measureChildBeforeLayout(child, childIndex: i, widthMeasureSpec: widthMeasureSpec, totalWidth: usedWidth, heightMeasureSpec: heightMeasureSpec, totalHeight: 0)
-                    
-                    let childWidth = lp.measuredWidth
-                    if (useExcessSpace) {
-                        // Restore the original width and record how much space
-                        // we've allocated to excess-only children so that we can
-                        // match the behavior of EXACTLY measurement.
-                        lp.width = 0
-                        usedExcessSpace += childWidth
-                    }
-                    
-                    if (isExactly) {
-                        totalLength += childWidth + lp.marginAbsLeft + lp.marginAbsRight
-                        +getNextLocationOffset(child)
-                    } else {
-                        let total = self.totalLength
-                        self.totalLength = max(total, total + childWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child))
-                    }
-                    
-                    if (useLargestChild) {
-                        largestChildWidth = max(childWidth, largestChildWidth)
-                    }
-                }
-                
-                var matchHeightLocally = false
-                if (heightSpec != .Exactly && lp.heightMode == .MatchParent) {
-                    // The height of the linear layout will scale, and at least one
-                    // child said it wanted to match our height. Set a flag indicating that
-                    // we need to remeasure at least that view when we know our height.
-                    matchHeight = true
-                    matchHeightLocally = true
-                }
-                
-                let margin = lp.marginTop + lp.marginBottom
-                let childHeight = lp.measuredHeight + margin
-                childState = ALSBaseLayout.combineMeasuredStates(childState, widthMode: lp.measuredWidthSpec, heightMode: lp.measuredHeightSpec)
-                
-                if (baselineAligned) {
-                    let childBaseline = child.baselineBottomValue
-                    if (childBaseline != -1) {
-                        // Translates the child's vertical gravity into an index
-                        // in the range 0..VERTICAL_GRAVITY_COUNT
-                        let gravity = (lp.gravity < 0 ? self.gravity : lp.gravity) & ALSGravity.VERTICAL_GRAVITY_MASK
-                        let index = gravity >> ALSGravity.AXIS_Y_SHIFT & ~ALSGravity.AXIS_SPECIFIED >> 1
-                        
-                        maxAscent[index] = max(maxAscent[index], childBaseline)
-                        maxDescent[index] = max(maxDescent[index], childHeight - childBaseline)
-                    }
-                }
-                
-                maxHeight = max(maxHeight, childHeight)
-                
-                allFillParent = allFillParent && lp.heightMode == .MatchParent
-                if (lp.weight > 0) {
-                    /*
-                     * Heights of weighted Views are bogus if we end up
-                     * remeasuring, so keep them separate.
-                     */
-                    weightedMaxHeight = max(weightedMaxHeight, matchHeightLocally ? margin : childHeight)
-                } else {
-                    alternativeMaxHeight = max(alternativeMaxHeight, matchHeightLocally ? margin : childHeight)
-                }
-                
-                i += getChildrenSkipCount(child, index: i)
+        for var i = 0; i < count; i++ {
+            guard let child = getVirtualChildAt(i) else {
+                totalLength += measureNullChild(i)
+                continue
             }
+            let lp = child.layoutParams
+            
+            lp.resolveLayoutDirection(layoutDirection)
+            
+            if (lp.hidden) {
+                i += getChildrenSkipCount(child, index: i)
+                continue
+            }
+            
+            if (hasDividerBeforeChildAt(i)) {
+                totalLength += dividerSize.width
+            }
+            
+            
+            totalWeight += lp.weight
+            
+            let useExcessSpace = lp.width == 0 && lp.weight > 0
+            if (widthSpec == .Exactly && useExcessSpace) {
+                // Optimization: don't bother measuring children who are only
+                // laid out using excess space. These views will get measured
+                // later if we have space to distribute.
+                if (isExactly) {
+                    self.totalLength += lp.marginAbsLeft + lp.marginAbsRight
+                } else {
+                    let total = self.totalLength
+                    self.totalLength = max(total, total + lp.marginAbsLeft + lp.marginAbsRight)
+                }
+                
+                // Baseline alignment requires to measure widgets to obtain the
+                // baseline offset (in particular for TextViews). The following
+                // defeats the optimization mentioned above. Allow the child to
+                // use as much space as it wants because we can shrink things
+                // later (and re-measure).
+                if (baselineAligned) {
+                    let freeWidthSpec: ALSLayoutParams.MeasureSpec = (widthMeasureSpec.0, .Unspecified)
+                    let freeHeightSpec: ALSLayoutParams.MeasureSpec = (heightMeasureSpec.0, .Unspecified)
+                    child.measure(freeWidthSpec, freeHeightSpec)
+                } else {
+                    skippedMeasure = true
+                }
+            } else {
+                if (useExcessSpace) {
+                    // The widthMode is either UNSPECIFIED or AT_MOST, and
+                    // this child is only laid out using excess space. Measure
+                    // using WRAP_CONTENT so that we can find out the view's
+                    // optimal width. We'll restore the original width of 0
+                    // after measurement.
+                    lp.widthMode = .WrapContent
+                }
+                
+                // Determine how big this child would like to be. If this or
+                // previous children have given a weight, then we allow it to
+                // use all available space (and we will shrink things later
+                // if needed).
+                let usedWidth = totalWeight.isZero ? totalLength : 0
+                measureChildBeforeLayout(child, childIndex: i, widthMeasureSpec: widthMeasureSpec, totalWidth: usedWidth, heightMeasureSpec: heightMeasureSpec, totalHeight: 0)
+                
+                let childWidth = lp.measuredWidth
+                if (useExcessSpace) {
+                    // Restore the original width and record how much space
+                    // we've allocated to excess-only children so that we can
+                    // match the behavior of EXACTLY measurement.
+                    lp.width = 0
+                    usedExcessSpace += childWidth
+                }
+                
+                if (isExactly) {
+                    totalLength += childWidth + lp.marginAbsLeft + lp.marginAbsRight
+                    +getNextLocationOffset(child)
+                } else {
+                    let total = self.totalLength
+                    self.totalLength = max(total, total + childWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child))
+                }
+                
+                if (useLargestChild) {
+                    largestChildWidth = max(childWidth, largestChildWidth)
+                }
+            }
+            
+            var matchHeightLocally = false
+            if (heightSpec != .Exactly && lp.heightMode == .MatchParent) {
+                // The height of the linear layout will scale, and at least one
+                // child said it wanted to match our height. Set a flag indicating that
+                // we need to remeasure at least that view when we know our height.
+                matchHeight = true
+                matchHeightLocally = true
+            }
+            
+            let margin = lp.marginTop + lp.marginBottom
+            let childHeight = lp.measuredHeight + margin
+            childState = ALSBaseLayout.combineMeasuredStates(childState, widthMode: lp.measuredWidthSpec, heightMode: lp.measuredHeightSpec)
+            
+            if (baselineAligned) {
+                let childBaseline = child.baselineBottomValue
+                if (childBaseline != -1) {
+                    // Translates the child's vertical gravity into an index
+                    // in the range 0..VERTICAL_GRAVITY_COUNT
+                    let gravity = (lp.gravity < 0 ? self.gravity : lp.gravity) & ALSGravity.VERTICAL_GRAVITY_MASK
+                    let index = gravity >> ALSGravity.AXIS_Y_SHIFT & ~ALSGravity.AXIS_SPECIFIED >> 1
+                    
+                    maxAscent[index] = max(maxAscent[index], childBaseline)
+                    maxDescent[index] = max(maxDescent[index], childHeight - childBaseline)
+                }
+            }
+            
+            maxHeight = max(maxHeight, childHeight)
+            
+            allFillParent = allFillParent && lp.heightMode == .MatchParent
+            if (lp.weight > 0) {
+                /*
+                 * Heights of weighted Views are bogus if we end up
+                 * remeasuring, so keep them separate.
+                 */
+                weightedMaxHeight = max(weightedMaxHeight, matchHeightLocally ? margin : childHeight)
+            } else {
+                alternativeMaxHeight = max(alternativeMaxHeight, matchHeightLocally ? margin : childHeight)
+            }
+            
+            i += getChildrenSkipCount(child, index: i)
+        }
         
         if (totalLength > 0 && hasDividerBeforeChildAt(count)) {
             totalLength += dividerSize.width
@@ -646,7 +674,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 }
                 
                 if (isExactly) {
-                    totalLength += largestChildWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child)
+                    self.totalLength += largestChildWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child)
                 } else {
                     let total = self.totalLength
                     self.totalLength = max(total, total + largestChildWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child))
@@ -793,7 +821,230 @@ public class ALSLinearLayout: ALSBaseLayout {
             forceUniformHeight(count, widthMeasureSpec: widthMeasureSpec)
         }
         
-        return CGSizeMake(widthSizeAndState.0, finalSize.0)
+        if (widthMode == .WrapContent) {
+            return CGSizeMake(self.totalLength, finalSize.0)
+        } else {
+            return CGSizeMake(widthSizeAndState.0, finalSize.0)
+        }
+    }
+    
+    
+    
+    /**
+     * Position the children during a layout pass if the orientation of this
+     * LinearLayout is set to [Orientation.VERTICAL].
+     
+     * @param left
+     * *
+     * @param top
+     * *
+     * @param right
+     * *
+     * @param bottom
+     * *
+     * @see .orientation
+     
+     * @see .onLayout
+     */
+    internal func layoutVertical(frame: CGRect) {
+        
+        let layoutDirection = self.layoutDirection
+        let paddingLeft = actualLayoutMargins.left
+        
+        var childTop: CGFloat
+        var childLeft: CGFloat
+        
+        // Where right end of child should go
+        let width = frame.right - frame.left
+        let childRight = width - actualLayoutMargins.right
+        
+        // Space available for child
+        let childSpace = width - paddingLeft - actualLayoutMargins.right
+        
+        let count = virtualChildCount
+        
+        let majorGravity = gravity & ALSGravity.VERTICAL_GRAVITY_MASK
+        let minorGravity = gravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
+        
+        switch (majorGravity) {
+        case ALSGravity.BOTTOM:
+            // mTotalLength contains the padding already
+            childTop = actualLayoutMargins.top + frame.bottom - frame.top - totalLength
+            // mTotalLength contains the padding already
+        case ALSGravity.CENTER_VERTICAL:
+            childTop = actualLayoutMargins.top + (frame.bottom - frame.top - totalLength) / 2
+        default:
+            childTop = actualLayoutMargins.top
+        }
+        
+        for var i = 0; i < count; i++ {
+            guard let child = getVirtualChildAt(i) else {
+                childTop += measureNullChild(i)
+                continue
+            }
+            
+            let lp = child.layoutParams
+            
+            if (!lp.hidden) {
+                let childWidth = lp.measuredWidth
+                let childHeight = lp.measuredHeight
+
+                var gravity = lp.gravity
+                if (gravity < 0) {
+                    gravity = minorGravity
+                }
+                let absoluteGravity = ALSGravity.getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
+                switch (absoluteGravity & ALSGravity.HORIZONTAL_GRAVITY_MASK) {
+                case ALSGravity.CENTER_HORIZONTAL:
+                    childLeft = paddingLeft + (childSpace - childWidth) / 2 + lp.marginAbsLeft - lp.marginAbsRight
+                case ALSGravity.RIGHT:
+                    childLeft = childRight - childWidth - lp.marginAbsRight
+                default:
+                    childLeft = paddingLeft + lp.marginAbsLeft
+                }
+                
+                if (hasDividerBeforeChildAt(i)) {
+                    childTop += dividerSize.height
+                }
+                
+                childTop += lp.marginTop
+                child.frame = CGRectMake(childLeft, childTop + getLocationOffset(child), childWidth, childHeight)
+                childTop += childHeight + lp.marginBottom + getNextLocationOffset(child)
+                
+                i += getChildrenSkipCount(child, index: i)
+            } else {
+                child.frame = CGRectZero
+            }
+        }
+    }
+    
+    /**
+     * Position the children during a layout pass if the orientation of this
+     * LinearLayout is set to [Orientation.HORIZONTAL].
+     
+     * @param left
+     * *
+     * @param top
+     * *
+     * @param right
+     * *
+     * @param bottom
+     * *
+     * @see .orientation
+     
+     * @see .onLayout
+     */
+    internal func layoutHorizontal(frame: CGRect) {
+        let layoutDirection = self.layoutDirection
+        let isLayoutRtl = layoutDirection == .RightToLeft
+        
+        let paddingTop = actualLayoutMargins.top
+        
+        var childTop: CGFloat
+        var childLeft: CGFloat
+        
+        // Where bottom of child should go
+        let height = frame.height
+        let childBottom = height - actualLayoutMargins.bottom
+        
+        // Space available for child
+        let childSpace = height - paddingTop - actualLayoutMargins.bottom
+        
+        let count = virtualChildCount
+        
+        let majorGravity = gravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
+        let minorGravity = gravity & ALSGravity.VERTICAL_GRAVITY_MASK
+        
+        let baselineAligned = self.baselineAligned
+        
+        let maxAscent = self.maxAscent!
+        let maxDescent = self.maxDescent!
+        
+        
+        switch (ALSGravity.getAbsoluteGravity(majorGravity, layoutDirection: layoutDirection)) {
+        case ALSGravity.RIGHT:
+            // mTotalLength contains the padding already
+            childLeft = actualLayoutMargins.left + frame.right - frame.left - totalLength
+        case ALSGravity.CENTER_HORIZONTAL:
+            // mTotalLength contains the padding already
+            childLeft = actualLayoutMargins.left + (frame.right - frame.left - totalLength) / 2
+        default:
+            childLeft = actualLayoutMargins.left
+        }
+        
+        var start = 0
+        var dir = 1
+        //In case of RTL, start drawing from the last child.
+        if (isLayoutRtl) {
+            start = count - 1
+            dir = -1
+        }
+        
+        for var i = 0; i < count; i++ {
+            let childIndex = start + dir * i
+            guard let child = getVirtualChildAt(childIndex) else {
+                childLeft += measureNullChild(childIndex)
+                continue
+            }
+            
+            let lp = child.layoutParams
+            
+            if (!lp.hidden) {
+                let childWidth = lp.measuredWidth
+                let childHeight = lp.measuredHeight
+                var childBaseline: CGFloat = CGFloat.NaN
+                
+                if (baselineAligned && lp.heightMode != .MatchParent) {
+                    childBaseline = child.baselineBottomValue
+                }
+                
+                var gravity = lp.gravity
+                if (gravity < 0) {
+                    gravity = minorGravity
+                }
+                
+                switch (gravity & ALSGravity.VERTICAL_GRAVITY_MASK) {
+                case ALSGravity.TOP:
+                    childTop = paddingTop + lp.marginTop
+                    if (!childBaseline.isNaN) {
+                        childTop += maxAscent[ALSLinearLayout.INDEX_TOP] - childBaseline
+                    }
+                case ALSGravity.CENTER_VERTICAL:
+                    // Removed support for baseline alignment when layout_gravity or
+                    // gravity == center_vertical. See bug #1038483.
+                    // Keep the code around if we need to re-enable this feature
+                    // if (childBaseline != -1) {
+                    //     // Align baselines vertically only if the child is smaller than us
+                    //     if (childSpace - childHeight > 0) {
+                    //         childTop = paddingTop + (childSpace / 2) - childBaseline;
+                    //     } else {
+                    //         childTop = paddingTop + (childSpace - childHeight) / 2;
+                    //     }
+                    // } else {
+                    childTop = paddingTop + (childSpace - childHeight) / 2 + lp.marginTop - lp.marginBottom
+                case ALSGravity.BOTTOM:
+                    childTop = childBottom - childHeight - lp.marginBottom
+                    if (childBaseline != -1) {
+                        let descent = lp.measuredHeight - childBaseline
+                        childTop -= maxDescent[ALSLinearLayout.INDEX_BOTTOM] - descent
+                    }
+                default:
+                    childTop = paddingTop
+                }
+                
+                if (hasDividerBeforeChildAt(childIndex)) {
+                    childLeft += dividerSize.width
+                }
+                
+                childLeft += lp.marginAbsLeft
+                child.frame = CGRectMake(childLeft + getLocationOffset(child), childTop, childWidth, childHeight)
+                childLeft += childWidth + lp.marginAbsRight + getNextLocationOffset(child)
+                
+                i += getChildrenSkipCount(child, index: childIndex)
+            } else {
+                child.frame = CGRectZero
+            }
+        }
     }
     
     internal func getVirtualChildAt(index: Int) -> UIView! {

@@ -32,12 +32,15 @@ public extension UIView {
     // Layout gravity
     
     @IBInspectable internal var layoutGravity: String {
-        get {
-            return ALSGravity.format(self.layoutParams.gravity ?? 0)
-        }
-        set {
-            self.layoutParams.gravity = ALSGravity.parse(newValue)
-        }
+        get { return ALSGravity.format(self.layoutParams.gravity ?? 0) }
+        set { self.layoutParams.gravity = ALSGravity.parse(newValue) }
+    }
+    
+    // Layout gravity
+    
+    @IBInspectable internal var layoutWeight: CGFloat {
+        get { return self.layoutParams.weight }
+        set { self.layoutParams.weight = newValue }
     }
     
     // Layout Margins
