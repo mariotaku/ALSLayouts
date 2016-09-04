@@ -17,6 +17,8 @@ extension UIView {
 //                let scale = UIScreen.mainScreen().scale
                 return font.ascender
             }
+        } else if (self is ALSBaseLayout) {
+            return (self as! ALSBaseLayout).calculateBaselineBottomValue()
         }
         return CGFloat.NaN
     }

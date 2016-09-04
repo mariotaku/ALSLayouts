@@ -33,6 +33,47 @@ public class ALSBaseLayout: UIView {
         return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
     }
     
+    private var gravityValue: Int = ALSGravity.LEADING | ALSGravity.TOP
+    
+    public var gravity: Int {
+        get { return self.gravityValue }
+        set {
+            var fixedValue = newValue
+            if (self.gravityValue != fixedValue) {
+                if (fixedValue & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK == 0) {
+                    fixedValue = fixedValue | ALSGravity.LEADING
+                }
+                
+                if (fixedValue & ALSGravity.VERTICAL_GRAVITY_MASK == 0) {
+                    fixedValue = fixedValue | ALSGravity.TOP
+                }
+                
+                self.gravityValue = fixedValue
+                self.setNeedsLayout()
+            }
+        }
+    }
+    
+    public var horizontalGravity: Int {
+        get {
+            return self.gravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
+        }
+        set {
+            let newHorizontalValue = newValue & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
+            self.gravity = (self.gravity & ~ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) | newHorizontalValue
+        }
+    }
+    
+    public var verticalGravity: Int {
+        get {
+            return self.gravity & ALSGravity.VERTICAL_GRAVITY_MASK
+        }
+        set {
+            let newVerticalValue = newValue & ALSGravity.VERTICAL_GRAVITY_MASK
+            self.gravity = (self.gravity & ~ALSGravity.VERTICAL_GRAVITY_MASK) | newVerticalValue
+        }
+    }
+    
     public func addSubview(view: UIView, tagString: String? = nil, configure: (ALSLayoutParams) -> Void) {
         view.stringTag = tagString
         let lp = obtainLayoutParams(view)
@@ -69,6 +110,10 @@ public class ALSBaseLayout: UIView {
         }
     }
     
+    internal func calculateBaselineBottomValue() -> CGFloat {
+        return CGFloat.NaN
+    }
+    
     func measureChildWithMargins(subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
         let lp = subview.layoutParams
     
@@ -78,7 +123,7 @@ public class ALSBaseLayout: UIView {
         lp.measure(subview, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     
-    static func combineMeasuredStates(states: ALSLayoutParams.MeasureStates, widthMode: ALSLayoutParams.MeasureSpecMode, heightMode: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureStates{
+    static func combineMeasuredStates(states: ALSLayoutParams.MeasureStates, widthMode: ALSLayoutParams.MeasureSpecMode, heightMode: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureStates {
         var newStates = states
         if (newStates.0 == .Unspecified) {
             newStates.0 = widthMode

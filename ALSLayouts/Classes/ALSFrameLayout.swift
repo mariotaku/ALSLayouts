@@ -70,6 +70,8 @@ public class ALSFrameLayout: ALSBaseLayout {
                 }
                 
                 child.frame = CGRectMake(childLeft, childTop, width, height)
+            } else {
+                child.frame = CGRectZero
             }
         }
     }
@@ -143,7 +145,19 @@ public class ALSFrameLayout: ALSBaseLayout {
                 lp.measure(subview, widthSpec: subviewWidthMeasureSpec, heightSpec: subviewHeightMeasureSpec)
             }
         }
-        return CGSizeMake(widthMeasureSpec.0, heightMeasureSpec.0)
+        
+        var measuredSize = CGSize()
+        if (widthMode == .WrapContent) {
+            measuredSize.width = maxWidth
+        } else {
+            measuredSize.width = widthMeasureSpec.0
+        }
+        if (heightMode == .WrapContent) {
+            measuredSize.height = maxHeight
+        } else {
+            measuredSize.height = heightMeasureSpec.0
+        }
+        return measuredSize
     }
 
 }

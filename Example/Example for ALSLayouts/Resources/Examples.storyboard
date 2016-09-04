@@ -124,7 +124,92 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dI-EM-U6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194" y="400"/>
+            <point key="canvasLocation" x="599" y="-272"/>
+        </scene>
+        <!--FrameLayout TableCell-->
+        <scene sceneID="OIw-B9-Rpp">
+            <objects>
+                <tableViewController storyboardIdentifier="FrameLayoutTableCell" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FNg-3M-AEJ" customClass="FrameLayoutTableController" customModule="ALSLayouts_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" id="AKF-O6-RWp">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FrameLayoutItem" rowHeight="124" id="NN1-Q1-C0r" customClass="FrameLayoutTableCell" customModule="ALSLayouts_Example" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="124"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NN1-Q1-C0r" id="DrI-cn-tvD">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="123.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="706-qX-eei" customClass="ALSFrameLayout" customModule="ALSLayouts">
+                                            <rect key="frame" x="8" y="8" width="304" height="107.5"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lje-pr-NSW">
+                                                    <rect key="frame" x="107" y="8" width="90" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="CenterHorizontal|Top"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4e-2z-O5T">
+                                                    <rect key="frame" x="244" y="8" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Trailing|Top"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xLv-4Q-z0u">
+                                                    <rect key="frame" x="0.0" y="8" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Leading|Top"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="centerLabel" destination="lje-pr-NSW" id="ifw-X0-kp8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FNg-3M-AEJ" id="FRe-iI-5PO"/>
+                            <outlet property="delegate" destination="FNg-3M-AEJ" id="fmx-eY-MKe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="FrameLayout TableCell" id="96j-gt-T3y"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3L-UD-BGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="-272"/>
         </scene>
         <!--RelativeLayout TableCell-->
         <scene sceneID="cxs-QL-tmU">

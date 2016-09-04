@@ -203,4 +203,8 @@ public extension UIView {
         return (superview as? ALSBaseLayout)?.getLayoutParams(self)
     }
     
+    internal func measure(widthSpec: ALSLayoutParams.MeasureSpec, _ heightSpec: ALSLayoutParams.MeasureSpec) {
+        layoutParams.measure(self, widthSpec: widthSpec, heightSpec: heightSpec)
+    }
+    
 }

@@ -19,6 +19,8 @@ public class ALSLayoutParams {
     
     public var gravity: Int = ALSGravity.NO_GRAVITY
     
+    public var weight: CGFloat = 0
+    
     public var marginTop: CGFloat = 0
     public var marginBottom: CGFloat = 0
     

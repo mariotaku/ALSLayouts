@@ -17,34 +17,15 @@ extension ALSGravity {
     }
     
     static func format(gravity: Int) -> String {
-        var strings = [GravityString]()
-        if (gravity & ALSGravity.CENTER != 0) {
-            strings.append(.Center)
-        } else if (gravity & ALSGravity.CENTER_HORIZONTAL != 0) {
-            strings.append(.CenterHorizontal)
-        } else if (gravity & ALSGravity.CENTER_VERTICAL != 0) {
-            strings.append(.CenterVertical)
+        var strings = [String]()
+        var value = gravity
+        GravityString.allValues.forEach { gs in
+            if (gs.intValue & value == gs.intValue) {
+                strings.append(gs.rawValue)
+                value = value & ~gs.intValue
+            }
         }
-        if (gravity & ALSGravity.FILL != 0) {
-            strings.append(.Fill)
-        } else if (gravity & ALSGravity.FILL_HORIZONTAL != 0) {
-            strings.append(.CenterHorizontal)
-        } else if (gravity & ALSGravity.FILL_VERTICAL != 0) {
-            strings.append(.CenterVertical)
-        } else if (gravity & ALSGravity.LEADING != 0) {
-            strings.append(.Leading)
-        } else if (gravity & ALSGravity.TRAILING != 0) {
-            strings.append(.Trailing)
-        } else if (gravity & ALSGravity.LEFT != 0) {
-            strings.append(.Left)
-        } else if (gravity & ALSGravity.RIGHT != 0) {
-            strings.append(.Right)
-        } else if (gravity & ALSGravity.TOP != 0) {
-            strings.append(.Top)
-        } else if (gravity & ALSGravity.BOTTOM != 0) {
-            strings.append(.Bottom)
-        }
-        return strings.map { s -> String in return s.rawValue }.joinWithSeparator("|")
+        return strings.joinWithSeparator("|")
     }
     
     enum GravityString: String {
@@ -84,6 +65,8 @@ extension ALSGravity {
                 }
             }
         }
+        
+        static let allValues: [GravityString] = [.Fill, .FillVertical, .FillHorizontal, .Center, .CenterVertical, .CenterHorizontal, .Leading, .Trailing, .Top, .Bottom, .Left, .Right, .ClipVertical, .ClipHorizontal]
     }
     
 }

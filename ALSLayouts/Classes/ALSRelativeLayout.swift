@@ -121,40 +121,6 @@ public class ALSRelativeLayout: ALSBaseLayout {
     
     private var baselineView: UIView? = nil
     
-    private var gravity: Int = ALSGravity.LEADING | ALSGravity.TOP {
-        didSet {
-            var fixedValue = gravity
-            if (oldValue != fixedValue) {
-                if (fixedValue & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK == 0) {
-                    fixedValue = fixedValue | ALSGravity.LEADING
-                }
-                
-                if (fixedValue & ALSGravity.VERTICAL_GRAVITY_MASK == 0) {
-                    fixedValue = fixedValue | ALSGravity.TOP
-                }
-                
-                gravity = fixedValue
-                setNeedsLayout()
-            }
-        }
-    }
-    
-    func setHorizontalGravity(horizontalGravity: Int) {
-        let gravity = horizontalGravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
-        if (self.gravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK != gravity) {
-            self.gravity = self.gravity & ~ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK | gravity
-            setNeedsLayout()
-        }
-    }
-    
-    func setVerticalGravity(verticalGravity: Int) {
-        let gravity = verticalGravity & ALSGravity.VERTICAL_GRAVITY_MASK
-        if (self.gravity & ALSGravity.VERTICAL_GRAVITY_MASK != gravity) {
-            self.gravity = self.gravity & ~ALSGravity.VERTICAL_GRAVITY_MASK | gravity
-            setNeedsLayout()
-        }
-    }
-    
     private var contentBounds = CGRect()
     private var selfBounds = CGRect()
     private var ignoreGravity: Int = 0
