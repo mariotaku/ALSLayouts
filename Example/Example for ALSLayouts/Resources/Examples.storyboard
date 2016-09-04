@@ -226,7 +226,13 @@
                             <outlet property="delegate" destination="uU2-am-jfc" id="Ma6-DY-C1h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="RelativeLayout TableCell" id="ShB-3m-1C0"/>
+                    <navigationItem key="navigationItem" title="RelativeLayout TableCell" id="ShB-3m-1C0">
+                        <barButtonItem key="rightBarButtonItem" title="Toggle" id="pDj-Sh-H41">
+                            <connections>
+                                <action selector="toggleProfileImage:" destination="uU2-am-jfc" id="JqV-U0-4hp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVm-Jh-jg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -376,6 +382,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="topLeadingLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Align staticLabel baseline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVC-5a-dWy">

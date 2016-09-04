@@ -11,6 +11,8 @@ import UITableView_FDTemplateLayoutCell
 
 class RelativeLayoutTableController: UITableViewController {
     
+    var hideProfileImage: Bool = false
+    
     let data: [String] = [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam risus quis nulla feugiat porttitor. Ut ornare orci et lectus dapibus, nec imperdiet massa tempor.",
         "Ut in turpis sed ex sagittis accumsan quis sed nisi. Donec porta est velit, at molestie nisi ornare at. Maecenas felis magna, dignissim ac pulvinar vel, pulvinar at libero.",
@@ -29,6 +31,11 @@ class RelativeLayoutTableController: UITableViewController {
         "Phasellus venenatis aliquet massa, condimentum suscipit est. Nunc ut viverra lorem."
     ]
     
+    @IBAction func toggleProfileImage(sender: AnyObject) {
+        self.hideProfileImage = !self.hideProfileImage
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.tableView.fd_debugLogEnabled = true
@@ -44,15 +51,16 @@ class RelativeLayoutTableController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ExampleItem", forIndexPath: indexPath) as! RelativeLayoutTableCell
-        cell.fd_enforceFrameLayout = true
+        cell.profileImageView.layoutParams?.hidden = self.hideProfileImage
         cell.display(data[indexPath.item % data.count])
+        
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return tableView.fd_heightForCellWithIdentifier("ExampleItem", cacheByIndexPath: indexPath) { cell in
             let tableCell = cell as! RelativeLayoutTableCell
-            tableCell.fd_enforceFrameLayout = true
+            tableCell.profileImageView.layoutParams?.hidden = self.hideProfileImage
             tableCell.display(self.data[indexPath.item % self.data.count])
         }
     }
