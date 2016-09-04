@@ -396,4 +396,5 @@ public class ALSLayoutParams {
     }
     
     internal typealias MeasureSpec = (CGFloat, MeasureSpecMode)
+    internal typealias MeasureStates = (MeasureSpecMode, MeasureSpecMode)
 }

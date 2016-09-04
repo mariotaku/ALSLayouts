@@ -201,7 +201,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
     }
     
-    internal func measureSubviews(size: CGSize) -> CGSize {
+    internal override func measureSubviews(size: CGSize) -> CGSize {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
             sortChildren()

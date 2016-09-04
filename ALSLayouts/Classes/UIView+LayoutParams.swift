@@ -14,7 +14,7 @@ public extension UIView {
     
     @IBInspectable internal var layoutWidthMode: String {
         get { return self.layoutParams?.widthMode.rawValue ?? ALSLayoutParams.SizeMode.StaticSize.rawValue }
-        set { obtainLayoutParams().heightMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
+        set { obtainLayoutParams().widthMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
     }
     
     @IBInspectable internal var layoutHeightMode: String {
