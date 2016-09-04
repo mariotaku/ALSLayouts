@@ -176,7 +176,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
     
     public override func sizeThatFits(size: CGSize) -> CGSize {
         // Resolve int view tags
-        for (k, lp) in layoutParamsMap {
+        for (_, lp) in layoutParamsMap {
             lp.resolveViewTags()
         }
         return measureSubviews(size)
@@ -184,7 +184,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
     
     public override func layoutSubviews() {
         // Resolve int view tags
-        for (k, lp) in layoutParamsMap {
+        for (_, lp) in layoutParamsMap {
             lp.resolveViewTags()
         }
         
@@ -232,7 +232,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             width = myWidth
         } else if (widthMode == .MatchParent) {
             if let parent = superview where !(parent is ALSBaseLayout) {
-                width = parent.frame.width - parent.compatLayoutMargins.left - parent.compatLayoutMargins.right
+                width = parent.frame.width - parent.layoutMargins.left - parent.layoutMargins.right
             } else {
                 width = myWidth
             }
@@ -242,7 +242,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             height = myHeight
         } else if (heightMode == .MatchParent) {
             if let parent = superview where !(parent is ALSBaseLayout) {
-                height = parent.frame.height - parent.compatLayoutMargins.top - parent.compatLayoutMargins.bottom
+                height = parent.frame.height - parent.layoutMargins.top - parent.layoutMargins.bottom
             } else {
                 height = myHeight
             }
@@ -336,7 +336,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         for subview in sortedVerticalSubviews {
             let childParams = subview.layoutParams!
             if (!childParams.hidden) {
-                if (baselineView == nil || baselineParams == nil || compareLayoutPosition(childParams, baselineParams!) < 0) {
+                if (baselineView == nil || baselineParams == nil || (childParams - baselineParams!) < 0) {
                     baselineView = subview
                     baselineParams = childParams
                 }
@@ -456,21 +456,6 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
         return measuredSize
     }
-    
-    /**
-     * @return a negative number if the top of `p1` is above the top of
-     * * `p2` or if they have identical top values and the left of
-     * * `p1` is to the left of `p2`, or a positive number
-     * * otherwise
-     */
-    private func compareLayoutPosition(_ p1: ALSLayoutParams, _ p2: ALSLayoutParams) -> CGFloat {
-        let topDiff = p1.top - p2.top
-        if (topDiff != 0) {
-            return topDiff
-        }
-        return p1.left - p2.left
-    }
-    
     
     private func sortChildren() {
         let subViewsCount = subviews.count
@@ -922,4 +907,19 @@ public class ALSRelativeLayout: ALSBaseLayout {
             return size
         }
     }
+}
+
+
+/**
+ * @return a negative number if the top of `p1` is above the top of
+ * * `p2` or if they have identical top values and the left of
+ * * `p1` is to the left of `p2`, or a positive number
+ * * otherwise
+ */
+private func -(p1: ALSLayoutParams, p2: ALSLayoutParams) -> CGFloat {
+    let topDiff = p1.top - p2.top
+    if (!topDiff.isZero) {
+        return topDiff
+    }
+    return p1.left - p2.left
 }

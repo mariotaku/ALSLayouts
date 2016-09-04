@@ -81,7 +81,7 @@ internal class DependencyGraph {
             sorted[index] = view
             index += 1
             
-            for (dependent, graph) : (Node, DependencyGraph) in node!.dependents {
+            for (dependent, _) in node!.dependents {
                 dependent.dependencies.removeValueForKey(tag)
                 if (dependent.dependencies.isEmpty) {
                     roots.append(dependent)
@@ -105,10 +105,6 @@ internal class DependencyGraph {
      * @return A list of node, each being a root of the graph
      */
     private func findRoots(rulesFilter: [Int]) -> [Node] {
-        let keyNodes = self.keyNodes
-        let nodes = self.nodes
-        let count = nodes.count
-        
         // Find roots can be invoked several times, so make sure to clear
         // all dependents and dependencies before running the algorithm
         for node in self.nodes {
@@ -128,7 +124,7 @@ internal class DependencyGraph {
                 let rule = rules[filter]
                 if (rule > 0) {
                     // The node this node depends on
-                    let dependency = keyNodes[rule]
+                    let dependency = self.keyNodes[rule]
                     // Skip unknowns and self dependencies
                     if (dependency == nil || dependency === node) {
                         continue
@@ -196,7 +192,7 @@ internal class DependencyGraph {
         private static let sPool = SynchronizedPool<Node>(size: POOL_LIMIT)
         
         static func acquire(view: UIView) -> Node {
-            var node = sPool.acquire() ?? Node()
+            let node = sPool.acquire() ?? Node()
             node.view = view
             return node
         }

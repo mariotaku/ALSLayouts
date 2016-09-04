@@ -21,12 +21,4 @@ extension UIView {
         }
     }
     
-    var compatLayoutMargins: UIEdgeInsets {
-        if #available(iOS 8.0, *) {
-            return self.layoutMargins
-        } else {
-            return UIEdgeInsetsZero
-        }
-    }
-    
 }

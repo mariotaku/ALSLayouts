@@ -19,7 +19,7 @@ public class ALSFrameLayout: ALSBaseLayout {
         print("layoutSubviews")
         let layoutDirection = self.layoutDirection
         
-        var parentFrame = self.bounds
+        let parentFrame = self.bounds
 
         for subview in subviews {
             guard let lp = getLayoutParams(subview) else {
