@@ -35,6 +35,15 @@ class DemosController: UITableViewController {
             default:
                 return false
             }
+        case 1:
+            switch indexPath.item {
+            case 1:
+                let vc = RelativeLayoutByCodeController()
+                navigationController?.showViewController(vc, sender: self)
+                return true
+            default:
+                return false
+            }
         default:
             return false
         }

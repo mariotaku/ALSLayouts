@@ -33,7 +33,8 @@ public class ALSBaseLayout: UIView {
         return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
     }
     
-    public func addSubview(view: UIView, configure: (ALSLayoutParams) -> Void) {
+    public func addSubview(view: UIView, tagString: String? = nil, configure: (ALSLayoutParams) -> Void) {
+        view.stringTag = tagString
         let lp = obtainLayoutParams(view)
         configure(lp)
         addSubview(view)
@@ -68,13 +69,13 @@ public class ALSBaseLayout: UIView {
         }
     }
     
-    func measureChildWithMargins(child: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
-        let lp = child.layoutParams!
+    func measureChildWithMargins(subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
+        let lp = subview.layoutParams
     
         let childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentWidthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight + widthUsed, childDimension: lp.width, childDimensionMode: lp.widthMode)
         let childHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentHeightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom + heightUsed, childDimension: lp.height, childDimensionMode: lp.heightMode)
     
-        lp.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
+        lp.measure(subview, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     
     static func combineMeasuredStates(states: ALSLayoutParams.MeasureStates, widthMode: ALSLayoutParams.MeasureSpecMode, heightMode: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureStates{

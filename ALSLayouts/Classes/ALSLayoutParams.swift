@@ -76,6 +76,19 @@ public class ALSLayoutParams {
     
     public var alignWithParentIfMissing: Bool = false
     
+    public var centerInParent: Bool {
+        get { return self.getBoolRule(ALSRelativeLayout.CENTER_IN_PARENT) }
+        set { self.setBoolRule(ALSRelativeLayout.CENTER_IN_PARENT, subjectBool: newValue) }
+    }
+    public var centerVertical: Bool {
+        get { return self.getBoolRule(ALSRelativeLayout.CENTER_VERTICAL) }
+        set { self.setBoolRule(ALSRelativeLayout.CENTER_VERTICAL, subjectBool: newValue) }
+    }
+    public var centerHorizontal: Bool {
+        get { return self.getBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL) }
+        set { self.setBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL, subjectBool: newValue) }
+    }
+    
     internal var alignTop: Int {
         get { return self.getRule(ALSRelativeLayout.ALIGN_TOP) }
         set { self.setRule(ALSRelativeLayout.ALIGN_TOP, subject: newValue) }
@@ -128,19 +141,6 @@ public class ALSLayoutParams {
     internal var toTrailingOf: Int {
         get { return self.getRule(ALSRelativeLayout.TRAILING_OF) }
         set { self.setRule(ALSRelativeLayout.TRAILING_OF, subject: newValue) }
-    }
-    
-    internal var centerInParent: Bool {
-        get { return self.getBoolRule(ALSRelativeLayout.CENTER_IN_PARENT) }
-        set { self.setBoolRule(ALSRelativeLayout.CENTER_IN_PARENT, subjectBool: newValue) }
-    }
-    internal var centerVertical: Bool {
-        get { return self.getBoolRule(ALSRelativeLayout.CENTER_VERTICAL) }
-        set { self.setBoolRule(ALSRelativeLayout.CENTER_VERTICAL, subjectBool: newValue) }
-    }
-    internal var centerHorizontal: Bool {
-        get { return self.getBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL) }
-        set { self.setBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL, subjectBool: newValue) }
     }
     
     internal private(set) var marginAbsLeft: CGFloat = 0

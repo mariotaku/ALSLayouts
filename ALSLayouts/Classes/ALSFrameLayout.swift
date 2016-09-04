@@ -10,11 +10,11 @@ import UIKit
 
 public class ALSFrameLayout: ALSBaseLayout {
 
-    @IBInspectable internal var measureAllChildren: Bool = false
+    @IBInspectable internal var measureAllSubviews: Bool = false
     
     private static let DEFAULT_CHILD_GRAVITY = ALSGravity.TOP | ALSGravity.LEADING
     
-    private var matchParentChildren: [UIView] = [UIView]()
+    private var matchParentSubviews: [UIView] = [UIView]()
     
     public override func sizeThatFits(size: CGSize) -> CGSize {
         return measureSubviews(size)
@@ -33,7 +33,7 @@ public class ALSFrameLayout: ALSBaseLayout {
         let layoutDirection = self.layoutDirection
         
         for child in subviews {
-            let lp = child.layoutParams!
+            let lp = child.layoutParams
             if (!lp.hidden) {
                 let width = lp.measuredWidth
                 let height = lp.measuredHeight
@@ -76,8 +76,8 @@ public class ALSFrameLayout: ALSBaseLayout {
     
     override func measureSubviews(size: CGSize) -> CGSize {
         
-        let measureMatchParentChildren = widthMode == .WrapContent || heightMode == .WrapContent
-        matchParentChildren.removeAll()
+        let measureMatchParentSubview = widthMode == .WrapContent || heightMode == .WrapContent
+        matchParentSubviews.removeAll()
         
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
         let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
@@ -87,21 +87,21 @@ public class ALSFrameLayout: ALSBaseLayout {
         
         var maxHeight: CGFloat = 0
         var maxWidth: CGFloat = 0
-        var childState: ALSLayoutParams.MeasureStates = (.Unspecified, .Unspecified)
+        var subviewState: ALSLayoutParams.MeasureStates = (.Unspecified, .Unspecified)
         
         let layoutDirection = self.layoutDirection
         
-        for child in subviews {
-            let lp = child.layoutParams!
+        for subview in subviews {
+            let lp = subview.layoutParams
             lp.resolveLayoutDirection(layoutDirection)
-            if (measureAllChildren || !lp.hidden) {
-                measureChildWithMargins(child, parentWidthMeasureSpec: widthMeasureSpec, widthUsed: 0, parentHeightMeasureSpec: heightMeasureSpec, heightUsed: 0)
+            if (measureAllSubviews || !lp.hidden) {
+                measureChildWithMargins(subview, parentWidthMeasureSpec: widthMeasureSpec, widthUsed: 0, parentHeightMeasureSpec: heightMeasureSpec, heightUsed: 0)
                 maxWidth = max(maxWidth, lp.measuredWidth + lp.marginAbsLeft + lp.marginAbsRight)
                 maxHeight = max(maxHeight, lp.measuredHeight + lp.marginTop + lp.marginBottom)
-                childState = ALSBaseLayout.combineMeasuredStates(childState, widthMode: lp.measuredWidthSpec, heightMode: lp.measuredHeightSpec)
-                if (measureMatchParentChildren) {
+                subviewState = ALSBaseLayout.combineMeasuredStates(subviewState, widthMode: lp.measuredWidthSpec, heightMode: lp.measuredHeightSpec)
+                if (measureMatchParentSubview) {
                     if (lp.widthMode == .MatchParent || lp.heightMode == .MatchParent) {
-                        matchParentChildren.append(child)
+                        matchParentSubviews.append(subview)
                     }
                 }
             }
@@ -117,30 +117,30 @@ public class ALSFrameLayout: ALSBaseLayout {
         maxHeight = max(maxHeight, suggestedMinimumHeight)
         maxWidth = max(maxWidth, suggestedMinimumWidth)
         
-        widthMeasureSpec = ALSBaseLayout.resolveSizeAndState(maxWidth, measureSpec: widthMeasureSpec, childMeasuredState: childState.0)
-        heightMeasureSpec = ALSBaseLayout.resolveSizeAndState(maxHeight, measureSpec: heightMeasureSpec, childMeasuredState: childState.1)
+        widthMeasureSpec = ALSBaseLayout.resolveSizeAndState(maxWidth, measureSpec: widthMeasureSpec, childMeasuredState: subviewState.0)
+        heightMeasureSpec = ALSBaseLayout.resolveSizeAndState(maxHeight, measureSpec: heightMeasureSpec, childMeasuredState: subviewState.1)
         
-        if (matchParentChildren.count > 1) {
-            for child in matchParentChildren {
-                let lp = child.layoutParams!
+        if (matchParentSubviews.count > 1) {
+            for subview in matchParentSubviews {
+                let lp = subview.layoutParams
                 
-                let childWidthMeasureSpec: ALSLayoutParams.MeasureSpec
+                let subviewWidthMeasureSpec: ALSLayoutParams.MeasureSpec
                 if (lp.widthMode == .MatchParent) {
                     let width = max(0, widthMeasureSpec.0 - actualLayoutMargins.left - actualLayoutMargins.right - lp.marginAbsLeft - lp.marginAbsRight)
-                    childWidthMeasureSpec = (width, .Exactly)
+                    subviewWidthMeasureSpec = (width, .Exactly)
                 } else {
-                    childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(widthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight, childDimension: lp.width, childDimensionMode: lp.widthMode)
+                    subviewWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(widthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight, childDimension: lp.width, childDimensionMode: lp.widthMode)
                 }
                 
-                let childHeightMeasureSpec: ALSLayoutParams.MeasureSpec
+                let subviewHeightMeasureSpec: ALSLayoutParams.MeasureSpec
                 if (lp.heightMode == .MatchParent) {
                     let height = max(0, heightMeasureSpec.0 - actualLayoutMargins.top - actualLayoutMargins.bottom - lp.marginTop - lp.marginBottom)
-                    childHeightMeasureSpec = (height, .Exactly)
+                    subviewHeightMeasureSpec = (height, .Exactly)
                 } else {
-                    childHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(heightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom, childDimension: lp.height, childDimensionMode: lp.heightMode)
+                    subviewHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(heightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom, childDimension: lp.height, childDimensionMode: lp.heightMode)
                 }
                 
-                lp.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
+                lp.measure(subview, widthSpec: subviewWidthMeasureSpec, heightSpec: subviewHeightMeasureSpec)
             }
         }
         return CGSizeMake(widthMeasureSpec.0, heightMeasureSpec.0)

@@ -192,7 +192,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         // Final step, do actual layout
         for subview in subviews {
-            let st = subview.layoutParams!
+            let st = subview.layoutParams
             if (!st.hidden) {
                 subview.frame = CGRectMake(st.left, st.top, st.right - st.left, st.bottom - st.top)
             } else {
@@ -281,7 +281,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         
         for subview in sortedHorizontalSubviews {
-            let params = subview.layoutParams!
+            let params = subview.layoutParams
             if (!params.hidden) {
                 let rules = params.getRules(layoutDirection)
                 
@@ -296,7 +296,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         
         for subview in sortedVerticalSubviews {
-            let params = subview.layoutParams!
+            let params = subview.layoutParams
             if (!params.hidden) {
                 applyVerticalSizeRules(params, myHeight: myHeight, myBaseline: subview.baselineBottomValue)
                 measureChild(subview, params: params, myWidth: myWidth, myHeight: myHeight)
@@ -333,7 +333,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         var baselineView: UIView? = nil
         var baselineParams: ALSLayoutParams? = nil
         for subview in sortedVerticalSubviews {
-            let childParams = subview.layoutParams!
+            let childParams = subview.layoutParams
             if (!childParams.hidden) {
                 if (baselineView == nil || baselineParams == nil || (childParams - baselineParams!) < 0) {
                     baselineView = subview
@@ -358,7 +358,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             
             if (offsetHorizontalAxis) {
                 for subview in sortedVerticalSubviews {
-                    let params = subview.layoutParams!
+                    let params = subview.layoutParams
                     if (!params.hidden) {
                         let rules = params.getRules(layoutDirection)
                         if (rules[ALSRelativeLayout.CENTER_IN_PARENT] != 0 || rules[ALSRelativeLayout.CENTER_HORIZONTAL] != 0) {
@@ -388,7 +388,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             
             if (offsetVerticalAxis) {
                 for subview in sortedVerticalSubviews {
-                    let params = subview.layoutParams!
+                    let params = subview.layoutParams
                     if (!params.hidden) {
                         let rules = params.getRules(layoutDirection)
                         if (rules[ALSRelativeLayout.CENTER_IN_PARENT] != 0 || rules[ALSRelativeLayout.CENTER_VERTICAL] != 0) {
@@ -415,7 +415,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             let verticalOffset = contentBounds.top - top
             if (horizontalOffset != 0 || verticalOffset != 0) {
                 for subview in sortedVerticalSubviews {
-                    let params = subview.layoutParams!
+                    let params = subview.layoutParams
                     if (!params.hidden && subview !== ignore) {
                         
                         if (horizontalGravity) {
@@ -434,7 +434,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         if (isLayoutRtl) {
             let offsetWidth = myWidth - width
             for subview in sortedVerticalSubviews {
-                let params = subview.layoutParams!
+                let params = subview.layoutParams
                 if (!params.hidden) {
                     params.left -= offsetWidth
                     params.right -= offsetWidth
@@ -840,8 +840,8 @@ public class ALSRelativeLayout: ALSBaseLayout {
             var v: UIView = node!.view
             
             // Find the first non-GONE view up the chain
-            while (v.layoutParams!.hidden) {
-                curRules = v.layoutParams!.getRules(v.layoutDirection)
+            while (v.layoutParams.hidden) {
+                curRules = v.layoutParams.getRules(v.layoutDirection)
                 node = graph.keyNodes[curRules[relation]]
                 if (node == nil) {
                     return nil
@@ -868,7 +868,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
         let baseline = v.baselineBottomValue
         if (!baseline.isNaN) {
-            let params = v.layoutParams!
+            let params = v.layoutParams
             return params.top + baseline
         }
         return CGFloat.NaN

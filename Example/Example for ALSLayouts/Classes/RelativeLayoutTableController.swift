@@ -51,7 +51,7 @@ class RelativeLayoutTableController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ExampleItem", forIndexPath: indexPath) as! RelativeLayoutTableCell
-        cell.profileImageView.layoutParams?.hidden = self.hideProfileImage
+        cell.profileImageView.layoutParams.hidden = self.hideProfileImage
         cell.display(data[indexPath.item % data.count])
         
         return cell
@@ -60,7 +60,7 @@ class RelativeLayoutTableController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return tableView.fd_heightForCellWithIdentifier("ExampleItem", cacheByIndexPath: indexPath) { cell in
             let tableCell = cell as! RelativeLayoutTableCell
-            tableCell.profileImageView.layoutParams?.hidden = self.hideProfileImage
+            tableCell.profileImageView.layoutParams.hidden = self.hideProfileImage
             tableCell.display(self.data[indexPath.item % self.data.count])
         }
     }

@@ -115,7 +115,7 @@ internal class DependencyGraph {
         // Builds up the dependents and dependencies for each node of the graph
         for node in self.nodes {
             
-            let layoutParams = node.view.layoutParams!
+            let layoutParams = node.view.layoutParams
             let rules = layoutParams.getRules()
             
             // Look only the the rules passed in parameter, this way we build only the
