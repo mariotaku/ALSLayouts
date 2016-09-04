@@ -159,8 +159,8 @@ public class ALSLinearLayout: ALSBaseLayout {
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
         let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
         
-        var widthMeasureSpec: ALSLayoutParams.MeasureSpec = (size.width, widthSpec)
-        var heightMeasureSpec: ALSLayoutParams.MeasureSpec = (size.height, heightSpec)
+        let widthMeasureSpec: ALSLayoutParams.MeasureSpec = (size.width, widthSpec)
+        let heightMeasureSpec: ALSLayoutParams.MeasureSpec = (size.height, heightSpec)
         if (orientation == .Vertical) {
             return measureVertical(widthMeasureSpec, heightMeasureSpec)
         } else {
@@ -221,9 +221,11 @@ public class ALSLinearLayout: ALSBaseLayout {
         
         let layoutDirection = self.layoutDirection
         
-        for var i = 0; i < count; i++ {
-            guard let child = getVirtualChildAt(i) else {
-                totalLength += measureNullChild(i)
+        var measureIdx0: Int = 0
+        while (measureIdx0 < count) {
+            guard let child = getVirtualChildAt(measureIdx0) else {
+                totalLength += measureNullChild(measureIdx0)
+                measureIdx0 += 1
                 continue
             }
             
@@ -232,11 +234,11 @@ public class ALSLinearLayout: ALSBaseLayout {
             lp.resolveLayoutDirection(layoutDirection)
             
             if (lp.hidden) {
-                i += getChildrenSkipCount(child, index: i)
+                measureIdx0 += getChildrenSkipCount(child, index: measureIdx0) + 1 // combined with measureIdx0++
                 continue
             }
             
-            if (hasDividerBeforeChildAt(i)) {
+            if (hasDividerBeforeChildAt(measureIdx0)) {
                 self.totalLength += dividerSize.height
             }
             
@@ -265,7 +267,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 // use all available space (and we will shrink things later
                 // if needed).
                 let usedHeight = totalWeight.isZero ? self.totalLength : 0
-                measureChildBeforeLayout(child, childIndex: i, widthMeasureSpec: widthMeasureSpec, totalWidth: 0, heightMeasureSpec: heightMeasureSpec, totalHeight: usedHeight)
+                measureChildBeforeLayout(child, childIndex: measureIdx0, widthMeasureSpec: widthMeasureSpec, totalWidth: 0, heightMeasureSpec: heightMeasureSpec, totalHeight: usedHeight)
                 
                 let childHeight = lp.measuredHeight
                 if (useExcessSpace) {
@@ -288,14 +290,14 @@ public class ALSLinearLayout: ALSBaseLayout {
              * If applicable, compute the additional offset to the child's baseline
              * we'll need later when asked [.getBaseline].
              */
-            if (baselineChildIndex >= 0 && baselineChildIndex == i + 1) {
+            if (baselineChildIndex >= 0 && baselineChildIndex == measureIdx0 + 1) {
                 baselineChildTop = totalLength
             }
             
             // if we are trying to use a child index for our baseline, the above
             // book keeping only works if there are no children above it with
             // weight.  fail fast to aid the developer.
-            if (i < baselineChildIndex && lp.weight > 0) {
+            if (measureIdx0 < baselineChildIndex && lp.weight > 0) {
                 fatalError("A child of LinearLayout with index "
                     + "less than mBaselineAlignedChildIndex has weight > 0, which "
                     + "won't work.  Either remove the weight, or don't set "
@@ -328,7 +330,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 alternativeMaxWidth = max(alternativeMaxWidth, matchWidthLocally ? margin : measuredWidth)
             }
             
-            i += getChildrenSkipCount(child, index: i)
+            measureIdx0 += getChildrenSkipCount(child, index: measureIdx0) + 1 // combined with measureIdx0++
         }
         
         if (totalLength > 0 && hasDividerBeforeChildAt(count)) {
@@ -338,22 +340,24 @@ public class ALSLinearLayout: ALSBaseLayout {
         if (useLargestChild && (heightSpec == .AtMost || heightSpec == .Unspecified)) {
             totalLength = 0
             
-            for var i = 0; i < count; i++ {
-                guard let child = getVirtualChildAt(i) else {
-                    self.totalLength += measureNullChild(i)
+            var measureIdx1: Int = 0
+            while (measureIdx1 < count) {
+                guard let child = getVirtualChildAt(measureIdx1) else {
+                    self.totalLength += measureNullChild(measureIdx1)
+                    measureIdx1 += measureIdx1
                     continue
                 }
                 
                 let lp = child.layoutParams
                 
                 if (lp.hidden) {
-                    i += getChildrenSkipCount(child, index: i)
+                    measureIdx1 += getChildrenSkipCount(child, index: measureIdx1) + 1 // combined with measureIdx00++
                     continue
                 }
                 // Account for negative margins
                 let totalLength = self.totalLength
-                self.totalLength = max(totalLength, totalLength + largestChildHeight +
-                    lp.marginTop + lp.marginBottom + getNextLocationOffset(child))
+                self.totalLength = max(totalLength, totalLength + largestChildHeight + lp.marginTop + lp.marginBottom + getNextLocationOffset(child))
+                measureIdx1 += 1
             }
         }
         
@@ -379,7 +383,7 @@ public class ALSLinearLayout: ALSBaseLayout {
             
             totalLength = 0
             
-            for var i = 0; i < count; i++ {
+            for i in 0..<count {
                 guard let child = getVirtualChildAt(i) else {
                     continue
                 }
@@ -440,7 +444,7 @@ public class ALSLinearLayout: ALSBaseLayout {
             // We have no limit, so make all weighted views as tall as the largest child.
             // Children will have already been measured once.
             if (useLargestChild && heightSpec != .Exactly) {
-                for var i = 0; i < count; i++ {
+                for i in 0..<count {
                     guard let child = getVirtualChildAt(i) where !child.layoutHidden else {
                         continue
                     }
@@ -519,9 +523,11 @@ public class ALSLinearLayout: ALSBaseLayout {
         
         // See how wide everyone is. Also remember max height.
         
-        for var i = 0; i < count; i++ {
-            guard let child = getVirtualChildAt(i) else {
-                totalLength += measureNullChild(i)
+        var measureIdx0: Int = 0
+        while (measureIdx0 < count) {
+            guard let child = getVirtualChildAt(measureIdx0) else {
+                totalLength += measureNullChild(measureIdx0)
+                measureIdx0 += 1
                 continue
             }
             let lp = child.layoutParams
@@ -529,11 +535,11 @@ public class ALSLinearLayout: ALSBaseLayout {
             lp.resolveLayoutDirection(layoutDirection)
             
             if (lp.hidden) {
-                i += getChildrenSkipCount(child, index: i)
+                measureIdx0 += getChildrenSkipCount(child, index: measureIdx0) + 1 // combined with measureIdx0++
                 continue
             }
             
-            if (hasDividerBeforeChildAt(i)) {
+            if (hasDividerBeforeChildAt(measureIdx0)) {
                 totalLength += dividerSize.width
             }
             
@@ -579,7 +585,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 // use all available space (and we will shrink things later
                 // if needed).
                 let usedWidth = totalWeight.isZero ? totalLength : 0
-                measureChildBeforeLayout(child, childIndex: i, widthMeasureSpec: widthMeasureSpec, totalWidth: usedWidth, heightMeasureSpec: heightMeasureSpec, totalHeight: 0)
+                measureChildBeforeLayout(child, childIndex: measureIdx0, widthMeasureSpec: widthMeasureSpec, totalWidth: usedWidth, heightMeasureSpec: heightMeasureSpec, totalHeight: 0)
                 
                 let childWidth = lp.measuredWidth
                 if (useExcessSpace) {
@@ -591,8 +597,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 }
                 
                 if (isExactly) {
-                    totalLength += childWidth + lp.marginAbsLeft + lp.marginAbsRight
-                    +getNextLocationOffset(child)
+                    totalLength += childWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child)
                 } else {
                     let total = self.totalLength
                     self.totalLength = max(total, total + childWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child))
@@ -642,7 +647,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 alternativeMaxHeight = max(alternativeMaxHeight, matchHeightLocally ? margin : childHeight)
             }
             
-            i += getChildrenSkipCount(child, index: i)
+            measureIdx0 += getChildrenSkipCount(child, index: measureIdx0) + 1 // combined with measureIdx0++
         }
         
         if (totalLength > 0 && hasDividerBeforeChildAt(count)) {
@@ -660,16 +665,18 @@ public class ALSLinearLayout: ALSBaseLayout {
         if (useLargestChild && (widthSpec == .AtMost || widthSpec == .Unspecified)) {
             totalLength = 0
             
-            for var i = 0; i < count; i++ {
-                guard let child = getVirtualChildAt(i) else {
-                    totalLength += measureNullChild(i)
+            var measureIdx1: Int = 0
+            while (measureIdx1 < count) {
+                guard let child = getVirtualChildAt(measureIdx1) else {
+                    totalLength += measureNullChild(measureIdx1)
+                    measureIdx1 += 1
                     continue
                 }
                 
                 let lp = child.layoutParams
                 
                 if (lp.hidden) {
-                    i += getChildrenSkipCount(child, index: i)
+                    measureIdx1 += getChildrenSkipCount(child, index: measureIdx1) + 1 // combined with measureIdx1++
                     continue
                 }
                 
@@ -679,6 +686,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                     let total = self.totalLength
                     self.totalLength = max(total, total + largestChildWidth + lp.marginAbsLeft + lp.marginAbsRight + getNextLocationOffset(child))
                 }
+                measureIdx1 += 1
             }
         }
         
@@ -711,7 +719,7 @@ public class ALSLinearLayout: ALSBaseLayout {
             
             totalLength = 0
             
-            for var i = 0; i < count; i++ {
+            for i in 0..<count {
                 guard let child = getVirtualChildAt(i) where !child.layoutHidden else {
                     continue
                 }
@@ -791,7 +799,7 @@ public class ALSLinearLayout: ALSBaseLayout {
             // We have no limit, so make all weighted views as wide as the largest child.
             // Children will have already been measured once.
             if (useLargestChild && widthSpec != .Exactly) {
-                for var i = 0; i < count; i++ {
+                for i in 0..<count {
                     guard let child = getVirtualChildAt(i) where !child.layoutHidden else {
                         continue
                     }
@@ -877,9 +885,11 @@ public class ALSLinearLayout: ALSBaseLayout {
             childTop = actualLayoutMargins.top
         }
         
-        for var i = 0; i < count; i++ {
-            guard let child = getVirtualChildAt(i) else {
-                childTop += measureNullChild(i)
+        var layoutIdx0: Int = 0
+        while (layoutIdx0 < count) {
+            guard let child = getVirtualChildAt(layoutIdx0) else {
+                childTop += measureNullChild(layoutIdx0)
+                layoutIdx0 += 1
                 continue
             }
             
@@ -903,7 +913,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                     childLeft = paddingLeft + lp.marginAbsLeft
                 }
                 
-                if (hasDividerBeforeChildAt(i)) {
+                if (hasDividerBeforeChildAt(layoutIdx0)) {
                     childTop += dividerSize.height
                 }
                 
@@ -911,10 +921,11 @@ public class ALSLinearLayout: ALSBaseLayout {
                 child.frame = CGRectMake(childLeft, childTop + getLocationOffset(child), childWidth, childHeight)
                 childTop += childHeight + lp.marginBottom + getNextLocationOffset(child)
                 
-                i += getChildrenSkipCount(child, index: i)
+                layoutIdx0 += getChildrenSkipCount(child, index: layoutIdx0)
             } else {
                 child.frame = CGRectZero
             }
+            layoutIdx0 += 1
         }
     }
     
@@ -980,10 +991,12 @@ public class ALSLinearLayout: ALSBaseLayout {
             dir = -1
         }
         
-        for var i = 0; i < count; i++ {
-            let childIndex = start + dir * i
+        var layoutIdx0: Int = 0
+        while (layoutIdx0 < count) {
+            let childIndex = start + dir * layoutIdx0
             guard let child = getVirtualChildAt(childIndex) else {
                 childLeft += measureNullChild(childIndex)
+                layoutIdx0 += 1
                 continue
             }
             
@@ -1040,10 +1053,11 @@ public class ALSLinearLayout: ALSBaseLayout {
                 child.frame = CGRectMake(childLeft + getLocationOffset(child), childTop, childWidth, childHeight)
                 childLeft += childWidth + lp.marginAbsRight + getNextLocationOffset(child)
                 
-                i += getChildrenSkipCount(child, index: childIndex)
+                layoutIdx0 += getChildrenSkipCount(child, index: childIndex)
             } else {
                 child.frame = CGRectZero
             }
+            layoutIdx0 += 1
         }
     }
     
@@ -1082,7 +1096,7 @@ public class ALSLinearLayout: ALSBaseLayout {
      * Checks whether all (virtual) child views before the given index are gone.
      */
     private func allViewsAreGoneBefore(childIndex: Int) -> Bool {
-        for  var i = childIndex - 1; i >= 0; i-- {
+        for i in (0..<childIndex).reverse() {
             if let child = getVirtualChildAt(i) where !child.layoutHidden {
                 return false
             }
@@ -1173,7 +1187,7 @@ public class ALSLinearLayout: ALSBaseLayout {
     private func forceUniformWidth(count: Int, heightMeasureSpec: ALSLayoutParams.MeasureSpec) {
         // Pretend that the linear layout has an exact size.
         let uniformMeasureSpec: ALSLayoutParams.MeasureSpec = (bounds.width, .Exactly)
-        for var i = 0; i < count; i++ {
+        for i in 0..<count {
             guard let child = getVirtualChildAt(i) where !child.layoutHidden else {
                 continue
             }
@@ -1198,7 +1212,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         // ourselves. The measured height should be the max height of the children, changed
         // to accommodate the heightMeasureSpec from the parent
         let uniformMeasureSpec: ALSLayoutParams.MeasureSpec = (bounds.height, .Exactly)
-        for var i = 0; i < count; i++ {
+        for i in 0..<count {
             guard let child = getVirtualChildAt(i) where !child.layoutHidden else {
                 continue
             }
