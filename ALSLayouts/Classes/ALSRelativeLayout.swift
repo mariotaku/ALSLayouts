@@ -179,8 +179,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         for (k, lp) in layoutParamsMap {
             lp.resolveViewTags()
         }
-        measureSubviews(size)
-        return self.bounds.size
+        return measureSubviews(size)
     }
     
     public override func layoutSubviews() {
@@ -189,7 +188,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         
-        measureSubviews(self.bounds.size)
+        self.frame.size = measureSubviews(self.bounds.size)
         
         // Final step, do actual layout
         for subview in subviews {
@@ -202,7 +201,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
     }
     
-    func measureSubviews(size: CGSize) {
+    internal func measureSubviews(size: CGSize) -> CGSize {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
             sortChildren()
@@ -444,16 +443,18 @@ public class ALSRelativeLayout: ALSBaseLayout {
             }
         }
         
+        var measuredSize = CGSize()
         if (isWrapContentWidth) {
-            frame.size.width = right - left + actualLayoutMargins.left + actualLayoutMargins.right
+            measuredSize.width = right - left + actualLayoutMargins.left + actualLayoutMargins.right
         } else {
-            frame.size.width = width
+            measuredSize.width = width
         }
         if (isWrapContentHeight) {
-            frame.size.height = bottom - top + actualLayoutMargins.top + actualLayoutMargins.bottom
+            measuredSize.height = bottom - top + actualLayoutMargins.top + actualLayoutMargins.bottom
         } else {
-            frame.size.height = height
+            measuredSize.height = height
         }
+        return measuredSize
     }
     
     /**

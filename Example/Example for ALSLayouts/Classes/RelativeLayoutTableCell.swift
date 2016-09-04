@@ -16,11 +16,16 @@ class RelativeLayoutTableCell: UITableViewCell {
     
     func display(text: String) {
         textView.text = text
+        let layout = contentView.subviews.first as! ALSRelativeLayout
+        layout.setNeedsLayout()
     }
     
     override func sizeThatFits(size: CGSize) -> CGSize {
         let layout = contentView.subviews.first as! ALSRelativeLayout
-        var contentSize = layout.sizeThatFits(size)
+        var layoutSize = size
+        layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right
+        layoutSize.height -= contentView.layoutMargins.top + contentView.layoutMargins.bottom
+        var contentSize = layout.sizeThatFits(layoutSize)
         contentSize.width += contentView.layoutMargins.left + contentView.layoutMargins.right
         contentSize.height += contentView.layoutMargins.top + contentView.layoutMargins.bottom
         return contentSize

@@ -50,12 +50,11 @@ class RelativeLayoutTableController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
-//        return tableView.fd_heightForCellWithIdentifier("ExampleItem", cacheByIndexPath: indexPath) { cell in
-//            let tableCell = cell as! RelativeLayoutTableCell
-//            tableCell.fd_enforceFrameLayout = true
-//            tableCell.display(self.data[indexPath.item % self.data.count])
-//        }
+        return tableView.fd_heightForCellWithIdentifier("ExampleItem", cacheByIndexPath: indexPath) { cell in
+            let tableCell = cell as! RelativeLayoutTableCell
+            tableCell.fd_enforceFrameLayout = true
+            tableCell.display(self.data[indexPath.item % self.data.count])
+        }
     }
     
 }
