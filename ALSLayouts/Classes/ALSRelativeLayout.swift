@@ -298,8 +298,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         for subview in sortedVerticalSubviews {
             let params = subview.layoutParams!
             if (!params.hidden) {
-                // TODO use child.baseline calculation
-                applyVerticalSizeRules(params, myHeight: myHeight, myBaseline: -1)
+                applyVerticalSizeRules(params, myHeight: myHeight, myBaseline: subview.baselineBottomValue)
                 measureChild(subview, params: params, myWidth: myWidth, myHeight: myHeight)
                 if (positionChildVertical(subview, params: params, myHeight: myHeight, wrapContent: isWrapContentHeight)) {
                     offsetVerticalAxis = true
@@ -772,8 +771,8 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         // Baseline alignment overrides any explicitly specified top or bottom.
         var baselineOffset = getRelatedViewBaselineOffset(rules)
-        if (baselineOffset != -1) {
-            if (myBaseline != -1) {
+        if (!baselineOffset.isNaN) {
+            if (!myBaseline.isNaN) {
                 baselineOffset -= myBaseline
             }
             childParams.top = baselineOffset
@@ -865,16 +864,14 @@ public class ALSRelativeLayout: ALSBaseLayout {
     
     private func getRelatedViewBaselineOffset(rules: [Int]) -> CGFloat {
         guard let v = getRelatedView(rules, relation: ALSRelativeLayout.ALIGN_BASELINE) else {
-            return -1
+            return CGFloat.NaN
         }
-        // TODO return actual value
-//        let baseline = v.baseline
-//        if (baseline != -1) {
-//            let params = v.layoutParams
-//            let anchorParams = v.layoutParams
-//            return anchorParams.top + baseline
-//        }
-        return -1
+        let baseline = v.baselineBottomValue
+        if (!baseline.isNaN) {
+            let params = v.layoutParams!
+            return params.top + baseline
+        }
+        return CGFloat.NaN
     }
     
     private static func centerHorizontal(child: UIView, params: ALSLayoutParams, myWidth: CGFloat) {
