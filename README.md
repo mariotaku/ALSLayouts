@@ -1,6 +1,6 @@
 # ALSLayouts
 
-[![CI Status](http://img.shields.io/travis/Mariotaku Lee/ALSLayouts.svg?style=flat)](https://travis-ci.org/Mariotaku Lee/ALSLayouts)
+[![CI Status](http://img.shields.io/travis/mariotaku/ALSLayouts.svg?style=flat)](https://travis-ci.org/mariotaku/ALSLayouts)
 [![Version](https://img.shields.io/cocoapods/v/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 [![License](https://img.shields.io/cocoapods/l/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 [![Platform](https://img.shields.io/cocoapods/p/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
