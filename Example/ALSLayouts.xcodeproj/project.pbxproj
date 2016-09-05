@@ -12,7 +12,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		CE335A571D7CF99200BC0204 /* RelativeLayoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE335A561D7CF99200BC0204 /* RelativeLayoutCell.xib */; };
 		CE3C475E1D7BE96400438D43 /* RelativeLayoutByCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C475D1D7BE96400438D43 /* RelativeLayoutByCodeController.swift */; };
 		CE3C47651D7C2F0500438D43 /* FrameLayoutTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C47641D7C2F0500438D43 /* FrameLayoutTableController.swift */; };
@@ -54,7 +53,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ALSLayouts Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ALSLayouts Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8490C1028EDABCDBB766D8BE /* Pods_ALSLayouts_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALSLayouts_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF974EDE9C89952485B517C /* Pods-ALSLayouts Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts Example/Pods-ALSLayouts Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AD9BA8C724247CCADBF60468 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			children = (
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				CED7F7741D790CA40000C274 /* ALSGravityTest.swift */,
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -447,7 +444,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				CED7F7751D790CA40000C274 /* ALSGravityTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
