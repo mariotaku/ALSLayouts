@@ -1,5 +1,5 @@
 PODS:
-  - ALSLayouts (0.1.0)
+  - ALSLayouts (0.1.5)
   - FBSnapshotTestCase (2.1.2):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
   - FBSnapshotTestCase/Core (2.1.2)
@@ -26,13 +26,13 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ALSLayouts: 7f5436ee22e7fc7e44790e291104eb5f500de52d
+  ALSLayouts: aceaa5418aefb7c8e9abc18c0c5777ca7df572be
   FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
-PODFILE CHECKSUM: ec1f7737084b64db04649a599469eff5824946df
+PODFILE CHECKSUM: 2181a424a125999f92a76c21cbddc69a994748a5
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.beta.2

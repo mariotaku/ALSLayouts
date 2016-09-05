@@ -43,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		25E6821E4A5A3E94743E2CDD /* Pods-ALSLayouts_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts_Tests/Pods-ALSLayouts_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2840D4373443C78212F63A9A /* Pods-ALSLayouts Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts Tests/Pods-ALSLayouts Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		32DE6A7B51ADF85905109BF8 /* Pods-ALSLayouts_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts_Example/Pods-ALSLayouts_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ALSLayouts Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ALSLayouts Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,8 +56,10 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8490C1028EDABCDBB766D8BE /* Pods_ALSLayouts_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALSLayouts_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACF974EDE9C89952485B517C /* Pods-ALSLayouts Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts Example/Pods-ALSLayouts Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AD9BA8C724247CCADBF60468 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		B352E9F9CF25B98E3095E5D9 /* Pods-ALSLayouts_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts_Tests/Pods-ALSLayouts_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BB8827F9FBAF7C19AC1B0472 /* Pods-ALSLayouts Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts Tests/Pods-ALSLayouts Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BF347C829A11B4B42AE8941B /* Pods-ALSLayouts_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts_Example/Pods-ALSLayouts_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CE335A561D7CF99200BC0204 /* RelativeLayoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelativeLayoutCell.xib; sourceTree = "<group>"; };
 		CE3C475D1D7BE96400438D43 /* RelativeLayoutByCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeLayoutByCodeController.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		CEDC56601D7C490600ACE90A /* LinearLayoutTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearLayoutTableController.swift; sourceTree = "<group>"; };
 		CEDC56621D7C494D00ACE90A /* LinearLayoutTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearLayoutTableCell.swift; sourceTree = "<group>"; };
 		D816BB282EE6ACA05F85FD89 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		E5DE5E47B6FA9B76C8D30FCA /* Pods-ALSLayouts Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALSLayouts Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ALSLayouts Example/Pods-ALSLayouts Example.release.xcconfig"; sourceTree = "<group>"; };
 		EDC3787D9958347A5826D119 /* Pods_ALSLayouts_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALSLayouts_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F142552D5F280DB7F5B69045 /* ALSLayouts.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ALSLayouts.podspec; path = ../../ALSLayouts.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +108,10 @@
 				32DE6A7B51ADF85905109BF8 /* Pods-ALSLayouts_Example.release.xcconfig */,
 				25E6821E4A5A3E94743E2CDD /* Pods-ALSLayouts_Tests.debug.xcconfig */,
 				B352E9F9CF25B98E3095E5D9 /* Pods-ALSLayouts_Tests.release.xcconfig */,
+				ACF974EDE9C89952485B517C /* Pods-ALSLayouts Example.debug.xcconfig */,
+				E5DE5E47B6FA9B76C8D30FCA /* Pods-ALSLayouts Example.release.xcconfig */,
+				2840D4373443C78212F63A9A /* Pods-ALSLayouts Tests.debug.xcconfig */,
+				BB8827F9FBAF7C19AC1B0472 /* Pods-ALSLayouts Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -334,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts_Tests/Pods-ALSLayouts_Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts Tests/Pods-ALSLayouts Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		269FBB9980788724B188949B /* [CP] Check Pods Manifest.lock */ = {
@@ -349,7 +357,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		76B69334A12CFD18F2255FF6 /* [CP] Check Pods Manifest.lock */ = {
@@ -364,7 +372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		84AD2C54AB4454E067C48893 /* [CP] Embed Pods Frameworks */ = {
@@ -379,7 +387,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts_Example/Pods-ALSLayouts_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts Example/Pods-ALSLayouts Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD2178112498C1C2531F6D64 /* [CP] Copy Pods Resources */ = {
@@ -394,7 +402,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts_Tests/Pods-ALSLayouts_Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts Tests/Pods-ALSLayouts Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F965774598E27C998D0022FD /* [CP] Copy Pods Resources */ = {
@@ -409,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts_Example/Pods-ALSLayouts_Example-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ALSLayouts Example/Pods-ALSLayouts Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -560,7 +568,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF347C829A11B4B42AE8941B /* Pods-ALSLayouts_Example.debug.xcconfig */;
+			baseConfigurationReference = ACF974EDE9C89952485B517C /* Pods-ALSLayouts Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -577,7 +585,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32DE6A7B51ADF85905109BF8 /* Pods-ALSLayouts_Example.release.xcconfig */;
+			baseConfigurationReference = E5DE5E47B6FA9B76C8D30FCA /* Pods-ALSLayouts Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -594,7 +602,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25E6821E4A5A3E94743E2CDD /* Pods-ALSLayouts_Tests.debug.xcconfig */;
+			baseConfigurationReference = 2840D4373443C78212F63A9A /* Pods-ALSLayouts Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -613,7 +621,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B352E9F9CF25B98E3095E5D9 /* Pods-ALSLayouts_Tests.release.xcconfig */;
+			baseConfigurationReference = BB8827F9FBAF7C19AC1B0472 /* Pods-ALSLayouts Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
