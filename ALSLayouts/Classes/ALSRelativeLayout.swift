@@ -154,7 +154,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         
-        self.frame.size = measureSubviews(self.bounds.size)
+        measureSubviews(self.bounds.size)
         
         // Final step, do actual layout
         for subview in subviews {

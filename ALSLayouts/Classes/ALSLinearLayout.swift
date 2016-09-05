@@ -169,7 +169,7 @@ public class ALSLinearLayout: ALSBaseLayout {
     }
     
     public override func layoutSubviews() {
-        self.frame.size = measureSubviews(self.bounds.size)
+        measureSubviews(self.bounds.size)
         
         if (orientation == .Vertical) {
             return layoutVertical(self.frame)

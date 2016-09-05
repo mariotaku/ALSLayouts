@@ -18,7 +18,7 @@ public class ALSFrameLayout: ALSBaseLayout {
     
     override public func layoutSubviews() {
         
-        self.frame.size = measureSubviews(self.bounds.size)
+        measureSubviews(self.bounds.size)
         
         let parentLeft = actualLayoutMargins.left
         let parentRight = self.frame.right - self.frame.left - actualLayoutMargins.right

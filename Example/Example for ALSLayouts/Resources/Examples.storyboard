@@ -247,7 +247,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a7b-oF-1PT">
-                                                    <rect key="frame" x="64" y="8" width="232" height="21"/>
+                                                    <rect key="frame" x="64" y="8" width="191" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.64095463139999997" green="1" blue="0.75529109179999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <attributedString key="attributedText">
@@ -263,11 +263,29 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="name"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTop" value="profileImage"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImage"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignWithParentIfMissing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutToLeadingOf" value="time"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTrailing">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sAL-GL-IMN">
+                                                    <rect key="frame" x="263" y="10" width="33" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="time"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="name"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IUe-oK-KDJ">
@@ -287,7 +305,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTrailing" value="time"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>

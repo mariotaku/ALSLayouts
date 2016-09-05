@@ -44,7 +44,10 @@ public extension UIView {
         if (tag == nil) {
             return 0
         }
-        return tagPool[tag!]!
+        guard let intTag = tagPool[tag!] else {
+            fatalError("String tag '\(tag!)' not found")
+        }
+        return intTag
     }
     
     static func getStringTag(byTag tag: Int) -> String? {
