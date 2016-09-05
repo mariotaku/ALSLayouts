@@ -471,7 +471,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         var measuredHeight: CGFloat = 0
         var measuredHeightSpec: ALSLayoutParams.MeasureSpecMode = .Unspecified
         if (myHeight < 0) {
-            if (params.height >= 0) {
+            if (params.heightMode == .StaticSize) {
                 // Height mode is EXACTLY in Android source
                 measuredHeight = params.height
                 measuredHeightSpec = .Exactly
