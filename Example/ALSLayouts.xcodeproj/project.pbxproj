@@ -189,13 +189,13 @@
 				CED7F7781D79489D0000C274 /* FrameLayoutByCodeController.swift */,
 				CEDC56591D7C32E400ACE90A /* FrameLayoutCell.swift */,
 				CE3C47641D7C2F0500438D43 /* FrameLayoutTableController.swift */,
+				CEDC565B1D7C450400ACE90A /* LinearLayoutByCodeController.swift */,
+				CEDC56621D7C494D00ACE90A /* LinearLayoutTableCell.swift */,
+				CEDC56601D7C490600ACE90A /* LinearLayoutTableController.swift */,
+				CEDC565E1D7C48B800ACE90A /* LoremIpsum.swift */,
 				CE3C475D1D7BE96400438D43 /* RelativeLayoutByCodeController.swift */,
 				CE6E66B51D7AECA800EEA65A /* RelativeLayoutTableCell.swift */,
 				CE6E66B31D7ABB2300EEA65A /* RelativeLayoutTableController.swift */,
-				CEDC565B1D7C450400ACE90A /* LinearLayoutByCodeController.swift */,
-				CEDC565E1D7C48B800ACE90A /* LoremIpsum.swift */,
-				CEDC56601D7C490600ACE90A /* LinearLayoutTableController.swift */,
-				CEDC56621D7C494D00ACE90A /* LinearLayoutTableCell.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

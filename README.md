@@ -1,5 +1,7 @@
 # ALSLayouts
 
+Auto Layout ~~Sucks~~ Substitution
+
 [![CI Status](http://img.shields.io/travis/mariotaku/ALSLayouts.svg?style=flat)](https://travis-ci.org/mariotaku/ALSLayouts)
 [![Version](https://img.shields.io/cocoapods/v/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 [![License](https://img.shields.io/cocoapods/l/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
@@ -17,7 +19,7 @@ ALSLayouts is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "ALSLayouts"
+pod 'ALSLayouts', '~> x.y,z' # Latest version above
 ```
 
 ## Author
