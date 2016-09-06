@@ -52,3 +52,5 @@ Buy me a ~~bread~~ [game](http://steamcommunity.com/id/mariotaku/wishlist) or an
 [帮我支付宝账户里随便加点钱](https://twitter.com/xmxsuperstar/status/724094631621750785)
 
 ---
+
+Made with ❤️ by <img src="Resources/nyan_sakamoto_icon.png" height="15">
