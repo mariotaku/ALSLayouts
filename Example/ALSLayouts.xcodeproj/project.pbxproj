@@ -205,12 +205,12 @@
 		CED7F77D1D794EE40000C274 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE90A5581D7E7CD2007050E5 /* AutoLayoutExamples.storyboard */,
 				CED7F7621D78471C0000C274 /* Examples.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				CE335A561D7CF99200BC0204 /* RelativeLayoutCell.xib */,
-				CE90A5581D7E7CD2007050E5 /* AutoLayoutExamples.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
