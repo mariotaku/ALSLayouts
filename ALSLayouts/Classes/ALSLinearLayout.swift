@@ -10,23 +10,6 @@ import Foundation
 
 public class ALSLinearLayout: ALSBaseLayout {
     
-    /**
-     * Don't show any dividers.
-     */
-    static let SHOW_DIVIDER_NONE = 0
-    /**
-     * Show a divider at the beginning of the group.
-     */
-    static let SHOW_DIVIDER_BEGINNING = 1
-    /**
-     * Show dividers between each item in the group.
-     */
-    static let SHOW_DIVIDER_MIDDLE = 2
-    /**
-     * Show a divider at the end of the group.
-     */
-    static let SHOW_DIVIDER_END = 4
-    
     private static let VERTICAL_GRAVITY_COUNT = 4
     
     private static let INDEX_CENTER_VERTICAL = 0
@@ -36,6 +19,19 @@ public class ALSLinearLayout: ALSBaseLayout {
     
     public enum Orientation: String {
         case Horizontal, Vertical
+    }
+    
+    public struct ShowDividers: OptionSetType {
+        public let rawValue:Int
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
+        public static let None = ShowDividers(rawValue: 0)
+        public static let Beginning = ShowDividers(rawValue: 1)
+        public static let Middle = ShowDividers(rawValue: 2)
+        public static let End = ShowDividers(rawValue: 4)
     }
     
     @IBInspectable public var baselineAligned = true {
@@ -105,7 +101,7 @@ public class ALSLinearLayout: ALSBaseLayout {
     private var maxAscent: [CGFloat]!
     private var maxDescent: [CGFloat]!
     
-    public var divider: UIImage! = nil {
+    @IBInspectable public var divider: UIImage! = nil {
         didSet {
             if (divider === oldValue) {
                 return
@@ -119,9 +115,24 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
-    public var showDividers: Int = 0
+    @IBInspectable public var showDividersString: String {
+        get { return self.showDividers.rawString }
+        set { self.showDividers = ShowDividers.parse(newValue) }
+    }
     
-    @IBInspectable public var dividerPadding: CGFloat = 0
+    public var showDividers: ShowDividers = .None {
+        didSet {
+            setNeedsLayout()
+            setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable public var dividerPadding: CGFloat = 0 {
+        didSet {
+            setNeedsLayout()
+            setNeedsDisplay()
+        }
+    }
     
     /**
      * Get the size of the current divider size.
@@ -199,6 +210,94 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
         
     }
+    
+    public override func drawRect(rect: CGRect) {
+        if (divider == nil) {
+            return
+        }
+        
+        if (orientation == .Vertical) {
+            drawDividersVertical()
+        } else {
+            drawDividersHorizontal()
+        }
+    }
+    
+    internal func drawDividersVertical() {
+        let count = virtualChildCount
+        for i in 0..<count {
+            if let child = getVirtualChildAt(i) where !child.layoutHidden {
+                if (hasDividerBeforeChildAt(i)) {
+                    let lp = child.layoutParams
+                    let top = child.frame.top - lp.marginTop - dividerSize.height;
+                    drawHorizontalDivider(top);
+                }
+            }
+        }
+        
+        if (hasDividerBeforeChildAt(count)) {
+            var bottom: CGFloat = 0;
+            if let child = getLastNonGoneChild() {
+                let lp = child.layoutParams
+                bottom = child.frame.bottom + lp.marginBottom;
+            } else {
+                bottom = frame.height - actualLayoutMargins.bottom - dividerSize.height;
+            }
+            drawHorizontalDivider(bottom)
+        }
+    }
+    
+    /**
+     * Finds the last child that is not gone. The last child will be used as the reference for
+     * where the end divider should be drawn.
+     */
+    private func getLastNonGoneChild() -> UIView? {
+        for i in (0..<virtualChildCount).reverse() {
+            if let child = getVirtualChildAt(i) where !child.layoutHidden {
+                return child
+            }
+        }
+        return nil
+    }
+    
+    internal func drawDividersHorizontal() {
+        let count = virtualChildCount
+        let isLayoutRtl = layoutDirection == .RightToLeft
+        for i in 0..<count {
+            if let child = getVirtualChildAt(i) where !child.layoutHidden {
+                if (hasDividerBeforeChildAt(i)) {
+                    let lp = child.layoutParams
+                    let position: CGFloat
+                    if (isLayoutRtl) {
+                        position = child.frame.right + lp.marginAbsRight;
+                    } else {
+                        position = child.frame.left - lp.marginAbsLeft - dividerSize.width;
+                    }
+                    drawVerticalDivider(position);
+                }
+            }
+        }
+        
+        if (hasDividerBeforeChildAt(count)) {
+            let position: CGFloat
+            if let child = getLastNonGoneChild() {
+                let lp = child.layoutParams
+                if (isLayoutRtl) {
+                    position = child.frame.left - lp.marginAbsLeft - dividerSize.width;
+                } else {
+                    position = child.frame.right + lp.marginAbsRight;
+                }
+            } else {
+                if (isLayoutRtl) {
+                    position = actualLayoutMargins.left
+                } else {
+                    position = bounds.width - actualLayoutMargins.right - dividerSize.width;
+                }
+            }
+            drawVerticalDivider(position);
+        }
+    }
+
     
     override func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
         // LinarLayout.LayoutParams' default gravity is -1
@@ -1083,6 +1182,21 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
+    
+    internal func drawHorizontalDivider(top: CGFloat) {
+        let left = bounds.left + actualLayoutMargins.left + dividerPadding
+        let right = bounds.right - actualLayoutMargins.right - dividerPadding
+        let rect = CGRectMake(left, top, right - left , dividerSize.height)
+        divider.drawInRect(rect)
+    }
+    
+    internal func drawVerticalDivider(left: CGFloat) {
+        let top = bounds.top + actualLayoutMargins.top + dividerPadding
+        let bottom = bounds.bottom - actualLayoutMargins.bottom - dividerPadding
+        let rect = CGRectMake(left, top, dividerSize.width, bottom - top)
+        divider.drawInRect(rect)
+    }
+    
     internal func getVirtualChildAt(index: Int) -> UIView! {
         return subviews[index]
     }
@@ -1103,14 +1217,14 @@ public class ALSLinearLayout: ALSBaseLayout {
     internal func hasDividerBeforeChildAt(childIndex: Int) -> Bool {
         if (childIndex == virtualChildCount) {
             // Check whether the end divider should draw.
-            return showDividers & ALSLinearLayout.SHOW_DIVIDER_END != 0
+            return showDividers.contains(.End)
         }
         
         if (allViewsAreGoneBefore(childIndex)) {
             // This is the first view that's not gone, check if beginning divider is enabled.
-            return showDividers & ALSLinearLayout.SHOW_DIVIDER_BEGINNING != 0
+            return showDividers.contains(.Beginning)
         } else {
-            return showDividers & ALSLinearLayout.SHOW_DIVIDER_MIDDLE != 0
+            return showDividers.contains(.Middle)
         }
     }
     

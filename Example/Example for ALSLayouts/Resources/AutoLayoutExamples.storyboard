@@ -101,6 +101,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="StaticSize"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Horizontal"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="divider" value="LinearLayout Divider"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="showDividersString" value="Middle"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -258,4 +260,7 @@
             <point key="canvasLocation" x="942" y="365"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LinearLayout Divider" width="10" height="50"/>
+    </resources>
 </document>
