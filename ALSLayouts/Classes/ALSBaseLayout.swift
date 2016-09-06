@@ -30,8 +30,8 @@ public class ALSBaseLayout: UIView {
     }
     
     @IBInspectable internal var gravityString: String {
-        get { return ALSGravity.format(self.layoutParams.gravity ?? 0) }
-        set { self.layoutParams.gravity = ALSGravity.parse(newValue) }
+        get { return ALSGravity.format(self.gravity ?? 0) }
+        set { self.gravity = ALSGravity.parse(newValue) }
     }
     
     internal var actualLayoutMargins: UIEdgeInsets {
