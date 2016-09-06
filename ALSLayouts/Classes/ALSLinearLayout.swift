@@ -38,7 +38,11 @@ public class ALSLinearLayout: ALSBaseLayout {
         case Horizontal, Vertical
     }
     
-    @IBInspectable public var baselineAligned = true
+    @IBInspectable public var baselineAligned = true {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
     
     /**
      * If this layout is part of another layout that is baseline aligned,
@@ -48,9 +52,17 @@ public class ALSLinearLayout: ALSBaseLayout {
      * Note: this is orthogonal to [.baselineAligned], which is concerned
      * with whether the children of this layout are baseline aligned.
      */
-    @IBInspectable public var baselineAlignedChildIndex = -1
+    @IBInspectable public var baselineAlignedChildIndex = -1 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
     
-    @IBInspectable public var weightSum: CGFloat = 0
+    @IBInspectable public var weightSum: CGFloat = 0 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
     
     /**
      * When set to true, all children with a weight will be considered having
@@ -59,7 +71,11 @@ public class ALSLinearLayout: ALSBaseLayout {
      *
      * Disabled by default.
      */
-    @IBInspectable public var measureWithLargestChild: Bool = false
+    @IBInspectable public var measureWithLargestChild: Bool = false {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
     
     
     @IBInspectable internal var orientationString: String {
@@ -71,7 +87,11 @@ public class ALSLinearLayout: ALSBaseLayout {
      * Should the layout be a column or a row.
      * Default value is .Horizontal
      */
-    public var orientation: ALSLinearLayout.Orientation = .Horizontal
+    public var orientation: ALSLinearLayout.Orientation = .Horizontal {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
     
     /**
      * The additional offset to the child's baseline.
