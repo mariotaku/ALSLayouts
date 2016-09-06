@@ -24,7 +24,7 @@ You can specify layout parameters (constraints) in Interface Builder, or just ad
                        DESC
 
   s.homepage         = 'https://github.com/mariotaku/ALSLayouts'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.screenshots     = 'https://github.com/mariotaku/ALSLayouts/raw/master/Resources/6_layouts.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Mariotaku Lee' => 'mariotaku.lee@gmail.com' }
   s.source           = { :git => 'https://github.com/mariotaku/ALSLayouts.git', :tag => s.version.to_s }
