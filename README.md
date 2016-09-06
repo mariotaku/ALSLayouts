@@ -53,4 +53,4 @@ Buy me a ~~bread~~ [game](http://steamcommunity.com/id/mariotaku/wishlist) or an
 
 ---
 
-Made with ❤️ by <img src="Resources/nyan_sakamoto_icon.png" height="15">
+Made with ❤️ by <a href="https://mariotaku.org/"><img src="Resources/nyan_sakamoto_icon.png" height="20"></a>
