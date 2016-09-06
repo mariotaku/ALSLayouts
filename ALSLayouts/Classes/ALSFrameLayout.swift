@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 public class ALSFrameLayout: ALSBaseLayout {
 
     @IBInspectable internal var measureAllSubviews: Bool = false

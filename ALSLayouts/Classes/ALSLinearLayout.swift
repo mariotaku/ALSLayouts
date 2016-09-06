@@ -169,13 +169,15 @@ public class ALSLinearLayout: ALSBaseLayout {
     }
     
     public override func layoutSubviews() {
+        
         measureSubviews(self.bounds.size)
         
         if (orientation == .Vertical) {
-            return layoutVertical(self.frame)
+            layoutVertical(self.frame)
         } else {
-            return layoutHorizontal(self.frame)
+            layoutHorizontal(self.frame)
         }
+        
     }
     
     override func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
@@ -414,7 +416,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                     let childHeightMeasureSpec: ALSLayoutParams.MeasureSpec = (max(0, childHeight), .Exactly)
                     let childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(widthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight, childDimension: lp.width, childDimensionMode: lp.widthMode)
                     
-                    child.measure(childWidthMeasureSpec, childHeightMeasureSpec)
+                    lp.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
                     
                     // Child may now not fit in vertical dimension.
                     childState = ALSBaseLayout.combineMeasuredStates(childState, widthMode: .Unspecified, heightMode: lp.measuredHeightSpec)
@@ -566,7 +568,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                 if (baselineAligned) {
                     let freeWidthSpec: ALSLayoutParams.MeasureSpec = (widthMeasureSpec.0, .Unspecified)
                     let freeHeightSpec: ALSLayoutParams.MeasureSpec = (heightMeasureSpec.0, .Unspecified)
-                    child.measure(freeWidthSpec, freeHeightSpec)
+                    lp.measure(child, widthSpec: freeWidthSpec, heightSpec: freeHeightSpec)
                 } else {
                     skippedMeasure = true
                 }
@@ -746,7 +748,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                     
                     let childWidthMeasureSpec: ALSLayoutParams.MeasureSpec = (max(0, childWidth), .Exactly)
                     let childHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(heightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom, childDimension: lp.height, childDimensionMode: lp.heightMode)
-                    child.measure(childWidthMeasureSpec, childHeightMeasureSpec)
+                    lp.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
                     
                     // Child may now not fit in horizontal dimension.
                     childState = ALSBaseLayout.combineMeasuredStates(childState, widthMode: lp.measuredWidthSpec, heightMode: .Unspecified)
@@ -808,7 +810,7 @@ public class ALSLinearLayout: ALSBaseLayout {
                     
                     let childExtra = lp.weight
                     if (childExtra > 0) {
-                        child.measure((largestChildWidth, .Exactly), (lp.measuredHeight, .Exactly))
+                        lp.measure(child, widthSpec: (largestChildWidth, .Exactly), heightSpec: (lp.measuredHeight, .Exactly))
                     }
                 }
             }

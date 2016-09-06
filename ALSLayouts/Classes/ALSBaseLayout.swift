@@ -29,6 +29,11 @@ public class ALSBaseLayout: UIView {
         set { self.heightMode = ALSLayoutParams.SizeMode(rawValue: newValue)! }
     }
     
+    @IBInspectable internal var gravityString: String {
+        get { return ALSGravity.format(self.layoutParams.gravity ?? 0) }
+        set { self.layoutParams.gravity = ALSGravity.parse(newValue) }
+    }
+    
     internal var actualLayoutMargins: UIEdgeInsets {
         return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
     }
@@ -89,6 +94,20 @@ public class ALSBaseLayout: UIView {
         return measureSubviews(size)
     }
     
+    public override func didAddSubview(subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = true
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.removeConstraints(self.constraints)
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.removeConstraints(self.constraints)
+    }
+    
     internal func measureSubviews(size: CGSize) -> CGSize {
         return size
     }
@@ -105,7 +124,7 @@ public class ALSBaseLayout: UIView {
     }
     
     internal func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
-    
+        
     }
     
     internal func resolveSize(sizeMode: ALSLayoutParams.SizeMode, contentSize: CGFloat, frameSize: CGFloat, parentSize: CGFloat, margin: CGFloat) -> CGFloat {

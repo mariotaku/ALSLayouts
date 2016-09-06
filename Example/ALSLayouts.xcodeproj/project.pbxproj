@@ -17,6 +17,7 @@
 		CE3C47651D7C2F0500438D43 /* FrameLayoutTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C47641D7C2F0500438D43 /* FrameLayoutTableController.swift */; };
 		CE6E66B41D7ABB2300EEA65A /* RelativeLayoutTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6E66B31D7ABB2300EEA65A /* RelativeLayoutTableController.swift */; };
 		CE6E66B61D7AECA800EEA65A /* RelativeLayoutTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6E66B51D7AECA800EEA65A /* RelativeLayoutTableCell.swift */; };
+		CE90A5591D7E7CD2007050E5 /* AutoLayoutExamples.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE90A5581D7E7CD2007050E5 /* AutoLayoutExamples.storyboard */; };
 		CED7F7631D78471C0000C274 /* Examples.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED7F7621D78471C0000C274 /* Examples.storyboard */; };
 		CED7F7751D790CA40000C274 /* ALSGravityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7F7741D790CA40000C274 /* ALSGravityTest.swift */; };
 		CED7F7771D791FBD0000C274 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7F7761D791FBD0000C274 /* DemoViewController.swift */; };
@@ -64,6 +65,7 @@
 		CE3C47641D7C2F0500438D43 /* FrameLayoutTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameLayoutTableController.swift; sourceTree = "<group>"; };
 		CE6E66B31D7ABB2300EEA65A /* RelativeLayoutTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeLayoutTableController.swift; sourceTree = "<group>"; };
 		CE6E66B51D7AECA800EEA65A /* RelativeLayoutTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeLayoutTableCell.swift; sourceTree = "<group>"; };
+		CE90A5581D7E7CD2007050E5 /* AutoLayoutExamples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoLayoutExamples.storyboard; sourceTree = "<group>"; };
 		CED7F7621D78471C0000C274 /* Examples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Examples.storyboard; sourceTree = "<group>"; };
 		CED7F7741D790CA40000C274 /* ALSGravityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSGravityTest.swift; sourceTree = "<group>"; };
 		CED7F7761D791FBD0000C274 /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				CE335A561D7CF99200BC0204 /* RelativeLayoutCell.xib */,
+				CE90A5581D7E7CD2007050E5 /* AutoLayoutExamples.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				CE335A571D7CF99200BC0204 /* RelativeLayoutCell.xib in Resources */,
 				CED7F7631D78471C0000C274 /* Examples.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				CE90A5591D7E7CD2007050E5 /* AutoLayoutExamples.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
