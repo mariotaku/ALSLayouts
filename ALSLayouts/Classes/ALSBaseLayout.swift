@@ -14,9 +14,22 @@ public class ALSBaseLayout: UIView {
     
     private static let useZeroUnspecifiedMeasureSpec = false
     
+    /**
+     How width of this view measured, will be overriden by `layoutParams.widthMode` if possible.
+     
+     - SeeAlso: `ALSLayoutParams.SizeMode`
+     */
     public var widthMode: ALSLayoutParams.SizeMode = .StaticSize
+    /**
+     How height of this view measured, will be overriden by `layoutParams.heightMode` if possible.
+     
+     - SeeAlso: `ALSLayoutParams.SizeMode`
+     */
     public var heightMode: ALSLayoutParams.SizeMode = .StaticSize
     
+    /**
+     When set to true, layoutMargins (padding) will be ignored.
+     */
     @IBInspectable public var ignoreLayoutMargins: Bool = false
     
     @IBInspectable internal var widthModeString: String {
@@ -41,7 +54,6 @@ public class ALSBaseLayout: UIView {
     private var gravityValue: Int = ALSGravity.LEADING | ALSGravity.TOP
     
     /**
-     
      ALSLinearLayout:
      
      Describes how the child views are positioned. Defaults to GRAVITY_TOP. If
@@ -70,6 +82,9 @@ public class ALSBaseLayout: UIView {
         }
     }
     
+    /**
+     Convenience property to set horizontal gravity only
+    */
     public var horizontalGravity: Int {
         get {
             return self.gravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
@@ -80,6 +95,9 @@ public class ALSBaseLayout: UIView {
         }
     }
     
+    /**
+     Convenience property to set vertical gravity only
+     */
     public var verticalGravity: Int {
         get {
             return self.gravity & ALSGravity.VERTICAL_GRAVITY_MASK
@@ -90,6 +108,13 @@ public class ALSBaseLayout: UIView {
         }
     }
     
+    /**
+     Add subview, specify its string tag, and configure its layout parameters.
+     
+     - parameter view: The view to be added. After being added, this view appears on top of any other subviews.
+     - parameter tagString: String tag for identifying the subview
+     - parameter configue: Configuration block for layout parameters
+     */
     public func addSubview(view: UIView, tagString: String? = nil, configure: (ALSLayoutParams) -> Void) {
         view.stringTag = tagString
         let lp = obtainLayoutParams(view)
@@ -97,6 +122,9 @@ public class ALSBaseLayout: UIView {
         addSubview(view)
     }
     
+    /**
+     Get layout parameters corresponding to given subview
+     */
     public func getLayoutParams(view: UIView) -> ALSLayoutParams? {
         return layoutParamsMap[view.hash]
     }

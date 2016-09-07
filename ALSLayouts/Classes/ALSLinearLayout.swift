@@ -40,8 +40,12 @@ public class ALSLinearLayout: ALSBaseLayout {
     private static let INDEX_BOTTOM = 2
     private static let INDEX_FILL = 3
     
+    /**
+     LinearLayout orientation
+     */
     public enum Orientation: String {
-        case Horizontal, Vertical
+        case Horizontal
+        case Vertical
     }
     
     public struct ShowDividers: OptionSetType {

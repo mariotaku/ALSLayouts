@@ -10,6 +10,12 @@ import UIKit
 
 public extension UIView {
     
+    /**
+     A string that you can use to identify view objects in your application.
+     This library will try to generate a `UIView.tag` for this view.
+     
+     The default value is nil. You can set the value of this tag and use that value to identify the view later.
+     */
     @IBInspectable public var stringTag: String? {
         get {
             if (self.tag == 0) {
@@ -33,13 +39,13 @@ public extension UIView {
         }
     }
     
-    func viewWithStringTag(stringTag: String) -> UIView? {
+    public func viewWithStringTag(stringTag: String) -> UIView? {
         guard let intTag = UIView.tagPool[stringTag] else {
             return nil
         }
         return viewWithTag(intTag)
     }
-
+    
     static func getTag(byStringTag tag: String?) -> Int {
         if (tag == nil) {
             return 0
