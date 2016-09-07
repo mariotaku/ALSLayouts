@@ -19,13 +19,13 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
 If you need a good AutoLayout alternative, try ALSLayouts.
-It provides several layout ported from Android, like FrameLayout and RelativeLayout.
+It provides several layout ported from Android, like FrameLayout, LinearLayout and RelativeLayout.
 You can specify layout parameters (constraints) in Interface Builder, or just add by code directly.
                        DESC
 
   s.homepage         = 'https://github.com/mariotaku/ALSLayouts'
   s.screenshots     = 'https://github.com/mariotaku/ALSLayouts/raw/master/Resources/6_layouts.png'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author           = { 'Mariotaku Lee' => 'mariotaku.lee@gmail.com' }
   s.source           = { :git => 'https://github.com/mariotaku/ALSLayouts.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/mariotaku'

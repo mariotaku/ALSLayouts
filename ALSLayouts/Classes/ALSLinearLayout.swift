@@ -1,13 +1,36 @@
-//
-//  ALSLinearLayout.swift
-//  Pods
-//
-//  Created by Mariotaku Lee on 16/9/4.
-//
-//
+/*
+ * Copyright (C) 2006 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import UIKit
 
-import Foundation
-
+/**
+ * A Layout that arranges its children in a single column or a single row. The direction of
+ * the row can be set by assigning `orientation`.
+ *
+ * You can also specify gravity, which specifies the alignment of all the child elements by
+ * assigning `gravity` or specify that specific children
+ * grow to fill up any remaining space in the layout by setting the *weight* member of
+ * `ALSLayoutParams`.
+ *
+ * The default orientation is horizontal.
+ *
+ * See the [Linear Layout](https://developer.android.com/guide/topics/ui/layout/linear.html) guide.
+ *
+ * - Author: Mariotaku Lee
+ * - Date: Sep 4, 2016
+ */
 public class ALSLinearLayout: ALSBaseLayout {
     
     private static let VERTICAL_GRAVITY_COUNT = 4
@@ -28,9 +51,21 @@ public class ALSLinearLayout: ALSBaseLayout {
             self.rawValue = rawValue
         }
         
+        /**
+         Don't show any dividers.
+         */
         public static let None = ShowDividers(rawValue: 0)
+        /**
+         Show a divider at the beginning of the group.
+         */
         public static let Beginning = ShowDividers(rawValue: 1)
+        /**
+         Show dividers between each item in the group.
+         */
         public static let Middle = ShowDividers(rawValue: 2)
+        /**
+         Show a divider at the end of the group.
+         */
         public static let End = ShowDividers(rawValue: 4)
     }
     
@@ -80,8 +115,8 @@ public class ALSLinearLayout: ALSBaseLayout {
     }
     
     /**
-     * Should the layout be a column or a row.
-     * Default value is .Horizontal
+     Should the layout be a column or a row.
+     Default value is .Horizontal
      */
     public var orientation: ALSLinearLayout.Orientation = .Horizontal {
         didSet {
@@ -120,6 +155,11 @@ public class ALSLinearLayout: ALSBaseLayout {
         set { self.showDividers = ShowDividers.parse(newValue) }
     }
     
+    /**
+     Set how dividers should be shown between items in this layout
+     
+     - SeeAlso: `ShowDividers`
+     */
     public var showDividers: ShowDividers = .None {
         didSet {
             setNeedsLayout()
@@ -135,7 +175,7 @@ public class ALSLinearLayout: ALSBaseLayout {
     }
     
     /**
-     * Get the size of the current divider size.
+     Get the size of the current divider size.
      */
     private(set) var dividerSize: CGSize = CGSizeZero
     
@@ -248,8 +288,8 @@ public class ALSLinearLayout: ALSBaseLayout {
     }
     
     /**
-     * Finds the last child that is not gone. The last child will be used as the reference for
-     * where the end divider should be drawn.
+     Finds the last child that is not gone. The last child will be used as the reference for
+     where the end divider should be drawn.
      */
     private func getLastNonGoneChild() -> UIView? {
         for i in (0..<virtualChildCount).reverse() {
@@ -297,7 +337,7 @@ public class ALSLinearLayout: ALSBaseLayout {
             drawVerticalDivider(position);
         }
     }
-
+    
     
     override func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
         // LinarLayout.LayoutParams' default gravity is -1
@@ -307,13 +347,13 @@ public class ALSLinearLayout: ALSBaseLayout {
     /**
      * Measures the children when the orientation of this LinearLayout is set
      * to [Orientation.VERTICAL].
-     
+     *
      * @param widthMeasureSpec  Horizontal space requirements as imposed by the parent.
-     * *
+     *
      * @param heightMeasureSpec Vertical space requirements as imposed by the parent.
-     * *
+     *
      * @see .orientation
-     
+     *
      * @see .onMeasure
      */
     internal func measureVertical(widthMeasureSpec: ALSLayoutParams.MeasureSpec, _ heightMeasureSpec: ALSLayoutParams.MeasureSpec) -> CGSize {
@@ -830,7 +870,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         var remainingExcess = widthSize - totalLength + usedExcessSpace
         if (skippedMeasure || !remainingExcess.isZero && totalWeight > 0) {
             var remainingWeightSum = weightSum > 0 ? weightSum : totalWeight
-
+            
             for i in 0..<ALSLinearLayout.VERTICAL_GRAVITY_COUNT {
                 maxAscent[i] = CGFloat.NaN
                 maxDescent[i] = CGFloat.NaN
@@ -999,7 +1039,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         case ALSGravity.BOTTOM:
             // mTotalLength contains the padding already
             childTop = actualLayoutMargins.top + frame.bottom - frame.top - totalLength
-            // mTotalLength contains the padding already
+        // mTotalLength contains the padding already
         case ALSGravity.CENTER_VERTICAL:
             childTop = actualLayoutMargins.top + (frame.bottom - frame.top - totalLength) / 2
         default:
@@ -1019,7 +1059,7 @@ public class ALSLinearLayout: ALSBaseLayout {
             if (!lp.hidden) {
                 let childWidth = lp.measuredWidth
                 let childHeight = lp.measuredHeight
-
+                
                 var gravity = lp.gravity
                 if (gravity < 0) {
                     gravity = minorGravity
@@ -1239,7 +1279,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
         return true
     }
-
+    
     
     /**
      *
@@ -1276,7 +1316,7 @@ public class ALSLinearLayout: ALSBaseLayout {
     internal func measureChildBeforeLayout(child: UIView, childIndex: Int, widthMeasureSpec: ALSLayoutParams.MeasureSpec, totalWidth: CGFloat, heightMeasureSpec: ALSLayoutParams.MeasureSpec, totalHeight: CGFloat) {
         measureChildWithMargins(child, parentWidthMeasureSpec: widthMeasureSpec, widthUsed: totalWidth, parentHeightMeasureSpec: heightMeasureSpec, heightUsed: totalHeight)
     }
-
+    
     
     /**
      *
@@ -1367,6 +1407,6 @@ public class ALSLinearLayout: ALSBaseLayout {
             }
         }
     }
-
+    
     
 }

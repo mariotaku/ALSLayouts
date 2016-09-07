@@ -1,21 +1,55 @@
-//
-//  ASLFrameLayout.swift
-//  Pods
-//
-//  Created by Mariotaku Lee on 16/9/1.
-//
-//
-
+/*
+ * Copyright (C) 2006 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import UIKit
 
+/**
+ * FrameLayout is designed to block out an area on the screen to display
+ * a single item. Generally, FrameLayout should be used to hold a single child view, because it can
+ * be difficult to organize child views in a way that's scalable to different screen sizes without
+ * the children overlapping each other. You can, however, add multiple children to a FrameLayout
+ * and control their position within the FrameLayout by assigning gravity to each child, using the
+ * `layoutParams.gravity` attribute.
+ *
+ * Child views are drawn in a stack, with the most recently added child on top.
+ * The size of the FrameLayout is the size of its largest child (plus padding), visible
+ * or not (if the FrameLayout's parent permits). Views that are `layoutParams.hidden` are
+ * used for sizing only if `measureAllSubviews` is set to true.
+ *
+ * - Author: Mariotaku Lee
+ * - Date: Sep 1, 2016
+ */
 @IBDesignable
 public class ALSFrameLayout: ALSBaseLayout {
-
-    @IBInspectable internal var measureAllSubviews: Bool = false
     
     private static let DEFAULT_CHILD_GRAVITY = ALSGravity.TOP | ALSGravity.LEADING
     
     private var matchParentSubviews: [UIView] = [UIView]()
+    
+    /**
+     Sets whether to consider all subviews, or just those in
+     the VISIBLE or INVISIBLE state, when measuring. Defaults to false.
+     
+     true to consider subviews marked GONE, false otherwise.
+     Default value is false.
+     */
+    @IBInspectable public var measureAllSubviews: Bool = false {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     
     override public func layoutSubviews() {
         
@@ -156,5 +190,5 @@ public class ALSFrameLayout: ALSBaseLayout {
         }
         return measuredSize
     }
-
+    
 }

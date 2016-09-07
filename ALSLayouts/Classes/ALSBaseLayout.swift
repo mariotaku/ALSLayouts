@@ -40,6 +40,17 @@ public class ALSBaseLayout: UIView {
     
     private var gravityValue: Int = ALSGravity.LEADING | ALSGravity.TOP
     
+    /**
+     
+     ALSLinearLayout:
+     
+     Describes how the child views are positioned. Defaults to GRAVITY_TOP. If
+     this layout has a VERTICAL orientation, this controls where all the child
+     views are placed if there is extra vertical space. If this layout has a
+     HORIZONTAL orientation, this controls the alignment of the children.
+     
+     - parameter gravity: See `ALSGravity`
+     */
     public var gravity: Int {
         get { return self.gravityValue }
         set {
@@ -144,10 +155,10 @@ public class ALSBaseLayout: UIView {
     
     func measureChildWithMargins(subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
         let lp = subview.layoutParams
-    
+        
         let childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentWidthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight + widthUsed, childDimension: lp.width, childDimensionMode: lp.widthMode)
         let childHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentHeightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom + heightUsed, childDimension: lp.height, childDimensionMode: lp.heightMode)
-    
+        
         lp.measure(subview, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     

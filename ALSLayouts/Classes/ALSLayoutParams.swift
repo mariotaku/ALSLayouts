@@ -10,6 +10,25 @@ import UIKit
 
 public class ALSLayoutParams {
     
+    
+    /**
+     Defines how view measured
+     */
+    public enum SizeMode: String {
+        /** Static size defined in Interface Builder */
+        case StaticSize
+        /** Determines its size during measurement */
+        case WrapContent
+        /** Fills super view size as possible */
+        case MatchParent
+    }
+    
+    /**
+     Value for `gravity` indicating that a gravity has not been
+     explicitly specified.
+     */
+    public static let UNSPECIFIED_GRAVITY = -1;
+    
     public var widthMode: SizeMode = .StaticSize
     public var heightMode: SizeMode = .StaticSize
     public var width: CGFloat
@@ -17,7 +36,16 @@ public class ALSLayoutParams {
     
     public var hidden: Bool = false
     
-    public var gravity: Int = ALSGravity.NO_GRAVITY
+    /**
+     The gravity to apply with the View to which these layout parameters
+     are associated.
+     
+     The default value is `UNSPECIFIED_GRAVITY`, which is treated
+     by FrameLayout as `ALSGravity.TOP | ALSGravity.LEADING`.
+     
+     - SeeAlso: `ALSGravity`
+     */
+    public var gravity: Int = ALSLayoutParams.UNSPECIFIED_GRAVITY
     
     public var weight: CGFloat = 0
     
@@ -386,10 +414,6 @@ public class ALSLayoutParams {
     
     private func isRelativeRule(rule: Int) -> Bool {
         return rule == ALSRelativeLayout.LEADING_OF || rule == ALSRelativeLayout.TRAILING_OF || rule == ALSRelativeLayout.ALIGN_LEADING || rule == ALSRelativeLayout.ALIGN_TRAILING || rule == ALSRelativeLayout.ALIGN_PARENT_LEADING || rule == ALSRelativeLayout.ALIGN_PARENT_TRAILING
-    }
-    
-    public enum SizeMode: String {
-        case StaticSize, WrapContent, MatchParent
     }
     
     internal enum MeasureSpecMode {
