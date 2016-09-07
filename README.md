@@ -36,7 +36,7 @@ Mariotaku Lee, mariotaku.lee@gmail.com
 
 ## License
 
-ALSLayouts is available under the MIT license. See the LICENSE file for more info.
+ALSLayouts is available under the Apache license, version 2. See the LICENSE file for more info.
 
 
 ## Donation
