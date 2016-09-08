@@ -183,7 +183,7 @@ public class ALSLinearLayout: ALSBaseLayout {
      */
     private(set) var dividerSize: CGSize = CGSizeZero
     
-    override func calculateBaselineBottomValue() -> CGFloat {
+    override public func calculateBaselineBottomValue() -> CGFloat {
         if (baselineAlignedChildIndex < 0) {
             return CGFloat.NaN
         }

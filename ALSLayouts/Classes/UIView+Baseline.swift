@@ -11,14 +11,22 @@ import Foundation
 extension UIView {
     
     var baselineBottomValue: CGFloat {
-        if (self is UILabel) {
-            let label = self as! UILabel
-            if let font = label.font {
-//                let scale = UIScreen.mainScreen().scale
+        switch self {
+        case is UILabel:
+            if let font = (self as! UILabel).font {
                 return font.ascender
             }
-        } else if (self is ALSBaseLayout) {
-            return (self as! ALSBaseLayout).calculateBaselineBottomValue()
+        case is UITextView:
+            if let font = (self as! UITextView).font {
+                return font.ascender
+            }
+        case is UITextField:
+            if let font = (self as! UITextField).font {
+                return font.ascender
+            }
+        case is ALSBaselineSupport:
+            return (self as! ALSBaselineSupport).calculateBaselineBottomValue()
+        default: break
         }
         return CGFloat.NaN
     }

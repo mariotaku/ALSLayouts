@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ALSBaseLayout: UIView {
+public class ALSBaseLayout: UIView, ALSBaselineSupport {
     
     internal var layoutParamsMap = [Int: ALSLayoutParams]()
     
@@ -177,7 +177,7 @@ public class ALSBaseLayout: UIView {
         }
     }
     
-    internal func calculateBaselineBottomValue() -> CGFloat {
+    public func calculateBaselineBottomValue() -> CGFloat {
         return CGFloat.NaN
     }
     
