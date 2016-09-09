@@ -150,11 +150,13 @@ public class ALSRelativeLayout: ALSBaseLayout {
     private var sortedVerticalSubviews: [UIView!]! = nil
     private let graph = DependencyGraph()
 
+    /// Overrides system implementation
     public override func setNeedsLayout() {
         super.setNeedsLayout()
         dirtyHierarchy = true
     }
     
+    /// Overrides system implementation
     public override func awakeFromNib() {
         super.awakeFromNib()
         dirtyHierarchy = true

@@ -54,8 +54,8 @@ public class ALSLinearLayout: ALSBaseLayout {
         case Vertical
     }
     
-    /** 
-     Set how dividers should be shown between items in this layout 
+    /**
+     Set how dividers should be shown between items in this layout
      */
     public struct ShowDividers: OptionSetType {
         public let rawValue:Int
@@ -180,8 +180,8 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
-    /** 
-     Divider padding 
+    /**
+     Divider padding
      */
     @IBInspectable public var dividerPadding: CGFloat = 0 {
         didSet {
@@ -195,7 +195,10 @@ public class ALSLinearLayout: ALSBaseLayout {
      */
     private(set) var dividerSize: CGSize = CGSizeZero
     
-    override public func calculateBaselineBottomValue() -> CGFloat {
+    /**
+     - SeeAlso: `ALSBaselineSupport`
+     */
+    public override func calculateBaselineBottomValue() -> CGFloat {
         if (baselineAlignedChildIndex < 0) {
             return CGFloat.NaN
         }

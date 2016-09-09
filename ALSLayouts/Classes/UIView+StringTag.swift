@@ -39,6 +39,12 @@ public extension UIView {
         }
     }
     
+    /**
+     Find corresponding view with specified string tag
+     
+     - parameter stringTag: String tag of desired view
+     - returns: First view with given tag, `nil` otherwise
+     */
     public func viewWithStringTag(stringTag: String) -> UIView? {
         guard let intTag = UIView.tagPool[stringTag] else {
             return nil

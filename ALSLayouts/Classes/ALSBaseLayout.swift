@@ -135,15 +135,18 @@ public class ALSBaseLayout: UIView, ALSBaselineSupport {
         return measureSubviews(size)
     }
     
+    /// This implementations sets `translatesAutoresizingMaskIntoConstraints` to true in order to prevent layout problems
     public override func didAddSubview(subview: UIView) {
         subview.translatesAutoresizingMaskIntoConstraints = true
     }
     
+    /// This implementations removes all constraints in order to prevent layout problems
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.removeConstraints(self.constraints)
     }
     
+    /// This implementations removes all constraints in order to prevent layout problems
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.removeConstraints(self.constraints)
@@ -179,6 +182,9 @@ public class ALSBaseLayout: UIView, ALSBaselineSupport {
         }
     }
     
+    /**
+     - SeeAlso: `ALSBaselineSupport`
+     */
     public func calculateBaselineBottomValue() -> CGFloat {
         return CGFloat.NaN
     }

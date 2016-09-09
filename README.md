@@ -13,7 +13,11 @@ ALSLayouts is a set of layouts ported from Android (ported literally, exact same
 
 ![Showcase](Resources/6_layouts.png)
 
-## Example
+## Usage
+
+See sources in `Example`
+
+## Try it
 
 To run the example project, just execute `pod try ALSLayouts` in terminal.
 

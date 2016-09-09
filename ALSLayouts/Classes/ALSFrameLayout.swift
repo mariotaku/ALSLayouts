@@ -51,7 +51,8 @@ public class ALSFrameLayout: ALSBaseLayout {
         }
     }
     
-    override public func layoutSubviews() {
+    /// Layout subviews
+    public override func layoutSubviews() {
         
         measureSubviews(self.bounds.size)
         
@@ -107,6 +108,7 @@ public class ALSFrameLayout: ALSBaseLayout {
         }
     }
     
+    /// Measure subviews
     override func measureSubviews(size: CGSize) -> CGSize {
         
         let measureMatchParentSubview = widthMode == .WrapContent || heightMode == .WrapContent

@@ -198,6 +198,9 @@ public extension UIView {
         set { self.layoutParams.centerHorizontal = newValue }
     }
     
+    /**
+     Returns layout parameters of this view, if no parameter set, obtain a new one. 
+     */
     public var layoutParams: ALSLayoutParams {
         return (superview as! ALSBaseLayout).obtainLayoutParams(self)
     }
