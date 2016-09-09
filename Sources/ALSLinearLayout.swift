@@ -16,20 +16,20 @@
 import UIKit
 
 /**
- * A Layout that arranges its children in a single column or a single row. The direction of
- * the row can be set by assigning `orientation`.
- *
- * You can also specify gravity, which specifies the alignment of all the child elements by
- * assigning `gravity` or specify that specific children
- * grow to fill up any remaining space in the layout by setting the *weight* member of
- * `ALSLayoutParams`.
- *
- * The default orientation is horizontal.
- *
- * See the [Linear Layout](https://developer.android.com/guide/topics/ui/layout/linear.html) guide.
- *
- * - Author: Mariotaku Lee
- * - Date: Sep 4, 2016
+ A Layout that arranges its children in a single column or a single row. The direction of
+ the row can be set by assigning `orientation`.
+ 
+ You can also specify gravity, which specifies the alignment of all the child elements by
+ assigning `gravity` or specify that specific children
+ grow to fill up any remaining space in the layout by setting the *weight* member of
+ `ALSLayoutParams`.
+ 
+ The default orientation is horizontal.
+ 
+ See the [Linear Layout](https://developer.android.com/guide/topics/ui/layout/linear.html) guide.
+ 
+ - Author: Mariotaku Lee
+ - Date: Sep 4, 2016
  */
 public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     
@@ -82,6 +82,10 @@ public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
         public static let End = ShowDividers(rawValue: 4)
     }
     
+    /**
+     Defines whether widgets contained in this layout are
+     baseline-aligned or not.
+     */
     @IBInspectable public var baselineAligned = true {
         didSet {
             self.setNeedsLayout()
@@ -89,12 +93,12 @@ public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     }
     
     /**
-     * If this layout is part of another layout that is baseline aligned,
-     * use the child at this index as the baseline.
-     *
-     *
-     * Note: this is orthogonal to [.baselineAligned], which is concerned
-     * with whether the children of this layout are baseline aligned.
+     If this layout is part of another layout that is baseline aligned,
+     use the child at this index as the baseline.
+     
+     
+     Note: this is orthogonal to `baselineAligned`, which is concerned
+     with whether the children of this layout are baseline aligned.
      */
     @IBInspectable public var baselineAlignedChildIndex = -1 {
         didSet {
@@ -102,6 +106,14 @@ public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
         }
     }
     
+    /**
+     Defines the desired weights sum. If unspecified the weights sum is computed
+     at layout time by adding the layout_weight of each child.
+     
+     This can be used for instance to give a single child 50% of the total
+     available space by giving it a `weight` of 0.5 and setting the
+     `weightSum` to 1.0.
+     */
     @IBInspectable public var weightSum: CGFloat = 0 {
         didSet {
             self.setNeedsLayout()
@@ -109,18 +121,17 @@ public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     }
     
     /**
-     * When set to true, all children with a weight will be considered having
-     * the minimum size of the largest child. If false, all children are
-     * measured normally.
-     *
-     * Disabled by default.
+     When set to true, all children with a weight will be considered having
+     the minimum size of the largest child. If false, all children are
+     measured normally.
+     
+     Disabled by default.
      */
     @IBInspectable public var measureWithLargestChild: Bool = false {
         didSet {
             self.setNeedsLayout()
         }
     }
-    
     
     @IBInspectable internal var orientationString: String {
         get { return self.orientation.rawValue }
@@ -138,9 +149,9 @@ public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     }
     
     /**
-     * The additional offset to the child's baseline.
-     * We'll calculate the baseline of this layout as we measure vertically; for
-     * horizontal linear layouts, the offset of 0 is appropriate.
+     The additional offset to the child's baseline.
+     We'll calculate the baseline of this layout as we measure vertically; for
+     horizontal linear layouts, the offset of 0 is appropriate.
      */
     private var baselineChildTop: CGFloat = 0
     
@@ -149,6 +160,9 @@ public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     private var maxAscent: [CGFloat]!
     private var maxDescent: [CGFloat]!
     
+    /**
+     Set an UIImage to be used as a divider between items.
+     */
     @IBInspectable public var divider: UIImage! = nil {
         didSet {
             if (divider === oldValue) {

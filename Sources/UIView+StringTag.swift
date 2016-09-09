@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Use more human readable string tag instead of integer
+ */
 public extension UIView {
     
     /**
@@ -52,7 +55,7 @@ public extension UIView {
         return viewWithTag(intTag)
     }
     
-    static func getTag(byStringTag tag: String?) -> Int {
+    internal static func getTag(byStringTag tag: String?) -> Int {
         if (tag == nil) {
             return 0
         }
@@ -62,7 +65,7 @@ public extension UIView {
         return intTag
     }
     
-    static func getStringTag(byTag tag: Int) -> String? {
+    internal static func getStringTag(byTag tag: Int) -> String? {
         if (tag == 0) {
             return nil
         }

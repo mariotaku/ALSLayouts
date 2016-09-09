@@ -10,7 +10,10 @@ import Foundation
 
 extension ALSLinearLayout.ShowDividers {
     
-    init?(rawValue: String) {
+    /**
+     Init with raw value
+     */
+    internal init?(rawValue: String) {
         switch rawValue {
         case "None":
             self.rawValue = ALSLinearLayout.ShowDividers.None.rawValue
@@ -25,13 +28,13 @@ extension ALSLinearLayout.ShowDividers {
         }
     }
     
-    static func parse(str: String) -> ALSLinearLayout.ShowDividers {
+    internal static func parse(str: String) -> ALSLinearLayout.ShowDividers {
         return str.componentsSeparatedByString("|").reduce(.None) { combined, optionString -> ALSLinearLayout.ShowDividers in
             return combined.union(ALSLinearLayout.ShowDividers(rawValue: optionString)!)
         }
     }
     
-    var rawString: String {
+    internal var rawString: String {
         switch self {
         case ALSLinearLayout.ShowDividers.None:
             return "None"
