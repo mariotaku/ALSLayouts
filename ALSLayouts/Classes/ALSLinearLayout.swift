@@ -44,10 +44,19 @@ public class ALSLinearLayout: ALSBaseLayout {
      LinearLayout orientation
      */
     public enum Orientation: String {
+        /**
+         Layout items horizontally
+         */
         case Horizontal
+        /**
+         Layout items vertically
+         */
         case Vertical
     }
     
+    /** 
+     Set how dividers should be shown between items in this layout 
+     */
     public struct ShowDividers: OptionSetType {
         public let rawValue:Int
         
@@ -154,7 +163,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
-    @IBInspectable public var showDividersString: String {
+    @IBInspectable var showDividersString: String {
         get { return self.showDividers.rawString }
         set { self.showDividers = ShowDividers.parse(newValue) }
     }
@@ -171,6 +180,9 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
+    /** 
+     Divider padding 
+     */
     @IBInspectable public var dividerPadding: CGFloat = 0 {
         didSet {
             setNeedsLayout()
@@ -230,6 +242,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         return childTop + lp.marginTop + childBaseline
     }
     
+    /// Measure subviews
     override func measureSubviews(size: CGSize) -> CGSize {
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
         let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
@@ -243,8 +256,8 @@ public class ALSLinearLayout: ALSBaseLayout {
         }
     }
     
+    /// Layout subviews
     public override func layoutSubviews() {
-        
         measureSubviews(self.bounds.size)
         
         if (orientation == .Vertical) {
@@ -255,6 +268,7 @@ public class ALSLinearLayout: ALSBaseLayout {
         
     }
     
+    /// Implementation draws dividers
     public override func drawRect(rect: CGRect) {
         if (divider == nil) {
             return

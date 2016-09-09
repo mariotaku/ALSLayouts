@@ -160,6 +160,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         dirtyHierarchy = true
     }
     
+    /// Calculate proper size
     public override func sizeThatFits(size: CGSize) -> CGSize {
         // Resolve int view tags
         for (_, lp) in layoutParamsMap {
@@ -168,6 +169,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         return super.sizeThatFits(size)
     }
     
+    /// Measure subviews
     public override func layoutSubviews() {
         // Resolve int view tags
         for (_, lp) in layoutParamsMap {
@@ -187,6 +189,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
     }
     
+    /// Layout subviews
     internal override func measureSubviews(size: CGSize) -> CGSize {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
@@ -813,7 +816,6 @@ public class ALSRelativeLayout: ALSBaseLayout {
             }
         }
     }
-    
     
     private func getRelatedView(rules: [Int], relation: Int) -> UIView? {
         var curRules = rules

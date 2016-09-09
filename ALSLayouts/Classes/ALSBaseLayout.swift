@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Superclass for all layout implementations
 public class ALSBaseLayout: UIView, ALSBaselineSupport {
     
     internal var layoutParamsMap = [Int: ALSLayoutParams]()
@@ -129,6 +130,7 @@ public class ALSBaseLayout: UIView, ALSBaselineSupport {
         return layoutParamsMap[view.hash]
     }
     
+    /// Calculate proper size
     public override func sizeThatFits(size: CGSize) -> CGSize {
         return measureSubviews(size)
     }

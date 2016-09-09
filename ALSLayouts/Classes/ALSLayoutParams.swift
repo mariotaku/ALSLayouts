@@ -8,8 +8,12 @@
 
 import UIKit
 
+/**
+ Layout parameters
+ 
+ Combined all required fields for LinearLayout, FrameLayout and RelativeLayout
+ */
 public class ALSLayoutParams {
-    
     
     /**
      Defines how view measured
@@ -29,11 +33,26 @@ public class ALSLayoutParams {
      */
     public static let UNSPECIFIED_GRAVITY = -1;
     
+    /**
+     How width measured
+     */
     public var widthMode: SizeMode = .StaticSize
+    /**
+     How height measured
+     */
     public var heightMode: SizeMode = .StaticSize
+    /**
+     Static width, overrides size dimension set in Interface Builder
+     */
     public var width: CGFloat
+    /**
+     Static height, overrides size dimension set in Interface Builder
+     */
     public var height: CGFloat
     
+    /**
+     When set to true, view will be hidden during layout, like set `visibility = View.GONE` in Android
+     */
     public var hidden: Bool = false
     
     /**
@@ -47,73 +66,168 @@ public class ALSLayoutParams {
      */
     public var gravity: Int = ALSLayoutParams.UNSPECIFIED_GRAVITY
     
+    /**
+     Indicates how much of the extra space in the LinearLayout will be
+     allocated to the view associated with these LayoutParams. Specify
+     0 if the view should not be stretched. Otherwise the extra pixels
+     will be pro-rated among all views whose weight is greater than 0.
+     */
     public var weight: CGFloat = 0
-    
+    /**
+     The top margin in points of the subview. Margin values should be positive.
+     Call `setNeedsLayout()` after reassigning a new value to this field.
+     */
     public var marginTop: CGFloat = 0
+    /**
+     The bottom margin in points of the subview. Margin values should be positive.
+     Call `setNeedsLayout()` after reassigning a new value to this field.
+     */
     public var marginBottom: CGFloat = 0
     
+    /**
+     The left margin in points of the subview. Margin values should be positive.
+     Call `setNeedsLayout()` after reassigning a new value to this field.
+     */
     public var marginLeft: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
+    /**
+     The right margin in points of the subview. Margin values should be positive.
+     Call `setNeedsLayout()` after reassigning a new value to this field.
+     */
     public var marginRight: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
+    /**
+     The leading margin in points of the subview. Margin values should be positive.
+     Call `setNeedsLayout()` after reassigning a new value to this field.
+     */
     public var marginLeading: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
+    /**
+     The trailing margin in points of the subview. Margin values should be positive.
+     Call `setNeedsLayout()` after reassigning a new value to this field.
+     */
     public var marginTrailng: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
     
+    /**
+     If true, makes the top edge of this view match the top edge of the parent.
+     */
     public var alignParentTop: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_TOP) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_TOP, subjectBool: newValue) }
     }
+    /**
+     If true, makes the bottom edge of this view match the bottom edge of the parent.
+     */
     public var alignParentBottom: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_BOTTOM) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_BOTTOM, subjectBool: newValue) }
     }
+    /**
+     If true, makes the left edge of this view match the left edge of the parent.
+     */
     public var alignParentLeft: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEFT) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEFT, subjectBool: newValue) }
     }
+    /**
+     If true, makes the right edge of this view match the right edge of the parent.
+     */
     public var alignParentRight: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_RIGHT) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_RIGHT, subjectBool: newValue) }
     }
+    /**
+     If true, makes the leading edge of this view match the leading edge of the parent.
+     */
     public var alignParentLeading: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEADING) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEADING, subjectBool: newValue) }
     }
+    /**
+     If true, makes the trailing edge of this view match the trailing edge of the parent.
+     */
     public var alignParentTrailing: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_TRAILING) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_TRAILING, subjectBool: newValue) }
     }
     
     public var alignTopTag: String? = nil
+    /**
+     Makes the bottom edge of this view match the bottom edge of the given anchor view string tag.
+     */
     public var alignBottomTag: String? = nil
+    /**
+     Makes the left edge of this view match the left edge of the given anchor view string tag.
+     */
     public var alignLeftTag: String? = nil
+    /**
+     Makes the right edge of this view match the right edge of the given anchor view string tag.
+     */
     public var alignRightTag: String? = nil
+    /**
+     Makes the start edge of this view match the start edge of the given anchor view string tag.
+     */
     public var alignLeadingTag: String? = nil
+    /**
+     Makes the trailing edge of this view match the trailing edge of the given anchor view string tag.
+     */
     public var alignTrailngTag: String? = nil
+    /**
+     Positions the baseline of this view on the baseline of the given anchor view string tag.
+     */
     public var alignBaselineTag: String? = nil
+    /**
+     Positions the bottom edge of this view above the given anchor view string tag.
+     */
     public var aboveTag: String? = nil
+    /**
+     Positions the top edge of this view below the given anchor view string tag.
+     */
     public var belowTag: String? = nil
+    /**
+     Positions the right edge of this view to the left of the given anchor view string tag.
+     */
     public var toLeftOfTag: String? = nil
+    /**
+     Positions the left edge of this view to the right of the given anchor view string tag.
+     */
     public var toRightOfTag: String? = nil
+    /**
+     Positions the trailing edge of this view to the leading of the given anchor view string tag.
+     */
     public var toLeadingOfTag: String? = nil
+    /**
+     Positions the leading edge of this view to the trailing of the given anchor view string tag.
+     */
     public var toTrailingOfTag: String? = nil
     
+    /**
+     If set to true, the parent will be used as the anchor when the anchor cannot be be found for `toLeftOf`, `toRightOf`, etc.
+     */
     public var alignWithParentIfMissing: Bool = false
     
+    /**
+     If true, centers this subview horizontally and vertically within its parent.
+     */
     public var centerInParent: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.CENTER_IN_PARENT) }
         set { self.setBoolRule(ALSRelativeLayout.CENTER_IN_PARENT, subjectBool: newValue) }
     }
+    /**
+     If true, centers this subview vertically within its parent.
+     */
     public var centerVertical: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.CENTER_VERTICAL) }
         set { self.setBoolRule(ALSRelativeLayout.CENTER_VERTICAL, subjectBool: newValue) }
     }
+    /**
+     If true, centers this subview horizontally within its parent.
+     */
     public var centerHorizontal: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL) }
         set { self.setBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL, subjectBool: newValue) }
