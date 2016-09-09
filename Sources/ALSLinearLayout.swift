@@ -31,7 +31,7 @@ import UIKit
  * - Author: Mariotaku Lee
  * - Date: Sep 4, 2016
  */
-public class ALSLinearLayout: ALSBaseLayout {
+public class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     
     private static let VERTICAL_GRAVITY_COUNT = 4
     
@@ -196,9 +196,9 @@ public class ALSLinearLayout: ALSBaseLayout {
     private(set) var dividerSize: CGSize = CGSizeZero
     
     /**
-     - SeeAlso: `ALSBaselineSupport`
+     implements `ALSBaselineSupport`
      */
-    public override func calculateBaselineBottomValue() -> CGFloat {
+    public func calculateBaselineBottomValue() -> CGFloat {
         if (baselineAlignedChildIndex < 0) {
             return CGFloat.NaN
         }

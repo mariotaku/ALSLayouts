@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ALSLayouts'
-  s.version          = '0.2.4'
+  s.version          = '0.2.6'
   s.summary          = 'AutoLayout Alternative ported from Android'
 
 # This description is used to generate tags and improve search results.
@@ -32,6 +32,6 @@ You can specify layout parameters (constraints) in Interface Builder, or just ad
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ALSLayouts/Classes/**/*'
+  s.source_files = 'Sources/**/*'
 
 end

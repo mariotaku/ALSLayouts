@@ -9,7 +9,7 @@
 import UIKit
 
 /// Superclass for all layout implementations
-public class ALSBaseLayout: UIView, ALSBaselineSupport {
+public class ALSBaseLayout: UIView {
     
     internal var layoutParamsMap = [Int: ALSLayoutParams]()
     
@@ -180,13 +180,6 @@ public class ALSBaseLayout: UIView, ALSBaselineSupport {
         case .MatchParent:
             return parentSize - margin
         }
-    }
-    
-    /**
-     - SeeAlso: `ALSBaselineSupport`
-     */
-    public func calculateBaselineBottomValue() -> CGFloat {
-        return CGFloat.NaN
     }
     
     func measureChildWithMargins(subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
