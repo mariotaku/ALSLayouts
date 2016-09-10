@@ -135,6 +135,14 @@ public class ALSBaseLayout: UIView {
         return measureSubviews(size)
     }
     
+    public override func systemLayoutSizeFittingSize(targetSize: CGSize) -> CGSize {
+        return measureSubviews(targetSize)
+    }
+    
+    public override func systemLayoutSizeFittingSize(targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        return measureSubviews(targetSize)
+    }
+    
     /// This implementations sets `translatesAutoresizingMaskIntoConstraints` to true in order to prevent layout problems
     public override func didAddSubview(subview: UIView) {
         subview.translatesAutoresizingMaskIntoConstraints = true

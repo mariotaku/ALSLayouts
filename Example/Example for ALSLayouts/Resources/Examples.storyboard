@@ -14,7 +14,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match Parent" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guu-ga-evm">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" id="706-qX-eei" customClass="ALSFrameLayout" customModule="ALSLayouts">
                                             <rect key="frame" x="8" y="8" width="304" height="107.5"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lje-pr-NSW">
                                                     <rect key="frame" x="107" y="8" width="90" height="90"/>
@@ -229,7 +229,7 @@
                                     <subviews>
                                         <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="liZ-6H-MuO" customClass="ALSRelativeLayout" customModule="ALSLayouts">
                                             <rect key="frame" x="8" y="8" width="304" height="177.5"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="2ZO-S7-CWG" userLabel="Avatar">
                                                     <rect key="frame" x="8" y="8" width="48" height="48"/>
@@ -360,7 +360,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" id="nFv-sA-EDY" customClass="ALSLinearLayout" customModule="ALSLayouts">
                                             <rect key="frame" x="8" y="8" width="304" height="115.5"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IQv-8g-7fO">
                                                     <rect key="frame" x="8" y="8" width="288" height="21"/>

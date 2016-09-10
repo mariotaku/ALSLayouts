@@ -11,6 +11,10 @@ import UITableView_FDTemplateLayoutCell
 
 class FrameLayoutTableController: UITableViewController {
 
+    override func viewDidLoad() {
+        tableView.estimatedRowHeight = 60
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
