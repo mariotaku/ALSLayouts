@@ -19,10 +19,10 @@ import Foundation
  * Standard constants and tools for placing an object within a potentially
  * larger container.
  */
-public class ALSGravity {
+open class ALSGravity {
 
     /** Constant indicating that no gravity has been set */
-    public static let NO_GRAVITY: Int = 0x0000
+    open static let NO_GRAVITY: Int = 0x0000
 
     /** Raw bit indicating the gravity for an axis has been specified. */
     static let AXIS_SPECIFIED: Int = 0x0001
@@ -44,65 +44,65 @@ public class ALSGravity {
     /**
      * Push object to the top of its container, not changing its size.
      */
-    public static let TOP = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_Y_SHIFT
+    open static let TOP = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_Y_SHIFT
     /**
      * Push object to the bottom of its container, not changing its size.
      */
-    public static let BOTTOM = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_Y_SHIFT
+    open static let BOTTOM = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_Y_SHIFT
     /**
      * Push object to the left of its container, not changing its size.
      */
-    public static let LEFT = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_X_SHIFT
+    open static let LEFT = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_X_SHIFT
     /**
      * Push object to the right of its container, not changing its size.
      */
-    public static let RIGHT = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_X_SHIFT
+    open static let RIGHT = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_X_SHIFT
 
     /**
      * Place object in the vertical center of its container, not changing its
      * size.
      */
-    public static let CENTER_VERTICAL = AXIS_SPECIFIED << AXIS_Y_SHIFT
+    open static let CENTER_VERTICAL = AXIS_SPECIFIED << AXIS_Y_SHIFT
     /**
      * Grow the vertical size of the object if needed so it completely fills
      * its container.
      */
-    public static let FILL_VERTICAL = TOP | BOTTOM
+    open static let FILL_VERTICAL = TOP | BOTTOM
 
     /**
      * Place object in the horizontal center of its container, not changing its
      * size.
      */
-    public static let CENTER_HORIZONTAL = AXIS_SPECIFIED << AXIS_X_SHIFT
+    open static let CENTER_HORIZONTAL = AXIS_SPECIFIED << AXIS_X_SHIFT
     /**
      * Grow the horizontal size of the object if needed so it completely fills
      * its container.
      */
-    public static let FILL_HORIZONTAL = LEFT | RIGHT
+    open static let FILL_HORIZONTAL = LEFT | RIGHT
 
     /**
      * Place the object in the center of its container in both the vertical
      * and horizontal axis, not changing its size.
      */
-    public static let CENTER = CENTER_VERTICAL | CENTER_HORIZONTAL
+    open static let CENTER = CENTER_VERTICAL | CENTER_HORIZONTAL
 
     /**
      * Grow the horizontal and vertical size of the object if needed so it
      * completely fills its container.
      */
-    public static let FILL = FILL_VERTICAL | FILL_HORIZONTAL
+    open static let FILL = FILL_VERTICAL | FILL_HORIZONTAL
 
     /**
      * Flag to clip the edges of the object to its container along the
      * vertical axis.
      */
-    public static let CLIP_VERTICAL = AXIS_CLIP << AXIS_Y_SHIFT
+    open static let CLIP_VERTICAL = AXIS_CLIP << AXIS_Y_SHIFT
 
     /**
      * Flag to clip the edges of the object to its container along the
      * horizontal axis.
      */
-    public static let CLIP_HORIZONTAL = AXIS_CLIP << AXIS_X_SHIFT
+    open static let CLIP_HORIZONTAL = AXIS_CLIP << AXIS_X_SHIFT
 
     /**
      * Raw bit controlling whether the layout direction is relative or not (LEADING/TRAILING instead of
@@ -138,12 +138,12 @@ public class ALSGravity {
     /**
      * Push object to x-axis position at the start of its container, not changing its size.
      */
-    public static let LEADING = RELATIVE_LAYOUT_DIRECTION | LEFT
+    open static let LEADING = RELATIVE_LAYOUT_DIRECTION | LEFT
 
     /**
      * Push object to x-axis position at the end of its container, not changing its size.
      */
-    public static let TRAILING = RELATIVE_LAYOUT_DIRECTION | RIGHT
+    open static let TRAILING = RELATIVE_LAYOUT_DIRECTION | RIGHT
 
     /**
      * Binary mask for the horizontal gravity and script specific direction bit.
@@ -178,7 +178,7 @@ public class ALSGravity {
      * - parameter outRect: Receives the computed frame of the object in its
      *                  container.
      */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, inout outRect: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0) {
+    static func apply(_ gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, outRect: inout CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0) {
         switch (gravity & ((AXIS_PULL_BEFORE | AXIS_PULL_AFTER) << AXIS_X_SHIFT)) {
         case 0:
             outRect.left = container.left + ((container.right - container.left - w) / 2) + xAdj
@@ -284,7 +284,7 @@ public class ALSGravity {
      *
      * - SeeAlso: `UIUserInterfaceLayoutDirection`
      */
-    static func apply(gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, inout outRect: CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0, layoutDirection: UIUserInterfaceLayoutDirection) {
+    static func apply(_ gravity: Int, w: CGFloat, h: CGFloat, container: CGRect, outRect: inout CGRect, xAdj: CGFloat = 0, yAdj: CGFloat = 0, layoutDirection: UIUserInterfaceLayoutDirection) {
         let absGravity = getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
         return apply(absGravity, w: w, h: h, container: container, outRect: &outRect, xAdj: xAdj, yAdj: yAdj)
     }
@@ -307,8 +307,8 @@ public class ALSGravity {
      * - parameter inoutObj: Supplies the current object position; returns with it
      *                 modified if needed to fit in the display.
      */
-    static func applyDisplay(gravity: Int, display: CGRect) -> CGRect {
-        var inoutObj = CGRectZero
+    static func applyDisplay(_ gravity: Int, display: CGRect) -> CGRect {
+        var inoutObj = CGRect.zero
         if (gravity & DISPLAY_CLIP_VERTICAL != 0) {
             if (inoutObj.top < display.top) {
                 inoutObj.top = display.top
@@ -384,7 +384,7 @@ public class ALSGravity {
      *
      * - SeeAlso: `UIUserInterfaceLayoutDirection`
      */
-    static func applyDisplay(gravity: Int, display: CGRect, inoutObj: CGRect, layoutDirection: UIUserInterfaceLayoutDirection) -> CGRect {
+    static func applyDisplay(_ gravity: Int, display: CGRect, inoutObj: CGRect, layoutDirection: UIUserInterfaceLayoutDirection) -> CGRect {
         let absGravity = getAbsoluteGravity(gravity, layoutDirection: layoutDirection)
         return applyDisplay(absGravity, display: display)
     }
@@ -397,7 +397,7 @@ public class ALSGravity {
      *
      * - returns: true if the supplied gravity has a vertical pull
      */
-    static func isVertical(gravity: Int) -> Bool {
+    static func isVertical(_ gravity: Int) -> Bool {
         return gravity > 0 && gravity & VERTICAL_GRAVITY_MASK != 0
     }
 
@@ -409,7 +409,7 @@ public class ALSGravity {
      *
      * - returns: true if the supplied gravity has an horizontal pull
      */
-    static func isHorizontal(gravity: Int) -> Bool {
+    static func isHorizontal(_ gravity: Int) -> Bool {
         return gravity > 0 && gravity & RELATIVE_HORIZONTAL_GRAVITY_MASK != 0
     }
 
@@ -427,14 +427,14 @@ public class ALSGravity {
      *
      * - returns: gravity converted to absolute (horizontal) values.
      */
-    static func getAbsoluteGravity(gravity: Int, layoutDirection: UIUserInterfaceLayoutDirection) -> Int {
+    static func getAbsoluteGravity(_ gravity: Int, layoutDirection: UIUserInterfaceLayoutDirection) -> Int {
         var result = gravity
         // If layout is script specific and gravity is horizontal relative (LEADING or TRAILING)
         if ((result & RELATIVE_LAYOUT_DIRECTION) > 0) {
             if (result & ALSGravity.LEADING == ALSGravity.LEADING) {
                 // Remove the LEADING bit
                 result = result & ~LEADING
-                if (layoutDirection == .RightToLeft) {
+                if (layoutDirection == .rightToLeft) {
                     // Set the RIGHT bit
                     result = result | RIGHT
                 } else {
@@ -444,7 +444,7 @@ public class ALSGravity {
             } else if (result & ALSGravity.TRAILING == ALSGravity.TRAILING) {
                 // Remove the TRAILING bit
                 result = result & ~TRAILING
-                if (layoutDirection == .RightToLeft) {
+                if (layoutDirection == .rightToLeft) {
                     // Set the LEFT bit
                     result = result | LEFT
                 } else {

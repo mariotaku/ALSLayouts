@@ -9,29 +9,29 @@
 import UIKit
 
 /// Superclass for all layout implementations
-public class ALSBaseLayout: UIView {
+open class ALSBaseLayout: UIView {
     
     internal var layoutParamsMap = [Int: ALSLayoutParams]()
     
-    private static let useZeroUnspecifiedMeasureSpec = false
+    fileprivate static let useZeroUnspecifiedMeasureSpec = false
     
     /**
      How width of this view measured, will be overriden by `layoutParams.widthMode` if possible.
      
      - SeeAlso: `ALSLayoutParams.SizeMode`
      */
-    public var widthMode: ALSLayoutParams.SizeMode = .StaticSize
+    open var widthMode: ALSLayoutParams.SizeMode = .StaticSize
     /**
      How height of this view measured, will be overriden by `layoutParams.heightMode` if possible.
      
      - SeeAlso: `ALSLayoutParams.SizeMode`
      */
-    public var heightMode: ALSLayoutParams.SizeMode = .StaticSize
+    open var heightMode: ALSLayoutParams.SizeMode = .StaticSize
     
     /**
      When set to true, layoutMargins (padding) will be ignored.
      */
-    @IBInspectable public var ignoreLayoutMargins: Bool = false
+    @IBInspectable open var ignoreLayoutMargins: Bool = false
     
     @IBInspectable internal var widthModeString: String {
         get { return widthMode.rawValue }
@@ -49,10 +49,10 @@ public class ALSBaseLayout: UIView {
     }
     
     internal var actualLayoutMargins: UIEdgeInsets {
-        return ignoreLayoutMargins ? UIEdgeInsetsZero : self.layoutMargins
+        return ignoreLayoutMargins ? UIEdgeInsets.zero : self.layoutMargins
     }
     
-    private var gravityValue: Int = ALSGravity.LEADING | ALSGravity.TOP
+    fileprivate var gravityValue: Int = ALSGravity.LEADING | ALSGravity.TOP
     
     /**
      ALSLinearLayout:
@@ -64,7 +64,7 @@ public class ALSBaseLayout: UIView {
      
      - parameter gravity: See `ALSGravity`
      */
-    public var gravity: Int {
+    open var gravity: Int {
         get { return self.gravityValue }
         set {
             var fixedValue = newValue
@@ -86,7 +86,7 @@ public class ALSBaseLayout: UIView {
     /**
      Convenience property to set horizontal gravity only
     */
-    public var horizontalGravity: Int {
+    open var horizontalGravity: Int {
         get {
             return self.gravity & ALSGravity.RELATIVE_HORIZONTAL_GRAVITY_MASK
         }
@@ -99,7 +99,7 @@ public class ALSBaseLayout: UIView {
     /**
      Convenience property to set vertical gravity only
      */
-    public var verticalGravity: Int {
+    open var verticalGravity: Int {
         get {
             return self.gravity & ALSGravity.VERTICAL_GRAVITY_MASK
         }
@@ -116,7 +116,7 @@ public class ALSBaseLayout: UIView {
      - parameter tagString: String tag for identifying the subview
      - parameter configue: Configuration block for layout parameters
      */
-    public func addSubview(view: UIView, tagString: String? = nil, configure: (ALSLayoutParams) -> Void) {
+    open func addSubview(_ view: UIView, tagString: String? = nil, configure: (ALSLayoutParams) -> Void) {
         view.stringTag = tagString
         let lp = obtainLayoutParams(view)
         configure(lp)
@@ -126,25 +126,25 @@ public class ALSBaseLayout: UIView {
     /**
      Get layout parameters corresponding to given subview
      */
-    public func getLayoutParams(view: UIView) -> ALSLayoutParams? {
+    open func getLayoutParams(_ view: UIView) -> ALSLayoutParams? {
         return layoutParamsMap[view.hash]
     }
     
     /// Calculate proper size
-    public override func sizeThatFits(size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         return measureSubviews(size)
     }
     
-    public override func systemLayoutSizeFittingSize(targetSize: CGSize) -> CGSize {
+    open override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
         return measureSubviews(targetSize)
     }
     
-    public override func systemLayoutSizeFittingSize(targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+    open override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return measureSubviews(targetSize)
     }
     
     /// This implementations sets `translatesAutoresizingMaskIntoConstraints` to true in order to prevent layout problems
-    public override func didAddSubview(subview: UIView) {
+    open override func didAddSubview(_ subview: UIView) {
         subview.translatesAutoresizingMaskIntoConstraints = true
     }
     
@@ -160,12 +160,12 @@ public class ALSBaseLayout: UIView {
         self.removeConstraints(self.constraints)
     }
     
-    internal func measureSubviews(size: CGSize) -> CGSize {
+    internal func measureSubviews(_ size: CGSize) -> CGSize {
         return size
     }
     
     // Get layout params, create a new one if not exists
-    internal func obtainLayoutParams(view: UIView) -> ALSLayoutParams {
+    internal func obtainLayoutParams(_ view: UIView) -> ALSLayoutParams {
         if let params = layoutParamsMap[view.hash] {
             return params
         }
@@ -175,11 +175,11 @@ public class ALSBaseLayout: UIView {
         return newParams
     }
     
-    internal func initLayoutParams(view: UIView, newParams: ALSLayoutParams) {
+    internal func initLayoutParams(_ view: UIView, newParams: ALSLayoutParams) {
         
     }
     
-    internal func resolveSize(sizeMode: ALSLayoutParams.SizeMode, contentSize: CGFloat, frameSize: CGFloat, parentSize: CGFloat, margin: CGFloat) -> CGFloat {
+    internal func resolveSize(_ sizeMode: ALSLayoutParams.SizeMode, contentSize: CGFloat, frameSize: CGFloat, parentSize: CGFloat, margin: CGFloat) -> CGFloat {
         switch sizeMode {
         case .StaticSize:
             return frameSize
@@ -190,7 +190,7 @@ public class ALSBaseLayout: UIView {
         }
     }
     
-    func measureChildWithMargins(subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
+    func measureChildWithMargins(_ subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
         let lp = subview.layoutParams
         
         let childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentWidthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight + widthUsed, childDimension: lp.width, childDimensionMode: lp.widthMode)
@@ -199,95 +199,95 @@ public class ALSBaseLayout: UIView {
         lp.measure(subview, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     
-    static func combineMeasuredStates(states: ALSLayoutParams.MeasureStates, widthMode: ALSLayoutParams.MeasureSpecMode, heightMode: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureStates {
+    static func combineMeasuredStates(_ states: ALSLayoutParams.MeasureStates, widthMode: ALSLayoutParams.MeasureSpecMode, heightMode: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureStates {
         var newStates = states
-        if (newStates.0 == .Unspecified) {
+        if (newStates.0 == .unspecified) {
             newStates.0 = widthMode
         }
-        if (newStates.1 == .Unspecified) {
+        if (newStates.1 == .unspecified) {
             newStates.1 = heightMode
         }
         return newStates
     }
     
-    static func getChildMeasureSpec(spec: ALSLayoutParams.MeasureSpec, padding: CGFloat, childDimension: CGFloat, childDimensionMode: ALSLayoutParams.SizeMode) -> ALSLayoutParams.MeasureSpec {
+    static func getChildMeasureSpec(_ spec: ALSLayoutParams.MeasureSpec, padding: CGFloat, childDimension: CGFloat, childDimensionMode: ALSLayoutParams.SizeMode) -> ALSLayoutParams.MeasureSpec {
         let specMode: ALSLayoutParams.MeasureSpecMode = spec.1
         let specSize: CGFloat = spec.0
         
         let size = max(0, specSize - padding)
         
         var resultSize: CGFloat = 0
-        var resultMode: ALSLayoutParams.MeasureSpecMode = .Unspecified
+        var resultMode: ALSLayoutParams.MeasureSpecMode = .unspecified
         
         switch (specMode) {
         // Parent has imposed an exact size on us
-        case .Exactly:
+        case .exactly:
             switch childDimensionMode {
             case .StaticSize:
                 resultSize = childDimension
-                resultMode = .Exactly
+                resultMode = .exactly
             case .MatchParent:
                 // Child wants to be our size. So be it.
                 resultSize = size
-                resultMode = .Exactly
+                resultMode = .exactly
             case .WrapContent:
                 // Child wants to determine its own size. It can't be
                 // bigger than us.
                 resultSize = size
-                resultMode = .AtMost
+                resultMode = .atMost
             }
         // Parent has imposed a maximum size on us
-        case .AtMost:
+        case .atMost:
             switch childDimensionMode {
             case .StaticSize:
                 // Child wants a specific size... so be it
                 resultSize = childDimension
-                resultMode = .Exactly
+                resultMode = .exactly
             case .MatchParent:
                 // Child wants to be our size, but our size is not fixed.
                 // Constrain child to not be bigger than us.
                 resultSize = size
-                resultMode = .AtMost
+                resultMode = .atMost
             case .WrapContent:
                 // Child wants to determine its own size. It can't be
                 // bigger than us.
                 resultSize = size
-                resultMode = .AtMost
+                resultMode = .atMost
             }
         // Parent asked to see how big we want to be
-        case .Unspecified:
+        case .unspecified:
             switch childDimensionMode {
             case .StaticSize:
                 // Child wants a specific size... let him have it
                 resultSize = childDimension
-                resultMode = .Exactly
+                resultMode = .exactly
             case .MatchParent:
                 // Child wants to be our size... find out how big it should
                 // be
                 resultSize = useZeroUnspecifiedMeasureSpec ? 0 : size
-                resultMode = .Unspecified
+                resultMode = .unspecified
             case .WrapContent:
                 // Child wants to determine its own size.... find out how
                 // big it should be
                 resultSize = useZeroUnspecifiedMeasureSpec ? 0 : size
-                resultMode = .Unspecified
+                resultMode = .unspecified
             }
         }
         return (resultSize, resultMode)
     }
     
-    static func resolveSizeAndState(size: CGFloat, measureSpec: ALSLayoutParams.MeasureSpec, childMeasuredState: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureSpec {
+    static func resolveSizeAndState(_ size: CGFloat, measureSpec: ALSLayoutParams.MeasureSpec, childMeasuredState: ALSLayoutParams.MeasureSpecMode) -> ALSLayoutParams.MeasureSpec {
         let specMode = measureSpec.1
         let specSize = measureSpec.0
         let resultSize: CGFloat
         switch (specMode) {
-        case .AtMost:
+        case .atMost:
             if (specSize < size) {
                 resultSize = specSize // or MEASURED_STATE_TOO_SMALL
             } else {
                 resultSize = size
             }
-        case .Exactly:
+        case .exactly:
             resultSize = specSize
         default:
             resultSize = size

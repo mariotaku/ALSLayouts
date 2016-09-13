@@ -59,7 +59,7 @@ internal class DependencyGraph {
      
      * @param view The view to be added as a node to the graph.
      */
-    internal func add(view: UIView) {
+    internal func add(_ view: UIView) {
         let node = Node.acquire(view)
         
         if (view.tag != 0) {
@@ -80,7 +80,7 @@ internal class DependencyGraph {
      * *
      * @param rules  The list of rules to take into account.
      */
-    internal func getSortedViews(inout sorted: [UIView!], rules: [Int]) {
+    internal func getSortedViews(_ sorted: inout [UIView?], rules: [Int]) {
         var roots: [Node] = findRoots(rules)
         var index: Int = 0
         
@@ -93,7 +93,7 @@ internal class DependencyGraph {
             index += 1
             
             for (dependent, _) in node!.dependents {
-                dependent.dependencies.removeValueForKey(tag)
+                dependent.dependencies.removeValue(forKey: tag)
                 if (dependent.dependencies.isEmpty) {
                     roots.append(dependent)
                 }
@@ -115,7 +115,7 @@ internal class DependencyGraph {
      * *
      * @return A list of node, each being a root of the graph
      */
-    private func findRoots(rulesFilter: [Int]) -> [Node] {
+    fileprivate func findRoots(_ rulesFilter: [Int]) -> [Node] {
         // Find roots can be invoked several times, so make sure to clear
         // all dependents and dependencies before running the algorithm
         for node in self.nodes {
@@ -191,18 +191,17 @@ internal class DependencyGraph {
         var dependencies = [Int: Node]()
         
         var hashValue: Int {
-            let nullPtr = UnsafePointer<Void>(bitPattern: 0)
-            return unsafeAddressOf(self).distanceTo(nullPtr)
+            return unsafeBitCast(self, to: Int.self)
         }
         
         // START POOL IMPLEMENTATION
         
         // The pool is static, so all nodes instances are shared across
         // activities, that's why we give it a rather high limit
-        private static let POOL_LIMIT = 100
-        private static let sPool = SynchronizedPool<Node>(size: POOL_LIMIT)
+        fileprivate static let POOL_LIMIT = 100
+        fileprivate static let sPool = SynchronizedPool<Node>(size: POOL_LIMIT)
         
-        static func acquire(view: UIView) -> Node {
+        static func acquire(_ view: UIView) -> Node {
             let node = sPool.acquire() ?? Node()
             node.view = view
             return node

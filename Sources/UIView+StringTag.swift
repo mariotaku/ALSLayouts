@@ -48,7 +48,7 @@ public extension UIView {
      - parameter stringTag: String tag of desired view
      - returns: First view with given tag, `nil` otherwise
      */
-    public func viewWithStringTag(stringTag: String) -> UIView? {
+    public func viewWithStringTag(_ stringTag: String) -> UIView? {
         guard let intTag = UIView.tagPool[stringTag] else {
             return nil
         }
@@ -72,5 +72,5 @@ public extension UIView {
         return tagPool.filter { (k, v) -> Bool in return v == tag }.first?.0
     }
     
-    private static var tagPool = [String: Int]()
+    fileprivate static var tagPool = [String: Int]()
 }

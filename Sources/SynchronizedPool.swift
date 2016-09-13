@@ -25,7 +25,7 @@ class SynchronizedPool<T : AnyObject> {
         }
     }
     
-    func release(obj: T) -> Bool {
+    func release(_ obj: T) -> Bool {
         return synchronized(lock) { () -> Bool in
             if (self.items.contains { item in return item === obj }) {
                 abort()
@@ -38,7 +38,7 @@ class SynchronizedPool<T : AnyObject> {
         }
     }
     
-    private func synchronized<T>(lock:AnyObject, block:() -> T) -> T {
+    fileprivate func synchronized<T>(_ lock:AnyObject, block:() -> T) -> T {
         objc_sync_enter(lock)
         defer {
             objc_sync_exit(lock)

@@ -13,7 +13,7 @@ import UIKit
  
  Combined all required fields for LinearLayout, FrameLayout and RelativeLayout
  */
-public class ALSLayoutParams {
+open class ALSLayoutParams {
     
     /**
      Defines how view measured
@@ -31,29 +31,29 @@ public class ALSLayoutParams {
      Value for `gravity` indicating that a gravity has not been
      explicitly specified.
      */
-    public static let UNSPECIFIED_GRAVITY = -1;
+    open static let UNSPECIFIED_GRAVITY = -1;
     
     /**
      How width measured
      */
-    public var widthMode: SizeMode = .StaticSize
+    open var widthMode: SizeMode = .StaticSize
     /**
      How height measured
      */
-    public var heightMode: SizeMode = .StaticSize
+    open var heightMode: SizeMode = .StaticSize
     /**
      Static width, overrides size dimension set in Interface Builder
      */
-    public var width: CGFloat
+    open var width: CGFloat
     /**
      Static height, overrides size dimension set in Interface Builder
      */
-    public var height: CGFloat
+    open var height: CGFloat
     
     /**
      When set to true, view will be hidden during layout, like set `visibility = View.GONE` in Android
      */
-    public var hidden: Bool = false
+    open var hidden: Bool = false
     
     /**
      The gravity to apply with the View to which these layout parameters
@@ -64,7 +64,7 @@ public class ALSLayoutParams {
      
      - SeeAlso: `ALSGravity`
      */
-    public var gravity: Int = ALSLayoutParams.UNSPECIFIED_GRAVITY
+    open var gravity: Int = ALSLayoutParams.UNSPECIFIED_GRAVITY
     
     /**
      Indicates how much of the extra space in the LinearLayout will be
@@ -72,163 +72,163 @@ public class ALSLayoutParams {
      0 if the view should not be stretched. Otherwise the extra pixels
      will be pro-rated among all views whose weight is greater than 0.
      */
-    public var weight: CGFloat = 0
+    open var weight: CGFloat = 0
     /**
      The top margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    public var marginTop: CGFloat = 0
+    open var marginTop: CGFloat = 0
     /**
      The bottom margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    public var marginBottom: CGFloat = 0
+    open var marginBottom: CGFloat = 0
     
     /**
      The left margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    public var marginLeft: CGFloat = 0 {
+    open var marginLeft: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
     /**
      The right margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    public var marginRight: CGFloat = 0 {
+    open var marginRight: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
     /**
      The leading margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    public var marginLeading: CGFloat = 0 {
+    open var marginLeading: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
     /**
      The trailing margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    public var marginTrailng: CGFloat = 0 {
+    open var marginTrailng: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
     
     /**
      If true, makes the top edge of this view match the top edge of the parent.
      */
-    public var alignParentTop: Bool {
+    open var alignParentTop: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_TOP) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_TOP, subjectBool: newValue) }
     }
     /**
      If true, makes the bottom edge of this view match the bottom edge of the parent.
      */
-    public var alignParentBottom: Bool {
+    open var alignParentBottom: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_BOTTOM) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_BOTTOM, subjectBool: newValue) }
     }
     /**
      If true, makes the left edge of this view match the left edge of the parent.
      */
-    public var alignParentLeft: Bool {
+    open var alignParentLeft: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEFT) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEFT, subjectBool: newValue) }
     }
     /**
      If true, makes the right edge of this view match the right edge of the parent.
      */
-    public var alignParentRight: Bool {
+    open var alignParentRight: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_RIGHT) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_RIGHT, subjectBool: newValue) }
     }
     /**
      If true, makes the leading edge of this view match the leading edge of the parent.
      */
-    public var alignParentLeading: Bool {
+    open var alignParentLeading: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEADING) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_LEADING, subjectBool: newValue) }
     }
     /**
      If true, makes the trailing edge of this view match the trailing edge of the parent.
      */
-    public var alignParentTrailing: Bool {
+    open var alignParentTrailing: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.ALIGN_PARENT_TRAILING) }
         set { self.setBoolRule(ALSRelativeLayout.ALIGN_PARENT_TRAILING, subjectBool: newValue) }
     }
     
-    public var alignTopTag: String? = nil
+    open var alignTopTag: String? = nil
     /**
      Makes the bottom edge of this view match the bottom edge of the given anchor view string tag.
      */
-    public var alignBottomTag: String? = nil
+    open var alignBottomTag: String? = nil
     /**
      Makes the left edge of this view match the left edge of the given anchor view string tag.
      */
-    public var alignLeftTag: String? = nil
+    open var alignLeftTag: String? = nil
     /**
      Makes the right edge of this view match the right edge of the given anchor view string tag.
      */
-    public var alignRightTag: String? = nil
+    open var alignRightTag: String? = nil
     /**
      Makes the start edge of this view match the start edge of the given anchor view string tag.
      */
-    public var alignLeadingTag: String? = nil
+    open var alignLeadingTag: String? = nil
     /**
      Makes the trailing edge of this view match the trailing edge of the given anchor view string tag.
      */
-    public var alignTrailngTag: String? = nil
+    open var alignTrailngTag: String? = nil
     /**
      Positions the baseline of this view on the baseline of the given anchor view string tag.
      */
-    public var alignBaselineTag: String? = nil
+    open var alignBaselineTag: String? = nil
     /**
      Positions the bottom edge of this view above the given anchor view string tag.
      */
-    public var aboveTag: String? = nil
+    open var aboveTag: String? = nil
     /**
      Positions the top edge of this view below the given anchor view string tag.
      */
-    public var belowTag: String? = nil
+    open var belowTag: String? = nil
     /**
      Positions the right edge of this view to the left of the given anchor view string tag.
      */
-    public var toLeftOfTag: String? = nil
+    open var toLeftOfTag: String? = nil
     /**
      Positions the left edge of this view to the right of the given anchor view string tag.
      */
-    public var toRightOfTag: String? = nil
+    open var toRightOfTag: String? = nil
     /**
      Positions the trailing edge of this view to the leading of the given anchor view string tag.
      */
-    public var toLeadingOfTag: String? = nil
+    open var toLeadingOfTag: String? = nil
     /**
      Positions the leading edge of this view to the trailing of the given anchor view string tag.
      */
-    public var toTrailingOfTag: String? = nil
+    open var toTrailingOfTag: String? = nil
     
     /**
      If set to true, the parent will be used as the anchor when the anchor cannot be be found for `toLeftOf`, `toRightOf`, etc.
      */
-    public var alignWithParentIfMissing: Bool = false
+    open var alignWithParentIfMissing: Bool = false
     
     /**
      If true, centers this subview horizontally and vertically within its parent.
      */
-    public var centerInParent: Bool {
+    open var centerInParent: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.CENTER_IN_PARENT) }
         set { self.setBoolRule(ALSRelativeLayout.CENTER_IN_PARENT, subjectBool: newValue) }
     }
     /**
      If true, centers this subview vertically within its parent.
      */
-    public var centerVertical: Bool {
+    open var centerVertical: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.CENTER_VERTICAL) }
         set { self.setBoolRule(ALSRelativeLayout.CENTER_VERTICAL, subjectBool: newValue) }
     }
     /**
      If true, centers this subview horizontally within its parent.
      */
-    public var centerHorizontal: Bool {
+    open var centerHorizontal: Bool {
         get { return self.getBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL) }
         set { self.setBoolRule(ALSRelativeLayout.CENTER_HORIZONTAL, subjectBool: newValue) }
     }
@@ -287,33 +287,33 @@ public class ALSLayoutParams {
         set { self.setRule(ALSRelativeLayout.TRAILING_OF, subject: newValue) }
     }
     
-    internal private(set) var marginAbsLeft: CGFloat = 0
-    internal private(set) var marginAbsRight: CGFloat = 0
+    internal fileprivate(set) var marginAbsLeft: CGFloat = 0
+    internal fileprivate(set) var marginAbsRight: CGFloat = 0
     
     internal var left: CGFloat = 0
     internal var top: CGFloat = 0
     internal var right: CGFloat = 0
     internal var bottom: CGFloat = 0
     
-    internal private(set) var measuredWidth: CGFloat = 0
-    internal private(set) var measuredHeight: CGFloat = 0
+    internal fileprivate(set) var measuredWidth: CGFloat = 0
+    internal fileprivate(set) var measuredHeight: CGFloat = 0
     
-    internal var measuredWidthSpec: MeasureSpecMode = .Unspecified
-    internal var measuredHeightSpec: MeasureSpecMode = .Unspecified
+    internal var measuredWidthSpec: MeasureSpecMode = .unspecified
+    internal var measuredHeightSpec: MeasureSpecMode = .unspecified
     
-    private var initialRules: [Int] = [Int](count: ALSRelativeLayout.VERB_COUNT, repeatedValue: 0)
-    private var rules: [Int] = [Int](count: ALSRelativeLayout.VERB_COUNT, repeatedValue: 0)
+    fileprivate var initialRules: [Int] = [Int](repeating: 0, count: ALSRelativeLayout.VERB_COUNT)
+    fileprivate var rules: [Int] = [Int](repeating: 0, count: ALSRelativeLayout.VERB_COUNT)
     
     /**
      * Whether this view had any relative rules modified following the most
      * recent resolution of layout direction.
      */
-    private var needsLayoutResolution: Bool = false
+    fileprivate var needsLayoutResolution: Bool = false
     
-    private var rulesChanged: Bool = false
-    private var marginsChanged: Bool = false
+    fileprivate var rulesChanged: Bool = false
+    fileprivate var marginsChanged: Bool = false
     
-    private var layoutDirection: UIUserInterfaceLayoutDirection = .LeftToRight
+    fileprivate var layoutDirection: UIUserInterfaceLayoutDirection = .leftToRight
     
     public required init(view: UIView) {
         self.width = view.frame.width
@@ -349,7 +349,7 @@ public class ALSLayoutParams {
      * resolved absolute verbs (ex.
      * [.LEFT_OF]).
      */
-    internal func resolveLayoutDirection(layoutDirection: UIUserInterfaceLayoutDirection) {
+    internal func resolveLayoutDirection(_ layoutDirection: UIUserInterfaceLayoutDirection) {
         if (shouldResolveRules(layoutDirection)) {
             resolveRules(layoutDirection)
         }
@@ -357,7 +357,7 @@ public class ALSLayoutParams {
         if (shouldResolveMargins(layoutDirection)) {
             if (marginLeft != 0) {
                 marginAbsLeft = marginLeft
-            } else if (layoutDirection == .RightToLeft) {
+            } else if (layoutDirection == .rightToLeft) {
                 marginAbsLeft = marginTrailng
             } else {
                 marginAbsLeft = marginLeading
@@ -365,7 +365,7 @@ public class ALSLayoutParams {
             
             if (marginRight != 0) {
                 marginAbsRight = marginRight
-            } else if (layoutDirection == .RightToLeft) {
+            } else if (layoutDirection == .rightToLeft) {
                 marginAbsRight = marginLeading
             } else {
                 marginAbsRight = marginTrailng
@@ -375,16 +375,16 @@ public class ALSLayoutParams {
         self.layoutDirection = layoutDirection
     }
     
-    internal func measure(view: UIView, widthSpec: MeasureSpec, heightSpec: MeasureSpec) {
-        if (widthSpec.1 == .Exactly || heightSpec.1 == .Exactly) {
-            if (widthSpec.1 != .Exactly) {
+    internal func measure(_ view: UIView, widthSpec: MeasureSpec, heightSpec: MeasureSpec) {
+        if (widthSpec.1 == .exactly || heightSpec.1 == .exactly) {
+            if (widthSpec.1 != .exactly) {
                 // Exact height
-                let sizeThatFits = view.sizeThatFits(CGSizeMake(widthSpec.0, heightSpec.0))
+                let sizeThatFits = view.sizeThatFits(CGSize(width: widthSpec.0, height: heightSpec.0))
                 self.measuredWidth = sizeThatFits.width
                 self.measuredHeight = heightSpec.0
-            } else if (heightSpec.1 != .Exactly) {
+            } else if (heightSpec.1 != .exactly) {
                 // Exact width
-                let sizeThatFits = view.sizeThatFits(CGSizeMake(widthSpec.0, heightSpec.0))
+                let sizeThatFits = view.sizeThatFits(CGSize(width: widthSpec.0, height: heightSpec.0))
                 self.measuredWidth = widthSpec.0
                 self.measuredHeight = sizeThatFits.height
             } else {
@@ -392,8 +392,8 @@ public class ALSLayoutParams {
                 self.measuredWidth = widthSpec.0
                 self.measuredHeight = heightSpec.0
             }
-        } else if (widthSpec.1 == .AtMost || heightSpec.1 == .AtMost) {
-            let sizeThatFits = view.sizeThatFits(CGSizeMake(widthSpec.0, heightSpec.0))
+        } else if (widthSpec.1 == .atMost || heightSpec.1 == .atMost) {
+            let sizeThatFits = view.sizeThatFits(CGSize(width: widthSpec.0, height: heightSpec.0))
             self.measuredWidth = sizeThatFits.width
             self.measuredHeight = sizeThatFits.height
         } else {
@@ -404,7 +404,7 @@ public class ALSLayoutParams {
         self.measuredHeightSpec = heightSpec.1
     }
     
-    internal func getRules(layoutDirection: UIUserInterfaceLayoutDirection) -> [Int] {
+    internal func getRules(_ layoutDirection: UIUserInterfaceLayoutDirection) -> [Int] {
         resolveLayoutDirection(layoutDirection)
         return rules
     }
@@ -426,11 +426,11 @@ public class ALSLayoutParams {
     //
     // In all cases, the result of the resolution should clear the "start"/"end" rules to leave
     // only the "left"/"right" rules at the end.
-    private func resolveRules(layoutDirection: UIUserInterfaceLayoutDirection) {
-        let isLayoutRtl = layoutDirection == .RightToLeft
+    fileprivate func resolveRules(_ layoutDirection: UIUserInterfaceLayoutDirection) {
+        let isLayoutRtl = layoutDirection == .rightToLeft
         
         // Reset to initial state
-        for (idx, value) in initialRules.enumerate() {
+        for (idx, value) in initialRules.enumerated() {
             rules[idx] = value
         }
         
@@ -489,15 +489,15 @@ public class ALSLayoutParams {
     }
     
     
-    private func shouldResolveRules(layoutDirection: UIUserInterfaceLayoutDirection) -> Bool {
+    fileprivate func shouldResolveRules(_ layoutDirection: UIUserInterfaceLayoutDirection) -> Bool {
         return (needsLayoutResolution || hasRelativeRules()) && (rulesChanged || layoutDirection != self.layoutDirection)
     }
     
-    private func shouldResolveMargins(layoutDirection: UIUserInterfaceLayoutDirection) -> Bool {
+    fileprivate func shouldResolveMargins(_ layoutDirection: UIUserInterfaceLayoutDirection) -> Bool {
         return marginsChanged || layoutDirection != self.layoutDirection
     }
     
-    private func setRule(verb: Int, subject: Int) {
+    fileprivate func setRule(_ verb: Int, subject: Int) {
         // If we're removing a relative rule, we'll need to force layout
         // resolution the next time it's requested.
         if (!needsLayoutResolution && isRelativeRule(verb)
@@ -510,28 +510,28 @@ public class ALSLayoutParams {
         rulesChanged = true;
     }
     
-    private func getRule(verb: Int) -> Int {
+    fileprivate func getRule(_ verb: Int) -> Int {
         return rules[verb]
     }
     
-    private func setBoolRule(verb: Int, subjectBool: Bool) {
+    fileprivate func setBoolRule(_ verb: Int, subjectBool: Bool) {
         self.setRule(verb, subject: subjectBool ? ALSRelativeLayout.TRUE : 0)
     }
     
-    private func getBoolRule(verbBool: Int) -> Bool {
+    fileprivate func getBoolRule(_ verbBool: Int) -> Bool {
         return rules[verbBool] == ALSRelativeLayout.TRUE
     }
     
-    private func hasRelativeRules() -> Bool {
+    fileprivate func hasRelativeRules() -> Bool {
         return initialRules[ALSRelativeLayout.LEADING_OF] != 0 || initialRules[ALSRelativeLayout.TRAILING_OF] != 0 || initialRules[ALSRelativeLayout.ALIGN_LEADING] != 0 || initialRules[ALSRelativeLayout.ALIGN_TRAILING] != 0 || initialRules[ALSRelativeLayout.ALIGN_PARENT_LEADING] != 0 || initialRules[ALSRelativeLayout.ALIGN_PARENT_TRAILING] != 0
     }
     
-    private func isRelativeRule(rule: Int) -> Bool {
+    fileprivate func isRelativeRule(_ rule: Int) -> Bool {
         return rule == ALSRelativeLayout.LEADING_OF || rule == ALSRelativeLayout.TRAILING_OF || rule == ALSRelativeLayout.ALIGN_LEADING || rule == ALSRelativeLayout.ALIGN_TRAILING || rule == ALSRelativeLayout.ALIGN_PARENT_LEADING || rule == ALSRelativeLayout.ALIGN_PARENT_TRAILING
     }
     
     internal enum MeasureSpecMode {
-        case Unspecified, AtMost, Exactly
+        case unspecified, atMost, exactly
     }
     
     internal typealias MeasureSpec = (CGFloat, MeasureSpecMode)

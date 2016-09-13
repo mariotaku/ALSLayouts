@@ -28,8 +28,8 @@ extension ALSLinearLayout.ShowDividers {
         }
     }
     
-    internal static func parse(str: String) -> ALSLinearLayout.ShowDividers {
-        return str.componentsSeparatedByString("|").reduce(.None) { combined, optionString -> ALSLinearLayout.ShowDividers in
+    internal static func parse(_ str: String) -> ALSLinearLayout.ShowDividers {
+        return str.components(separatedBy: "|").reduce(.None) { combined, optionString -> ALSLinearLayout.ShowDividers in
             return combined.union(ALSLinearLayout.ShowDividers(rawValue: optionString)!)
         }
     }

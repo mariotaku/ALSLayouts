@@ -14,7 +14,7 @@ class LinearLayoutByCodeController: UIViewController {
     override func viewDidLoad() {
         let layout = ALSLinearLayout()
         layout.orientation = .Vertical
-        layout.backgroundColor = UIColor.whiteColor()
+        layout.backgroundColor = UIColor.white
         layout.gravity = ALSGravity.CENTER
         self.view = layout
         self.title = "LinearLayout code"
@@ -22,7 +22,7 @@ class LinearLayoutByCodeController: UIViewController {
         for i in 1...5 {
             let label = UILabel()
             label.text = String(i)
-            label.textColor = UIColor.darkTextColor()
+            label.textColor = UIColor.darkText
             layout.addSubview(label) { lp in
                 lp.widthMode = .WrapContent
                 lp.heightMode = .WrapContent

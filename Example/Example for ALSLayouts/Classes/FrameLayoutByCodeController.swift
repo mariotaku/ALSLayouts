@@ -12,13 +12,13 @@ import ALSLayouts
 class FrameLayoutByCodeController: UIViewController {
     override func viewDidLoad() {
         let layout = ALSFrameLayout()
-        layout.backgroundColor = UIColor.whiteColor()
+        layout.backgroundColor = UIColor.white
         self.view = layout
         self.title = "FrameLayout code"
         
         let label = UILabel()
         label.text = "AutoLayout Sucks"
-        label.textColor = UIColor.darkTextColor()
+        label.textColor = UIColor.darkText
         layout.addSubview(label) { lp in
             lp.widthMode = .WrapContent
             lp.heightMode = .WrapContent

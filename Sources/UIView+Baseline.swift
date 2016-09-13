@@ -28,7 +28,7 @@ extension UIView {
             return (self as! ALSBaselineSupport).calculateBaselineBottomValue()
         default: break
         }
-        return CGFloat.NaN
+        return CGFloat.nan
     }
     
 }

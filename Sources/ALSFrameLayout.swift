@@ -31,12 +31,12 @@ import UIKit
  * - Author: Mariotaku Lee
  * - Date: Sep 1, 2016
  */
-@IBDesignable
-public class ALSFrameLayout: ALSBaseLayout {
+//@IBDesignable
+open class ALSFrameLayout: ALSBaseLayout {
     
-    private static let DEFAULT_CHILD_GRAVITY = ALSGravity.TOP | ALSGravity.LEADING
+    fileprivate static let DEFAULT_CHILD_GRAVITY = ALSGravity.TOP | ALSGravity.LEADING
     
-    private var matchParentSubviews: [UIView] = [UIView]()
+    fileprivate var matchParentSubviews: [UIView] = [UIView]()
     
     /**
      Sets whether to consider all subviews, or just those in
@@ -45,14 +45,14 @@ public class ALSFrameLayout: ALSBaseLayout {
      true to consider subviews marked GONE, false otherwise.
      Default value is false.
      */
-    @IBInspectable public var measureAllSubviews: Bool = false {
+    @IBInspectable open var measureAllSubviews: Bool = false {
         didSet {
             setNeedsLayout()
         }
     }
     
     /// Layout subviews
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         
         measureSubviews(self.bounds.size)
         
@@ -101,28 +101,28 @@ public class ALSFrameLayout: ALSBaseLayout {
                     childTop = parentTop + lp.marginTop
                 }
                 
-                child.frame = CGRectMake(childLeft, childTop, width, height)
+                child.frame = CGRect(x: childLeft, y: childTop, width: width, height: height)
             } else {
-                child.frame = CGRectZero
+                child.frame = CGRect.zero
             }
         }
     }
     
     /// Measure subviews
-    override func measureSubviews(size: CGSize) -> CGSize {
+    override func measureSubviews(_ size: CGSize) -> CGSize {
         
         let measureMatchParentSubview = widthMode == .WrapContent || heightMode == .WrapContent
         matchParentSubviews.removeAll()
         
-        let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
-        let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
+        let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .exactly
+        let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .exactly
         
         var widthMeasureSpec: ALSLayoutParams.MeasureSpec = (size.width, widthSpec)
         var heightMeasureSpec: ALSLayoutParams.MeasureSpec = (size.height, heightSpec)
         
         var maxHeight: CGFloat = 0
         var maxWidth: CGFloat = 0
-        var subviewState: ALSLayoutParams.MeasureStates = (.Unspecified, .Unspecified)
+        var subviewState: ALSLayoutParams.MeasureStates = (.unspecified, .unspecified)
         
         let layoutDirection = self.layoutDirection
         
@@ -162,7 +162,7 @@ public class ALSFrameLayout: ALSBaseLayout {
                 let subviewWidthMeasureSpec: ALSLayoutParams.MeasureSpec
                 if (lp.widthMode == .MatchParent) {
                     let width = max(0, widthMeasureSpec.0 - actualLayoutMargins.left - actualLayoutMargins.right - lp.marginAbsLeft - lp.marginAbsRight)
-                    subviewWidthMeasureSpec = (width, .Exactly)
+                    subviewWidthMeasureSpec = (width, .exactly)
                 } else {
                     subviewWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(widthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight, childDimension: lp.width, childDimensionMode: lp.widthMode)
                 }
@@ -170,7 +170,7 @@ public class ALSFrameLayout: ALSBaseLayout {
                 let subviewHeightMeasureSpec: ALSLayoutParams.MeasureSpec
                 if (lp.heightMode == .MatchParent) {
                     let height = max(0, heightMeasureSpec.0 - actualLayoutMargins.top - actualLayoutMargins.bottom - lp.marginTop - lp.marginBottom)
-                    subviewHeightMeasureSpec = (height, .Exactly)
+                    subviewHeightMeasureSpec = (height, .exactly)
                 } else {
                     subviewHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(heightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom, childDimension: lp.height, childDimensionMode: lp.heightMode)
                 }

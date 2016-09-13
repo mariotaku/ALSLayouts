@@ -13,46 +13,46 @@ class RelativeLayoutTableController: UITableViewController {
     
     var hideProfileImage: Bool = false
     
-    @IBAction func toggleProfileImage(sender: AnyObject) {
+    @IBAction func toggleProfileImage(_ sender: AnyObject) {
         self.hideProfileImage = !self.hideProfileImage
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerNib(UINib(nibName: "RelativeLayoutCell", bundle: nil), forCellReuseIdentifier: "RelativeLayoutNibCell")
+        tableView.register(UINib(nibName: "RelativeLayoutCell", bundle: nil), forCellReuseIdentifier: "RelativeLayoutNibCell")
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Storyboard" : "Nib"
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let name = indexPath.section == 0 ? "RelativeLayoutItem" : "RelativeLayoutNibCell"
+        let name = (indexPath as NSIndexPath).section == 0 ? "RelativeLayoutItem" : "RelativeLayoutNibCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(name, forIndexPath: indexPath) as! RelativeLayoutTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: name, for: indexPath) as! RelativeLayoutTableCell
         cell.profileImageView.layoutParams.hidden = self.hideProfileImage
-        cell.display(LoremLpsum.data[indexPath.item % LoremLpsum.data.count])
+        cell.display(LoremLpsum.data[(indexPath as NSIndexPath).item % LoremLpsum.data.count])
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let name = indexPath.section == 0 ? "RelativeLayoutItem" : "RelativeLayoutNibCell"
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let name = (indexPath as NSIndexPath).section == 0 ? "RelativeLayoutItem" : "RelativeLayoutNibCell"
         
-        return tableView.fd_heightForCellWithIdentifier(name, cacheByIndexPath: indexPath) { cell in
+        return tableView.fd_heightForCell(withIdentifier: name, cacheBy: indexPath) { cell in
             let tableCell = cell as! RelativeLayoutTableCell
             tableCell.profileImageView.layoutParams.hidden = self.hideProfileImage
-            tableCell.display(LoremLpsum.data[indexPath.item % LoremLpsum.data.count])
+            tableCell.display(LoremLpsum.data[(indexPath as NSIndexPath).item % LoremLpsum.data.count])
         }
     }
     

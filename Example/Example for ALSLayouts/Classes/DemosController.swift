@@ -20,35 +20,35 @@ class DemosController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         handleManualLaunch(indexPath)
     }
     
-    func handleManualLaunch(indexPath: NSIndexPath) -> Bool {
-        switch indexPath.section {
+    func handleManualLaunch(_ indexPath: IndexPath) -> Bool {
+        switch (indexPath as NSIndexPath).section {
         case 0:
-            switch indexPath.item {
+            switch (indexPath as NSIndexPath).item {
             case 1:
                 let vc = FrameLayoutByCodeController()
-                navigationController?.showViewController(vc, sender: self)
+                navigationController?.show(vc, sender: self)
                 return true
             default:
                 return false
             }
         case 1:
-            switch indexPath.item {
+            switch (indexPath as NSIndexPath).item {
             case 1:
                 let vc = RelativeLayoutByCodeController()
-                navigationController?.showViewController(vc, sender: self)
+                navigationController?.show(vc, sender: self)
                 return true
             default:
                 return false
             }
         case 2:
-            switch indexPath.item {
+            switch (indexPath as NSIndexPath).item {
             case 1:
                 let vc = LinearLayoutByCodeController()
-                navigationController?.showViewController(vc, sender: self)
+                navigationController?.show(vc, sender: self)
                 return true
             default:
                 return false

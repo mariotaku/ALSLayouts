@@ -15,23 +15,23 @@ class FrameLayoutTableController: UITableViewController {
         tableView.estimatedRowHeight = 60
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FrameLayoutItem", forIndexPath: indexPath) as! FrameLayoutTableCell
-        cell.display(indexPath.item % 2 == 0)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FrameLayoutItem", for: indexPath) as! FrameLayoutTableCell
+        cell.display((indexPath as NSIndexPath).item % 2 == 0)
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.fd_heightForCellWithIdentifier("FrameLayoutItem", cacheByIndexPath: indexPath) { cell in
-            (cell as! FrameLayoutTableCell).display(indexPath.item % 2 == 0)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.fd_heightForCell(withIdentifier: "FrameLayoutItem", cacheBy: indexPath) { cell in
+            (cell as! FrameLayoutTableCell).display((indexPath as NSIndexPath).item % 2 == 0)
         }
     }
     

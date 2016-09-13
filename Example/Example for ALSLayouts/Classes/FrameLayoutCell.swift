@@ -13,13 +13,13 @@ class FrameLayoutTableCell: UITableViewCell {
     
     @IBOutlet weak var centerLabel: UILabel!
     
-    func display(hideCenter: Bool) {
+    func display(_ hideCenter: Bool) {
         let layout = contentView.subviews.first as! ALSBaseLayout
         centerLabel.layoutParams.hidden = hideCenter
         layout.setNeedsLayout()
     }
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         let layout = contentView.subviews.first as! ALSBaseLayout
         var layoutSize = size
         layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right

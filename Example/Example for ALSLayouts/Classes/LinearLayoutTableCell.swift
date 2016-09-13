@@ -13,13 +13,13 @@ class LinearLayoutTableCell: UITableViewCell {
     
     @IBOutlet weak var textView: UILabel!
     
-    func display(data: String) {
+    func display(_ data: String) {
         textView.text = data
         let layout = contentView.subviews.first as! ALSBaseLayout
         layout.setNeedsLayout()
     }
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         let layout = contentView.subviews.first as! ALSBaseLayout
         var layoutSize = size
         layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right

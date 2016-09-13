@@ -28,7 +28,8 @@ import UIKit
  * - Author: Mariotaku Lee
  * - Date: Sep 2, 2016
  */
-public class ALSRelativeLayout: ALSBaseLayout {
+//@IBDesignable
+open class ALSRelativeLayout: ALSBaseLayout {
     
     static let TRUE = -1
     
@@ -139,31 +140,31 @@ public class ALSRelativeLayout: ALSBaseLayout {
     
     static let RULES_HORIZONTAL: [Int] = [LEFT_OF, RIGHT_OF, ALIGN_LEFT, ALIGN_RIGHT, LEADING_OF, TRAILING_OF, ALIGN_LEADING, ALIGN_TRAILING]
     
-    private var baselineView: UIView? = nil
+    fileprivate var baselineView: UIView? = nil
     
-    private var contentBounds = CGRect()
-    private var selfBounds = CGRect()
-    private var ignoreGravity: Int = 0
+    fileprivate var contentBounds = CGRect()
+    fileprivate var selfBounds = CGRect()
+    fileprivate var ignoreGravity: Int = 0
     
-    private var dirtyHierarchy: Bool = false
-    private var sortedHorizontalSubviews: [UIView!]! = nil
-    private var sortedVerticalSubviews: [UIView!]! = nil
-    private let graph = DependencyGraph()
+    fileprivate var dirtyHierarchy: Bool = false
+    fileprivate var sortedHorizontalSubviews: [UIView?]! = nil
+    fileprivate var sortedVerticalSubviews: [UIView?]! = nil
+    fileprivate let graph = DependencyGraph()
 
     /// Overrides system implementation
-    public override func setNeedsLayout() {
+    open override func setNeedsLayout() {
         super.setNeedsLayout()
         dirtyHierarchy = true
     }
     
     /// Overrides system implementation
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         dirtyHierarchy = true
     }
     
     /// Calculate proper size
-    public override func sizeThatFits(size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         // Resolve int view tags
         for (_, lp) in layoutParamsMap {
             lp.resolveViewTags()
@@ -172,7 +173,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
     }
     
     /// Measure subviews
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         // Resolve int view tags
         for (_, lp) in layoutParamsMap {
             lp.resolveViewTags()
@@ -184,15 +185,15 @@ public class ALSRelativeLayout: ALSBaseLayout {
         for subview in subviews {
             let st = subview.layoutParams
             if (!st.hidden) {
-                subview.frame = CGRectMake(st.left, st.top, st.right - st.left, st.bottom - st.top)
+                subview.frame = CGRect(x: st.left, y: st.top, width: st.right - st.left, height: st.bottom - st.top)
             } else {
-                subview.frame = CGRectZero
+                subview.frame = CGRect.zero
             }
         }
     }
     
     /// Layout subviews
-    internal override func measureSubviews(size: CGSize) -> CGSize {
+    internal override func measureSubviews(_ size: CGSize) -> CGSize {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
             sortChildren()
@@ -204,25 +205,25 @@ public class ALSRelativeLayout: ALSBaseLayout {
         var width: CGFloat = 0
         var height: CGFloat = 0
         
-        let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .Exactly
-        let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .Exactly
+        let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .exactly
+        let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .exactly
         
         let widthSize = size.width
         let heightSize = size.height
         
         // Record our dimensions if they are known;
-        if (widthSpec != .Unspecified) {
+        if (widthSpec != .unspecified) {
             myWidth = widthSize
         }
         
-        if (heightSpec != .Unspecified) {
+        if (heightSpec != .unspecified) {
             myHeight = heightSize
         }
         
         if (widthMode == .StaticSize) {
             width = myWidth
         } else if (widthMode == .MatchParent) {
-            if let parent = superview where !(parent is ALSBaseLayout) {
+            if let parent = superview , !(parent is ALSBaseLayout) {
                 width = parent.frame.width - parent.layoutMargins.left - parent.layoutMargins.right
             } else {
                 width = myWidth
@@ -232,7 +233,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         if (heightMode == .StaticSize) {
             height = myHeight
         } else if (heightMode == .MatchParent) {
-            if let parent = superview where !(parent is ALSBaseLayout) {
+            if let parent = superview , !(parent is ALSBaseLayout) {
                 height = parent.frame.height - parent.layoutMargins.top - parent.layoutMargins.bottom
             } else {
                 height = myHeight
@@ -245,10 +246,10 @@ public class ALSRelativeLayout: ALSBaseLayout {
         gravity = self.gravity & ALSGravity.VERTICAL_GRAVITY_MASK
         let verticalGravity = gravity != ALSGravity.TOP && gravity != 0
         
-        var left = CGFloat.max
-        var top = CGFloat.max
-        var right = CGFloat.min
-        var bottom = CGFloat.min
+        var left = CGFloat.greatestFiniteMagnitude
+        var top = CGFloat.greatestFiniteMagnitude
+        var right = CGFloat.leastNormalMagnitude
+        var bottom = CGFloat.leastNormalMagnitude
         
         var offsetHorizontalAxis = false
         var offsetVerticalAxis = false
@@ -265,33 +266,33 @@ public class ALSRelativeLayout: ALSBaseLayout {
         // So, instead of running the code twice, we just set the width to a "default display width"
         // before the computation and then, as a last pass, we will update their real position with
         // an offset equals to "DEFAULT_WIDTH - width".
-        let isLayoutRtl = layoutDirection == .RightToLeft
+        let isLayoutRtl = layoutDirection == .rightToLeft
         if (isLayoutRtl && myWidth == -1) {
-            myWidth = CGFloat.NaN
+            myWidth = CGFloat.nan
         }
         
         
-        for subview in sortedHorizontalSubviews {
-            let params = subview.layoutParams
+        for subview in sortedHorizontalSubviews! where subview != nil {
+            let params = subview!.layoutParams
             if (!params.hidden) {
                 let rules = params.getRules(layoutDirection)
                 
                 applyHorizontalSizeRules(params, myWidth: myWidth, rules: rules)
-                measureChildHorizontal(subview, params: params, myWidth: myWidth, myHeight: myHeight)
+                measureChildHorizontal(subview!, params: params, myWidth: myWidth, myHeight: myHeight)
                 
-                if (positionChildHorizontal(subview, params: params, myWidth: myWidth, wrapContent: isWrapContentWidth)) {
+                if (positionChildHorizontal(subview!, params: params, myWidth: myWidth, wrapContent: isWrapContentWidth)) {
                     offsetHorizontalAxis = true
                 }
             }
         }
         
         
-        for subview in sortedVerticalSubviews {
-            let params = subview.layoutParams
+        for subview in sortedVerticalSubviews! where subview != nil {
+            let params = subview!.layoutParams
             if (!params.hidden) {
-                applyVerticalSizeRules(params, myHeight: myHeight, myBaseline: subview.baselineBottomValue)
-                measureChild(subview, params: params, myWidth: myWidth, myHeight: myHeight)
-                if (positionChildVertical(subview, params: params, myHeight: myHeight, wrapContent: isWrapContentHeight)) {
+                applyVerticalSizeRules(params, myHeight: myHeight, myBaseline: (subview?.baselineBottomValue)!)
+                measureChild(subview!, params: params, myWidth: myWidth, myHeight: myHeight)
+                if (positionChildVertical(subview!, params: params, myHeight: myHeight, wrapContent: isWrapContentHeight)) {
                     offsetVerticalAxis = true
                 }
                 
@@ -324,9 +325,9 @@ public class ALSRelativeLayout: ALSBaseLayout {
         var baselineView: UIView? = nil
         var baselineParams: ALSLayoutParams? = nil
         for subview in sortedVerticalSubviews {
-            let childParams = subview.layoutParams
-            if (!childParams.hidden) {
-                if (baselineView == nil || baselineParams == nil || (childParams - baselineParams!) < 0) {
+            let childParams = subview?.layoutParams
+            if (!(childParams?.hidden)!) {
+                if (baselineView == nil || baselineParams == nil || (childParams! - baselineParams!) < 0) {
                     baselineView = subview
                     baselineParams = childParams
                 }
@@ -349,11 +350,11 @@ public class ALSRelativeLayout: ALSBaseLayout {
             
             if (offsetHorizontalAxis) {
                 for subview in sortedVerticalSubviews {
-                    let params = subview.layoutParams
+                    let params = subview!.layoutParams
                     if (!params.hidden) {
                         let rules = params.getRules(layoutDirection)
                         if (rules[ALSRelativeLayout.CENTER_IN_PARENT] != 0 || rules[ALSRelativeLayout.CENTER_HORIZONTAL] != 0) {
-                            ALSRelativeLayout.centerHorizontal(subview, params: params, myWidth: width)
+                            ALSRelativeLayout.centerHorizontal(subview!, params: params, myWidth: width)
                         } else if (rules[ALSRelativeLayout.ALIGN_PARENT_RIGHT] != 0) {
                             let childWidth = params.measuredWidth
                             params.left = width - actualLayoutMargins.right - childWidth
@@ -379,11 +380,11 @@ public class ALSRelativeLayout: ALSBaseLayout {
             
             if (offsetVerticalAxis) {
                 for subview in sortedVerticalSubviews {
-                    let params = subview.layoutParams
+                    let params = subview!.layoutParams
                     if (!params.hidden) {
                         let rules = params.getRules(layoutDirection)
                         if (rules[ALSRelativeLayout.CENTER_IN_PARENT] != 0 || rules[ALSRelativeLayout.CENTER_VERTICAL] != 0) {
-                            ALSRelativeLayout.centerVertical(subview, params: params, myHeight: height)
+                            ALSRelativeLayout.centerVertical(subview!, params: params, myHeight: height)
                         } else if (rules[ALSRelativeLayout.ALIGN_PARENT_BOTTOM] != 0) {
                             let childHeight = params.measuredHeight
                             params.top = height - actualLayoutMargins.bottom - childHeight
@@ -406,7 +407,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             let verticalOffset = contentBounds.top - top
             if (horizontalOffset != 0 || verticalOffset != 0) {
                 for subview in sortedVerticalSubviews {
-                    let params = subview.layoutParams
+                    let params = subview!.layoutParams
                     if (!params.hidden && subview !== ignore) {
                         
                         if (horizontalGravity) {
@@ -425,7 +426,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         if (isLayoutRtl) {
             let offsetWidth = myWidth - width
             for subview in sortedVerticalSubviews {
-                let params = subview.layoutParams
+                let params = subview!.layoutParams
                 if (!params.hidden) {
                     params.left -= offsetWidth
                     params.right -= offsetWidth
@@ -447,7 +448,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         return measuredSize
     }
     
-    private func sortChildren() {
+    fileprivate func sortChildren() {
         let subViewsCount = subviews.count
         
         self.graph.clear()
@@ -458,11 +459,11 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         
         if (sortedVerticalSubviews?.count != subViewsCount) {
-            sortedVerticalSubviews = [UIView!](count: subViewsCount, repeatedValue: nil)
+            sortedVerticalSubviews = [UIView?](repeating: nil, count: subViewsCount)
         }
         
         if (sortedHorizontalSubviews?.count != subViewsCount) {
-            sortedHorizontalSubviews = [UIView!](count: subViewsCount, repeatedValue: nil)
+            sortedHorizontalSubviews = [UIView?](repeating: nil, count: subViewsCount)
         }
         
         self.graph.getSortedViews(&sortedVerticalSubviews!, rules: ALSRelativeLayout.RULES_VERTICAL)
@@ -482,7 +483,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
      * *
      * @param myHeight Height of the RelativeLayout
      */
-    private func measureChild(child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
+    fileprivate func measureChild(_ child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
         let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: actualLayoutMargins.left, endPadding: actualLayoutMargins.right, mySize: myWidth)
         
         let childHeightMeasureSpec = getChildMeasureSpec(params.top, childEnd: params.bottom, childSize: params.height, childSizeMode: params.heightMode, startMargin: params.marginTop, endMargin: params.marginBottom, startPadding: actualLayoutMargins.top, endPadding: actualLayoutMargins.bottom, mySize: myHeight)
@@ -490,31 +491,31 @@ public class ALSRelativeLayout: ALSBaseLayout {
         params.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     
-    private func measureChildHorizontal(child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
+    fileprivate func measureChildHorizontal(_ child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
         let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: actualLayoutMargins.left, endPadding: actualLayoutMargins.right, mySize: myWidth)
         
         var measuredHeight: CGFloat = 0
-        var measuredHeightSpec: ALSLayoutParams.MeasureSpecMode = .Unspecified
+        var measuredHeightSpec: ALSLayoutParams.MeasureSpecMode = .unspecified
         if (myHeight < 0) {
             if (params.heightMode == .StaticSize) {
                 // Height mode is EXACTLY in Android source
                 measuredHeight = params.height
-                measuredHeightSpec = .Exactly
+                measuredHeightSpec = .exactly
             } else {
                 // Negative values in a mySize/myWidth/myWidth value in
                 // RelativeLayout measurement is code for, "we got an
                 // unspecified mode in the RelativeLayout's measure spec."
                 // Carry it forward.
                 measuredHeight = 0
-                measuredHeightSpec = .Unspecified
+                measuredHeightSpec = .unspecified
             }
         } else {
             let maxHeight = max(0, myHeight - actualLayoutMargins.top - actualLayoutMargins.bottom - params.marginTop - params.marginBottom)
             
             if (params.heightMode == .MatchParent) {
-                measuredHeightSpec = .Exactly
+                measuredHeightSpec = .exactly
             } else {
-                measuredHeightSpec = .AtMost
+                measuredHeightSpec = .atMost
             }
             measuredHeight = maxHeight
         }
@@ -546,11 +547,11 @@ public class ALSRelativeLayout: ALSBaseLayout {
      * *
      * @return MeasureSpecMode for the child
      */
-    private func getChildMeasureSpec(childStart: CGFloat, childEnd: CGFloat,
+    fileprivate func getChildMeasureSpec(_ childStart: CGFloat, childEnd: CGFloat,
                                      childSize: CGFloat, childSizeMode: ALSLayoutParams.SizeMode,
                                      startMargin: CGFloat, endMargin: CGFloat, startPadding: CGFloat,
                                      endPadding: CGFloat, mySize: CGFloat) -> ALSLayoutParams.MeasureSpec {
-        var childSpecMode: ALSLayoutParams.MeasureSpecMode = .Unspecified
+        var childSpecMode: ALSLayoutParams.MeasureSpecMode = .unspecified
         var childSpecSize: CGFloat = 0
         
         // Negative values in a mySize value in RelativeLayout
@@ -561,15 +562,15 @@ public class ALSRelativeLayout: ALSBaseLayout {
             if (!childStart.isNaN && !childEnd.isNaN) {
                 // Constraints fixed both edges, so child has an exact size.
                 childSpecSize = max(0, childEnd - childStart)
-                childSpecMode = .Exactly
+                childSpecMode = .exactly
             } else if (childSizeMode == .StaticSize) {
                 // The child specified an exact size.
                 childSpecSize = childSize
-                childSpecMode = .Exactly
+                childSpecMode = .exactly
             } else {
                 // Allow the child to be whatever size it wants.
                 childSpecSize = 0
-                childSpecMode = .Unspecified
+                childSpecMode = .unspecified
             }
             
             return (childSpecSize, childSpecMode)
@@ -593,13 +594,13 @@ public class ALSRelativeLayout: ALSBaseLayout {
         
         if (!childStart.isNaN && !childEnd.isNaN) {
             // Constraints fixed both edges, so child must be an exact size.
-            childSpecMode = isUnspecified ? .Unspecified : .Exactly
+            childSpecMode = isUnspecified ? .unspecified : .exactly
             childSpecSize = max(0, maxAvailable)
         } else {
             switch (childSizeMode) {
             case .StaticSize:
                 // Child wanted an exact size. Give as much as possible.
-                childSpecMode = .Exactly
+                childSpecMode = .exactly
                 
                 if (maxAvailable >= 0) {
                     // We have a maximum size in this dimension.
@@ -612,19 +613,19 @@ public class ALSRelativeLayout: ALSBaseLayout {
             case .MatchParent:
                 // Child wanted to be as big as possible. Give all available
                 // space.
-                childSpecMode = isUnspecified ? .Unspecified : .Exactly
+                childSpecMode = isUnspecified ? .unspecified : .exactly
                 childSpecSize = max(0, maxAvailable)
             case .WrapContent:
                 // Child wants to wrap content. Use AT_MOST to communicate
                 // available space if we know our max size.
                 if (maxAvailable >= 0) {
                     // We have a maximum size in this dimension.
-                    childSpecMode = .AtMost
+                    childSpecMode = .atMost
                     childSpecSize = maxAvailable
                 } else {
                     // We can grow in this dimension. Child can be as big as it
                     // wants.
-                    childSpecMode = .Unspecified
+                    childSpecMode = .unspecified
                     childSpecSize = 0
                 }
             }
@@ -634,7 +635,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
     }
     
     
-    private func positionChildHorizontal(child: UIView, params: ALSLayoutParams, myWidth:CGFloat,
+    fileprivate func positionChildHorizontal(_ child: UIView, params: ALSLayoutParams, myWidth:CGFloat,
                                          wrapContent: Bool) -> Bool {
         
         let rules = params.getRules(self.layoutDirection)
@@ -658,7 +659,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
             } else {
                 // This is the default case. For RTL we start from the right and for LTR we start
                 // from the left. This will give LEFT/TOP for LTR and RIGHT/TOP for RTL.
-                if (layoutDirection == .RightToLeft) {
+                if (layoutDirection == .rightToLeft) {
                     
                     params.right = myWidth - actualLayoutMargins.right - params.marginAbsRight
                     params.left = params.right - params.measuredWidth
@@ -672,7 +673,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
     }
     
     
-    private func positionChildVertical(child: UIView, params: ALSLayoutParams, myHeight: CGFloat,
+    fileprivate func positionChildVertical(_ child: UIView, params: ALSLayoutParams, myHeight: CGFloat,
                                        wrapContent: Bool) -> Bool {
         
         let rules = params.getRules()
@@ -702,7 +703,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
     }
     
     
-    private func applyHorizontalSizeRules(childParams: ALSLayoutParams, myWidth: CGFloat, rules: [Int]) {
+    fileprivate func applyHorizontalSizeRules(_ childParams: ALSLayoutParams, myWidth: CGFloat, rules: [Int]) {
         var anchorParams: ALSLayoutParams!
         
         // VALUE_NOT_SET indicates a "soft requirement" in that direction. For example:
@@ -711,8 +712,8 @@ public class ALSRelativeLayout: ALSBaseLayout {
         // left=VALUE_NOT_SET, right=10 means the view must end at 10, but can go as far as it
         // wants to the left
         // left=10, right=20 means the left and right ends are both fixed
-        childParams.left = CGFloat.NaN
-        childParams.right = CGFloat.NaN
+        childParams.left = CGFloat.nan
+        childParams.right = CGFloat.nan
         
         anchorParams = getRelatedViewParams(rules, relation: ALSRelativeLayout.LEFT_OF)
         if (anchorParams != nil) {
@@ -757,7 +758,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
     }
     
-    private func applyVerticalSizeRules(childParams: ALSLayoutParams, myHeight: CGFloat, myBaseline: CGFloat) {
+    fileprivate func applyVerticalSizeRules(_ childParams: ALSLayoutParams, myHeight: CGFloat, myBaseline: CGFloat) {
         let rules = childParams.getRules()
         
         // Baseline alignment overrides any explicitly specified top or bottom.
@@ -767,14 +768,14 @@ public class ALSRelativeLayout: ALSBaseLayout {
                 baselineOffset -= myBaseline
             }
             childParams.top = baselineOffset
-            childParams.bottom = CGFloat.NaN
+            childParams.bottom = CGFloat.nan
             return
         }
         
         var anchorParams: ALSLayoutParams!
         
-        childParams.top = CGFloat.NaN
-        childParams.bottom = CGFloat.NaN
+        childParams.top = CGFloat.nan
+        childParams.bottom = CGFloat.nan
         
         anchorParams = getRelatedViewParams(rules, relation: ALSRelativeLayout.ABOVE)
         if (anchorParams != nil) {
@@ -819,7 +820,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         }
     }
     
-    private func getRelatedView(rules: [Int], relation: Int) -> UIView? {
+    fileprivate func getRelatedView(_ rules: [Int], relation: Int) -> UIView? {
         var curRules = rules
         let tag = rules[relation]
         if (tag != 0) {
@@ -845,26 +846,26 @@ public class ALSRelativeLayout: ALSBaseLayout {
         return nil
     }
     
-    private func getRelatedViewParams(rules: [Int], relation: Int) -> ALSLayoutParams? {
+    fileprivate func getRelatedViewParams(_ rules: [Int], relation: Int) -> ALSLayoutParams? {
         guard let v = getRelatedView(rules, relation: relation) else {
             return nil
         }
         return v.layoutParams
     }
     
-    private func getRelatedViewBaselineOffset(rules: [Int]) -> CGFloat {
+    fileprivate func getRelatedViewBaselineOffset(_ rules: [Int]) -> CGFloat {
         guard let v = getRelatedView(rules, relation: ALSRelativeLayout.ALIGN_BASELINE) else {
-            return CGFloat.NaN
+            return CGFloat.nan
         }
         let baseline = v.baselineBottomValue
         if (!baseline.isNaN) {
             let params = v.layoutParams
             return params.top + baseline
         }
-        return CGFloat.NaN
+        return CGFloat.nan
     }
     
-    private static func centerHorizontal(child: UIView, params: ALSLayoutParams, myWidth: CGFloat) {
+    fileprivate static func centerHorizontal(_ child: UIView, params: ALSLayoutParams, myWidth: CGFloat) {
         let childWidth = params.measuredWidth
         let left = (myWidth - childWidth) / 2
         
@@ -872,7 +873,7 @@ public class ALSRelativeLayout: ALSBaseLayout {
         params.right = left + childWidth
     }
     
-    private static func centerVertical(child: UIView, params: ALSLayoutParams, myHeight: CGFloat) {
+    fileprivate static func centerVertical(_ child: UIView, params: ALSLayoutParams, myHeight: CGFloat) {
         let childHeight = params.measuredHeight
         let top = (myHeight - childHeight) / 2
         
@@ -880,17 +881,17 @@ public class ALSRelativeLayout: ALSBaseLayout {
         params.bottom = top + childHeight
     }
     
-    private static func resolveSize(size: CGFloat, specSize: CGFloat, specMode: ALSLayoutParams.MeasureSpecMode) -> CGFloat {
+    fileprivate static func resolveSize(_ size: CGFloat, specSize: CGFloat, specMode: ALSLayoutParams.MeasureSpecMode) -> CGFloat {
         switch (specMode) {
-        case .AtMost:
+        case .atMost:
             if (specSize < size) {
                 return specSize
             } else {
                 return size
             }
-        case .Exactly:
+        case .exactly:
             return specSize
-        case .Unspecified:
+        case .unspecified:
             return size
         }
     }

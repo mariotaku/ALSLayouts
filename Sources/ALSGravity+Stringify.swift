@@ -10,13 +10,13 @@ import Foundation
 
 extension ALSGravity {
     
-    static func parse(str: String) -> Int {
-        return str.componentsSeparatedByString("|").reduce(ALSGravity.NO_GRAVITY) { combined, gravityString -> Int in
+    static func parse(_ str: String) -> Int {
+        return str.components(separatedBy: "|").reduce(ALSGravity.NO_GRAVITY) { combined, gravityString -> Int in
             return combined | GravityString(rawValue: gravityString)!.intValue
         }
     }
     
-    static func format(gravity: Int) -> String {
+    static func format(_ gravity: Int) -> String {
         var strings = [String]()
         var value = gravity
         GravityString.allValues.forEach { gs in
@@ -25,7 +25,7 @@ extension ALSGravity {
                 value = value & ~gs.intValue
             }
         }
-        return strings.joinWithSeparator("|")
+        return strings.joined(separator: "|")
     }
     
     enum GravityString: String {

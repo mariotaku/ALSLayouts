@@ -10,7 +10,7 @@ import Foundation
 
 internal extension CGRect {
     
-    mutating func set(left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) {
+    mutating func set(_ left: CGFloat, top: CGFloat, right: CGFloat, bottom: CGFloat) {
         self.origin.y = top
         self.origin.x = left
         self.size.height = bottom - top

@@ -14,13 +14,13 @@ class RelativeLayoutTableCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIView!
     @IBOutlet weak var textView: UILabel!
     
-    func display(text: String) {
+    func display(_ text: String) {
         textView.text = text
         let layout = contentView.subviews.first as! ALSRelativeLayout
         layout.setNeedsLayout()
     }
     
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         let layout = contentView.subviews.first as! ALSBaseLayout
         var layoutSize = size
         layoutSize.width -= contentView.layoutMargins.left + contentView.layoutMargins.right
