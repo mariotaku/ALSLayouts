@@ -4,13 +4,10 @@
 
 osx_image: xcode8
 language: objective-c
-cache: cocoapods
-podfile: Example/Podfile
-xcode_workspace: Example/ALSLayouts.xcworkspace
-xcode_scheme: ALSLayouts-Example
 before_install:
   - gem install cocoapods # Since Travis is not always on latest version
-after_success:
+script:
+ - xcodebuild -scheme ALSLayouts-Example -sdk iphonesimulator build
   - pod lib lint
 deploy:
   provider: script
