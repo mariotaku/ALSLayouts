@@ -1,5 +1,5 @@
 PODS:
-  - ALSLayouts (0.2.6)
+  - ALSLayouts (0.2.7)
   - UITableView+FDTemplateLayoutCell (1.5.beta)
 
 DEPENDENCIES:
@@ -8,12 +8,12 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   ALSLayouts:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  ALSLayouts: fc0a18f56d5645511ec4e9afddf260d80b927832
+  ALSLayouts: dd439f7ad0ea10c92ff0d134ce9c3c7ba6b74c5c
   UITableView+FDTemplateLayoutCell: 02b508ab1cb4cea16a8c17ac83d2cd1fd72124f9
 
 PODFILE CHECKSUM: e7bf8aca34f8cbdfb8700b48da3a614248c5117c
 
-COCOAPODS: 1.1.0.beta.2
+COCOAPODS: 1.1.0.rc.1
