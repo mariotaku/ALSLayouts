@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE6237501D8A92EF00FB0314 /* ALSLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6237461D8A92EF00FB0314 /* ALSLayouts.framework */; };
-		CE6237551D8A92EF00FB0314 /* ALSLayouts_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6237541D8A92EF00FB0314 /* ALSLayouts_iOSTests.swift */; };
 		CE6237571D8A92EF00FB0314 /* ALSLayouts.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6237491D8A92EF00FB0314 /* ALSLayouts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE62376F1D8A947400FB0314 /* ALSBaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62375F1D8A947400FB0314 /* ALSBaseLayout.swift */; };
 		CE6237701D8A947400FB0314 /* ALSFrameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6237601D8A947400FB0314 /* ALSFrameLayout.swift */; };
@@ -26,6 +25,7 @@
 		CE62377C1D8A947400FB0314 /* UIView+StringTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62376C1D8A947400FB0314 /* UIView+StringTag.swift */; };
 		CE62377D1D8A947400FB0314 /* ALSBaselineSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62376D1D8A947400FB0314 /* ALSBaselineSupport.swift */; };
 		CE62377E1D8A947400FB0314 /* UIView+LayoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62376E1D8A947400FB0314 /* UIView+LayoutParams.swift */; };
+		CEDC4EAE1D8AA33300E1FEB7 /* ALSGravityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4EAD1D8AA33300E1FEB7 /* ALSGravityTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,6 @@
 		CE6237491D8A92EF00FB0314 /* ALSLayouts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALSLayouts.h; sourceTree = "<group>"; };
 		CE62374A1D8A92EF00FB0314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE62374F1D8A92EF00FB0314 /* ALSLayouts iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ALSLayouts iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE6237541D8A92EF00FB0314 /* ALSLayouts_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALSLayouts_iOSTests.swift; sourceTree = "<group>"; };
 		CE6237561D8A92EF00FB0314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE62375F1D8A947400FB0314 /* ALSBaseLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSBaseLayout.swift; sourceTree = "<group>"; };
 		CE6237601D8A947400FB0314 /* ALSFrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSFrameLayout.swift; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		CE62376C1D8A947400FB0314 /* UIView+StringTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+StringTag.swift"; sourceTree = "<group>"; };
 		CE62376D1D8A947400FB0314 /* ALSBaselineSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSBaselineSupport.swift; sourceTree = "<group>"; };
 		CE62376E1D8A947400FB0314 /* UIView+LayoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutParams.swift"; sourceTree = "<group>"; };
+		CEDC4EAD1D8AA33300E1FEB7 /* ALSGravityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSGravityTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 		CE6237531D8A92EF00FB0314 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CE6237541D8A92EF00FB0314 /* ALSLayouts_iOSTests.swift */,
+				CEDC4EAD1D8AA33300E1FEB7 /* ALSGravityTest.swift */,
 				CE6237561D8A92EF00FB0314 /* Info.plist */,
 			);
 			path = Tests;
@@ -202,6 +202,7 @@
 					CE62374E1D8A92EF00FB0314 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = K5277Y55W8;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -269,7 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6237551D8A92EF00FB0314 /* ALSLayouts_iOSTests.swift in Sources */,
+				CEDC4EAE1D8AA33300E1FEB7 /* ALSGravityTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

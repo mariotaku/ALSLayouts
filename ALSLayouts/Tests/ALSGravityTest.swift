@@ -1,15 +1,15 @@
 //
-//  ALSLayouts_iOSTests.swift
-//  ALSLayouts iOSTests
+//  ALSGravityTest.swift
+//  ALSLayouts
 //
 //  Created by Mariotaku Lee on 16/9/15.
 //
 //
 
 import XCTest
-@testable import ALSLayoutsiOS
+@testable import ALSLayouts
 
-class ALSLayouts_iOSTests: XCTestCase {
+class ALSGravityTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,15 +21,20 @@ class ALSLayouts_iOSTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testParse() {
+        XCTAssertEqual(ALSGravity.parse("Center"), ALSGravity.CENTER)
+        XCTAssertEqual(ALSGravity.parse("Left|Top"), ALSGravity.LEFT | ALSGravity.TOP)
+    }
+    
+    func testFormat() {
+        XCTAssertEqual(ALSGravity.format(ALSGravity.FILL), "Fill")
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
+            XCTAssertEqual(ALSGravity.parse("Fill"), ALSGravity.FILL)
         }
     }
     
