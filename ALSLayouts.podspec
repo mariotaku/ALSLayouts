@@ -30,8 +30,8 @@ You can specify layout parameters (constraints) in Interface Builder, or just ad
   s.source           = { :git => 'https://github.com/mariotaku/ALSLayouts.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/mariotaku'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
 
-  s.source_files = 'Sources/**/*'
+  s.source_files = 'ALSLayouts/Sources/**/*'
 
 end
