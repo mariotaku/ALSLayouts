@@ -19,10 +19,10 @@ import UIKit
  * Standard constants and tools for placing an object within a potentially
  * larger container.
  */
-open class ALSGravity {
+public class ALSGravity {
 
     /** Constant indicating that no gravity has been set */
-    open static let NO_GRAVITY: Int = 0x0000
+    public static let NO_GRAVITY: Int = 0x0000
 
     /** Raw bit indicating the gravity for an axis has been specified. */
     static let AXIS_SPECIFIED: Int = 0x0001
@@ -44,65 +44,65 @@ open class ALSGravity {
     /**
      * Push object to the top of its container, not changing its size.
      */
-    open static let TOP = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_Y_SHIFT
+    public static let TOP = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_Y_SHIFT
     /**
      * Push object to the bottom of its container, not changing its size.
      */
-    open static let BOTTOM = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_Y_SHIFT
+    public static let BOTTOM = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_Y_SHIFT
     /**
      * Push object to the left of its container, not changing its size.
      */
-    open static let LEFT = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_X_SHIFT
+    public static let LEFT = (AXIS_PULL_BEFORE | AXIS_SPECIFIED) << AXIS_X_SHIFT
     /**
      * Push object to the right of its container, not changing its size.
      */
-    open static let RIGHT = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_X_SHIFT
+    public static let RIGHT = (AXIS_PULL_AFTER | AXIS_SPECIFIED) << AXIS_X_SHIFT
 
     /**
      * Place object in the vertical center of its container, not changing its
      * size.
      */
-    open static let CENTER_VERTICAL = AXIS_SPECIFIED << AXIS_Y_SHIFT
+    public static let CENTER_VERTICAL = AXIS_SPECIFIED << AXIS_Y_SHIFT
     /**
      * Grow the vertical size of the object if needed so it completely fills
      * its container.
      */
-    open static let FILL_VERTICAL = TOP | BOTTOM
+    public static let FILL_VERTICAL = TOP | BOTTOM
 
     /**
      * Place object in the horizontal center of its container, not changing its
      * size.
      */
-    open static let CENTER_HORIZONTAL = AXIS_SPECIFIED << AXIS_X_SHIFT
+    public static let CENTER_HORIZONTAL = AXIS_SPECIFIED << AXIS_X_SHIFT
     /**
      * Grow the horizontal size of the object if needed so it completely fills
      * its container.
      */
-    open static let FILL_HORIZONTAL = LEFT | RIGHT
+    public static let FILL_HORIZONTAL = LEFT | RIGHT
 
     /**
      * Place the object in the center of its container in both the vertical
      * and horizontal axis, not changing its size.
      */
-    open static let CENTER = CENTER_VERTICAL | CENTER_HORIZONTAL
+    public static let CENTER = CENTER_VERTICAL | CENTER_HORIZONTAL
 
     /**
      * Grow the horizontal and vertical size of the object if needed so it
      * completely fills its container.
      */
-    open static let FILL = FILL_VERTICAL | FILL_HORIZONTAL
+    public static let FILL = FILL_VERTICAL | FILL_HORIZONTAL
 
     /**
      * Flag to clip the edges of the object to its container along the
      * vertical axis.
      */
-    open static let CLIP_VERTICAL = AXIS_CLIP << AXIS_Y_SHIFT
+    public static let CLIP_VERTICAL = AXIS_CLIP << AXIS_Y_SHIFT
 
     /**
      * Flag to clip the edges of the object to its container along the
      * horizontal axis.
      */
-    open static let CLIP_HORIZONTAL = AXIS_CLIP << AXIS_X_SHIFT
+    public static let CLIP_HORIZONTAL = AXIS_CLIP << AXIS_X_SHIFT
 
     /**
      * Raw bit controlling whether the layout direction is relative or not (LEADING/TRAILING instead of
@@ -138,12 +138,12 @@ open class ALSGravity {
     /**
      * Push object to x-axis position at the start of its container, not changing its size.
      */
-    open static let LEADING = RELATIVE_LAYOUT_DIRECTION | LEFT
+    public static let LEADING = RELATIVE_LAYOUT_DIRECTION | LEFT
 
     /**
      * Push object to x-axis position at the end of its container, not changing its size.
      */
-    open static let TRAILING = RELATIVE_LAYOUT_DIRECTION | RIGHT
+    public static let TRAILING = RELATIVE_LAYOUT_DIRECTION | RIGHT
 
     /**
      * Binary mask for the horizontal gravity and script specific direction bit.

@@ -141,11 +141,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NN1-Q1-C0r" id="DrI-cn-tvD">
-                                    <frame key="frameInset" width="375" height="123"/>
+                                    <frame key="frameInset" width="375" height="123.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" misplaced="YES" id="706-qX-eei" customClass="ALSFrameLayout" customModule="ALSLayouts">
-                                            <frame key="frameInset" minX="8" minY="8" height="92.61%" maxX="8"/>
+                                            <frame key="frameInset" minX="8" minY="8" height="92.21%" maxX="8"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lje-pr-NSW">

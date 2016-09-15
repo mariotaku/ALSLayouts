@@ -31,7 +31,6 @@ import UIKit
  * - Author: Mariotaku Lee
  * - Date: Sep 1, 2016
  */
-//@IBDesignable
 open class ALSFrameLayout: ALSBaseLayout {
     
     fileprivate static let DEFAULT_CHILD_GRAVITY = ALSGravity.TOP | ALSGravity.LEADING

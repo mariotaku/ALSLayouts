@@ -31,7 +31,6 @@ import UIKit
  - Author: Mariotaku Lee
  - Date: Sep 4, 2016
  */
-//@IBDesignable
 open class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     
     fileprivate static let VERTICAL_GRAVITY_COUNT = 4

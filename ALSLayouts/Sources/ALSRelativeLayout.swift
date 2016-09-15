@@ -28,7 +28,6 @@ import UIKit
  * - Author: Mariotaku Lee
  * - Date: Sep 2, 2016
  */
-//@IBDesignable
 open class ALSRelativeLayout: ALSBaseLayout {
     
     static let TRUE = -1
