@@ -55,6 +55,11 @@ public extension UIView {
         return viewWithTag(intTag)
     }
     
+    /**
+     Get int tag by string tag
+     
+     - returns: Int tag corresponding to string tag, 0 if not present
+     */
     internal static func getTag(byStringTag tag: String?) -> Int {
         if (tag == nil) {
             return 0
@@ -65,6 +70,11 @@ public extension UIView {
         return intTag
     }
     
+    /**
+     Get string tag by int tag
+     
+     - returns: String tag corresponding to int tag, nil if not present
+     */
     internal static func getStringTag(byTag tag: Int) -> String? {
         if (tag == 0) {
             return nil
@@ -72,5 +82,6 @@ public extension UIView {
         return tagPool.filter { (k, v) -> Bool in return v == tag }.first?.0
     }
     
-    fileprivate static var tagPool = [String: Int]()
+    /// Internal tag pool, starts with 101
+    private static var tagPool = [String: Int]()
 }
