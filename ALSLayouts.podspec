@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ALSLayouts'
-  s.version          = '0.2.7'
+  s.version          = '2.0.0'
   s.summary          = 'AutoLayout Alternative ported from Android'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ You can specify layout parameters (constraints) in Interface Builder, or just ad
   s.source           = { :git => 'https://github.com/mariotaku/ALSLayouts.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/mariotaku'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'Sources/**/*'
 
