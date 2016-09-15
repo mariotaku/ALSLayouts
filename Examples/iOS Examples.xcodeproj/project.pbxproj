@@ -10,7 +10,6 @@
 		CE3F14721D8A9EE000EBEA02 /* ALSLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE3F14711D8A9EE000EBEA02 /* ALSLayouts.framework */; };
 		CE3F14731D8A9EE000EBEA02 /* ALSLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE3F14711D8A9EE000EBEA02 /* ALSLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE62378E1D8A999E00FB0314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62378D1D8A999E00FB0314 /* AppDelegate.swift */; };
-		CE6237901D8A999E00FB0314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62378F1D8A999E00FB0314 /* ViewController.swift */; };
 		CE6237A31D8A999E00FB0314 /* ALSLayouts_iOS_ExamplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6237A21D8A999E00FB0314 /* ALSLayouts_iOS_ExamplesTests.swift */; };
 		CE6237AE1D8A999E00FB0314 /* ALSLayouts_iOS_ExamplesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6237AD1D8A999E00FB0314 /* ALSLayouts_iOS_ExamplesUITests.swift */; };
 		CE9801451D8A9AB9005C1BC6 /* DemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9801391D8A9AB9005C1BC6 /* DemosController.swift */; };
@@ -68,7 +67,6 @@
 		CE3F14711D8A9EE000EBEA02 /* ALSLayouts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ALSLayouts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE62378A1D8A999E00FB0314 /* iOS Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Examples.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE62378D1D8A999E00FB0314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE62378F1D8A999E00FB0314 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE6237991D8A999E00FB0314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE62379E1D8A999E00FB0314 /* iOS ExamplesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExamplesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6237A21D8A999E00FB0314 /* ALSLayouts_iOS_ExamplesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALSLayouts_iOS_ExamplesTests.swift; sourceTree = "<group>"; };
@@ -90,8 +88,8 @@
 		CE9801441D8A9AB9005C1BC6 /* LoremIpsum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
 		CE9801521D8A9B12005C1BC6 /* Examples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Examples.storyboard; sourceTree = "<group>"; };
 		CE9801531D8A9B12005C1BC6 /* AutoLayoutExamples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoLayoutExamples.storyboard; sourceTree = "<group>"; };
-		CE9801561D8A9B12005C1BC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		CE9801581D8A9B12005C1BC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		CE9801561D8A9B12005C1BC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CE9801581D8A9B12005C1BC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE9801591D8A9B12005C1BC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CE98015A1D8A9B12005C1BC6 /* RelativeLayoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelativeLayoutCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,14 +120,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE3F14751D8A9F4600EBEA02 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE9801531D8A9B12005C1BC6 /* AutoLayoutExamples.storyboard */,
+				CE9801521D8A9B12005C1BC6 /* Examples.storyboard */,
+				CE9801591D8A9B12005C1BC6 /* Images.xcassets */,
+				CE6237991D8A999E00FB0314 /* Info.plist */,
+				CE9801551D8A9B12005C1BC6 /* LaunchScreen.xib */,
+				CE9801571D8A9B12005C1BC6 /* Main.storyboard */,
+				CE98015A1D8A9B12005C1BC6 /* RelativeLayoutCell.xib */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CE6237811D8A999E00FB0314 = {
 			isa = PBXGroup;
 			children = (
-				CE3F14711D8A9EE000EBEA02 /* ALSLayouts.framework */,
 				CE62378B1D8A999E00FB0314 /* Products */,
 				CE62378C1D8A999E00FB0314 /* Sources */,
 				CE6237A11D8A999E00FB0314 /* Tests */,
 				CE6237AC1D8A999E00FB0314 /* UI Tests */,
+				CE3F14711D8A9EE000EBEA02 /* ALSLayouts.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,12 +158,9 @@
 		CE62378C1D8A999E00FB0314 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CE9801551D8A9B12005C1BC6 /* LaunchScreen.xib */,
-				CE9801571D8A9B12005C1BC6 /* Main.storyboard */,
-				CE9801521D8A9B12005C1BC6 /* Examples.storyboard */,
-				CE9801531D8A9B12005C1BC6 /* AutoLayoutExamples.storyboard */,
-				CE9801591D8A9B12005C1BC6 /* Images.xcassets */,
-				CE98015A1D8A9B12005C1BC6 /* RelativeLayoutCell.xib */,
+				CE3F14751D8A9F4600EBEA02 /* Supporting Files */,
+				CE62378D1D8A999E00FB0314 /* AppDelegate.swift */,
+				CE9801431D8A9AB9005C1BC6 /* DemoViewController.swift */,
 				CE9801391D8A9AB9005C1BC6 /* DemosController.swift */,
 				CE98013A1D8A9AB9005C1BC6 /* FrameLayoutByCodeController.swift */,
 				CE98013B1D8A9AB9005C1BC6 /* FrameLayoutCell.swift */,
@@ -159,14 +168,10 @@
 				CE98013D1D8A9AB9005C1BC6 /* LinearLayoutByCodeController.swift */,
 				CE98013E1D8A9AB9005C1BC6 /* LinearLayoutTableCell.swift */,
 				CE98013F1D8A9AB9005C1BC6 /* LinearLayoutTableController.swift */,
+				CE9801441D8A9AB9005C1BC6 /* LoremIpsum.swift */,
 				CE9801401D8A9AB9005C1BC6 /* RelativeLayoutByCodeController.swift */,
 				CE9801411D8A9AB9005C1BC6 /* RelativeLayoutTableCell.swift */,
 				CE9801421D8A9AB9005C1BC6 /* RelativeLayoutTableController.swift */,
-				CE9801431D8A9AB9005C1BC6 /* DemoViewController.swift */,
-				CE9801441D8A9AB9005C1BC6 /* LoremIpsum.swift */,
-				CE62378D1D8A999E00FB0314 /* AppDelegate.swift */,
-				CE6237991D8A999E00FB0314 /* Info.plist */,
-				CE62378F1D8A999E00FB0314 /* ViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -333,7 +338,6 @@
 				CE98014B1D8A9AB9005C1BC6 /* LinearLayoutTableController.swift in Sources */,
 				CE98014C1D8A9AB9005C1BC6 /* RelativeLayoutByCodeController.swift in Sources */,
 				CE9801501D8A9AB9005C1BC6 /* LoremIpsum.swift in Sources */,
-				CE6237901D8A999E00FB0314 /* ViewController.swift in Sources */,
 				CE98014D1D8A9AB9005C1BC6 /* RelativeLayoutTableCell.swift in Sources */,
 				CE9801491D8A9AB9005C1BC6 /* LinearLayoutByCodeController.swift in Sources */,
 				CE9801461D8A9AB9005C1BC6 /* FrameLayoutByCodeController.swift in Sources */,
@@ -385,7 +389,7 @@
 				CE9801561D8A9B12005C1BC6 /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = Base.lproj;
+			path = .;
 			sourceTree = "<group>";
 		};
 		CE9801571D8A9B12005C1BC6 /* Main.storyboard */ = {
@@ -394,7 +398,7 @@
 				CE9801581D8A9B12005C1BC6 /* Base */,
 			);
 			name = Main.storyboard;
-			path = Base.lproj;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -498,7 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K5277Y55W8;
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.mariotaku.ALSLayouts-iOS-Examples";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -511,7 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K5277Y55W8;
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.mariotaku.ALSLayouts-iOS-Examples";
 				PRODUCT_NAME = "$(TARGET_NAME)";
