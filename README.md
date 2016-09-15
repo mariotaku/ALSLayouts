@@ -7,6 +7,8 @@ Auto Layout ~~Sucks~~ Substitution
 [![License](https://img.shields.io/cocoapods/l/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 [![Platform](https://img.shields.io/cocoapods/p/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 
+**Swift 2 branch deprecated**
+
 AutoLayout is not easy to learn, especially managing constraints, which is really painful.
 
 ALSLayouts is a set of layouts ported from Android (ported literally, exact same behavior on iOS)
@@ -25,13 +27,17 @@ To run the example project, just execute `pod try ALSLayouts` in terminal.
 
 iOS 8 or later
 
+Xcode 7.3
+
+Swift 2
+
 ## Installation
 
 ALSLayouts is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'ALSLayouts', '~> x.y,z' # Latest version above
+pod 'ALSLayouts', '~> 1.0.0'
 ```
 
 ## Author
