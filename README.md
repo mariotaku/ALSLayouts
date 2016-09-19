@@ -32,8 +32,8 @@ iOS 8 or later
 
 Add the following line to your Cartfile:
 
-```ruby
-pod 'ALSLayouts', '~> x.y,z' # Latest version above
+```
+github "mariotaku/ALSLayouts" ~> x.y.z # Latest version above
 ```
 
 ### CocoaPods
@@ -41,7 +41,7 @@ pod 'ALSLayouts', '~> x.y,z' # Latest version above
 Add the following line to your Podfile:
 
 ```ruby
-pod 'ALSLayouts', '~> x.y,z' # Latest version above
+pod 'ALSLayouts', '~> x.y.z' # Latest version above
 ```
 
 ## Author
