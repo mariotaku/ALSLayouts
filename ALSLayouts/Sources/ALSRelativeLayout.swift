@@ -145,22 +145,10 @@ open class ALSRelativeLayout: ALSBaseLayout {
     fileprivate var selfBounds = CGRect()
     fileprivate var ignoreGravity: Int = 0
     
-    fileprivate var dirtyHierarchy: Bool = false
+    internal var dirtyHierarchy: Bool = false
     fileprivate var sortedHorizontalSubviews: [UIView?]! = nil
     fileprivate var sortedVerticalSubviews: [UIView?]! = nil
     fileprivate let graph = DependencyGraph()
-
-    /// Overrides system implementation
-    open override func setNeedsLayout() {
-        super.setNeedsLayout()
-        dirtyHierarchy = true
-    }
-    
-    /// Overrides system implementation
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        dirtyHierarchy = true
-    }
     
     /// Calculate proper size
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -178,7 +166,7 @@ open class ALSRelativeLayout: ALSBaseLayout {
             lp.resolveViewTags()
         }
         
-        measureSubviews(self.bounds.size)
+        _ = measureSubviews(self.bounds.size)
         
         // Final step, do actual layout
         for subview in subviews {
@@ -192,7 +180,7 @@ open class ALSRelativeLayout: ALSBaseLayout {
     }
     
     /// Layout subviews
-    @discardableResult override func measureSubviews(_ size: CGSize) -> CGSize {
+    override func measureSubviews(_ size: CGSize) -> CGSize {
         if (dirtyHierarchy) {
             dirtyHierarchy = false
             sortChildren()
@@ -206,6 +194,9 @@ open class ALSRelativeLayout: ALSBaseLayout {
         
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .exactly
         let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .exactly
+        
+        let widthMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.widthMode ?? self.widthMode
+        let heightMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.heightMode ?? self.heightMode
         
         let widthSize = size.width
         let heightSize = size.height

@@ -53,7 +53,7 @@ open class ALSFrameLayout: ALSBaseLayout {
     /// Layout subviews
     open override func layoutSubviews() {
         
-        measureSubviews(self.bounds.size)
+        _ = measureSubviews(self.bounds.size)
         
         let parentLeft = actualLayoutMargins.left
         let parentRight = self.frame.right - self.frame.left - actualLayoutMargins.right
@@ -108,7 +108,10 @@ open class ALSFrameLayout: ALSBaseLayout {
     }
     
     /// Measure subviews
-    @discardableResult override func measureSubviews(_ size: CGSize) -> CGSize {
+    override func measureSubviews(_ size: CGSize) -> CGSize {
+        
+        let widthMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.widthMode ?? self.widthMode
+        let heightMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.heightMode ?? self.heightMode
         
         let measureMatchParentSubview = widthMode == .WrapContent || heightMode == .WrapContent
         matchParentSubviews.removeAll()

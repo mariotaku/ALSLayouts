@@ -13,7 +13,6 @@ class RelativeLayoutByCodeController: UIViewController {
     override func viewDidLoad() {
         let layout = ALSRelativeLayout()
         layout.backgroundColor = UIColor.white
-        layout.gravity = ALSGravity.TRAILING|ALSGravity.BOTTOM
         self.view = layout
         self.title = "RelativeLayout code"
         

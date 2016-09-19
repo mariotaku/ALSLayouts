@@ -314,10 +314,12 @@ open class ALSLayoutParams {
     fileprivate var marginsChanged: Bool = false
     
     fileprivate var layoutDirection: UIUserInterfaceLayoutDirection = .leftToRight
+    fileprivate weak var view: UIView!
     
     public required init(view: UIView) {
         self.width = view.frame.width
         self.height = view.frame.height
+        self.view = view
         
         marginsChanged = true
         rulesChanged = true
@@ -508,6 +510,9 @@ open class ALSLayoutParams {
         rules[verb] = subject
         initialRules[verb] = subject
         rulesChanged = true;
+        if let rl = view.superview as? ALSRelativeLayout {
+            rl.dirtyHierarchy = true
+        }
     }
     
     fileprivate func getRule(_ verb: Int) -> Int {

@@ -260,7 +260,7 @@ open class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     }
     
     /// Measure subviews
-    @discardableResult override func measureSubviews(_ size: CGSize) -> CGSize {
+    override func measureSubviews(_ size: CGSize) -> CGSize {
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .exactly
         let heightSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredHeightSpec ?? .exactly
         
@@ -275,7 +275,7 @@ open class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
     
     /// Layout subviews
     open override func layoutSubviews() {
-        measureSubviews(self.bounds.size)
+        _ = measureSubviews(self.bounds.size)
         
         if (orientation == .Vertical) {
             layoutVertical(self.frame)
@@ -670,6 +670,8 @@ open class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
             forceUniformWidth(count, heightMeasureSpec: heightMeasureSpec)
         }
         
+        let heightMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.heightMode ?? self.heightMode
+        
         if (heightMode == .WrapContent) {
             return CGSize(width: finalSize.0, height: self.totalLength)
         } else {
@@ -1024,6 +1026,9 @@ open class ALSLinearLayout: ALSBaseLayout, ALSBaselineSupport {
         if (matchHeight) {
             forceUniformHeight(count, widthMeasureSpec: widthMeasureSpec)
         }
+        
+        
+        let widthMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.widthMode ?? self.widthMode
         
         if (widthMode == .WrapContent) {
             return CGSize(width: self.totalLength, height: finalSize.0)

@@ -25,6 +25,9 @@ extension ALSGravity {
                 value = value & ~gs.intValue
             }
         }
+        if (value != 0) {
+            return "Invalid \(gravity)"
+        }
         return strings.joined(separator: "|")
     }
     
