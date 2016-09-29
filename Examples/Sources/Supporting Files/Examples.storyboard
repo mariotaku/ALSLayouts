@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -11,7 +11,7 @@
             <objects>
                 <viewController storyboardIdentifier="FrameLayoutIB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YH6-oC-j8H" customClass="DemoViewController" customModule="iOS_Examples" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nc4-z2-vnd" customClass="ALSFrameLayout" customModule="ALSLayouts">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match Parent" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guu-ga-evm">
@@ -133,15 +133,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="FrameLayoutTableCell" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FNg-3M-AEJ" customClass="FrameLayoutTableController" customModule="iOS_Examples" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" id="AKF-O6-RWp">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FrameLayoutItem" id="NN1-Q1-C0r" customClass="FrameLayoutTableCell" customModule="iOS_Examples" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="124"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="124"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NN1-Q1-C0r" id="DrI-cn-tvD">
-                                    <frame key="frameInset" width="375" height="123.5"/>
+                                    <frame key="frameInset" width="320" height="123.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" misplaced="YES" id="706-qX-eei" customClass="ALSFrameLayout" customModule="ALSLayouts">
@@ -218,15 +218,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="RelativeLayoutTableCell" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uU2-am-jfc" customClass="RelativeLayoutTableController" customModule="iOS_Examples" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="194" sectionHeaderHeight="28" sectionFooterHeight="28" id="PXR-9J-TMt">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="default" indentationWidth="10" reuseIdentifier="RelativeLayoutItem" id="yvD-Z9-Whh" customClass="RelativeLayoutTableCell" customModule="iOS_Examples" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="194"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yvD-Z9-Whh" id="MZa-mp-HV5">
-                                    <frame key="frameInset" width="375" height="193.5"/>
+                                    <frame key="frameInset" width="320" height="193.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" id="liZ-6H-MuO" customClass="ALSRelativeLayout" customModule="ALSLayouts">
@@ -349,15 +349,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="LinearLayoutTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rtk-TW-FJr" customClass="LinearLayoutTableController" customModule="iOS_Examples" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="132" sectionHeaderHeight="28" sectionFooterHeight="28" id="HPn-hM-iOe">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LinearLayoutItem" id="Z73-IQ-Eod" customClass="LinearLayoutTableCell" customModule="iOS_Examples" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="132"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z73-IQ-Eod" id="nNs-SC-CXK">
-                                    <frame key="frameInset" width="375" height="131.5"/>
+                                    <frame key="frameInset" width="320" height="131.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="nFv-sA-EDY" customClass="ALSLinearLayout" customModule="ALSLayouts">
@@ -424,7 +424,7 @@
             <objects>
                 <viewController storyboardIdentifier="RelativeLayoutIB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q0i-F2-vB3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxU-zo-eqO" customClass="ALSRelativeLayout" customModule="ALSLayouts">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center in parent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QIK-Jz-F7f">
@@ -596,7 +596,7 @@
             <objects>
                 <viewController storyboardIdentifier="LinearLayoutIB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lQK-a5-H4K" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NqI-T5-ojX" customClass="ALSLinearLayout" customModule="ALSLayouts">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="6bh-8v-OA1" customClass="ALSLinearLayout" customModule="ALSLayouts">
@@ -708,6 +708,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+        <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
     </simulatedMetricsContainer>
 </document>

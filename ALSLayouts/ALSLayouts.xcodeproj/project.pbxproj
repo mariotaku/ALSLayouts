@@ -25,6 +25,7 @@
 		CE62377C1D8A947400FB0314 /* UIView+StringTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62376C1D8A947400FB0314 /* UIView+StringTag.swift */; };
 		CE62377D1D8A947400FB0314 /* ALSBaselineSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62376D1D8A947400FB0314 /* ALSBaselineSupport.swift */; };
 		CE62377E1D8A947400FB0314 /* UIView+LayoutParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE62376E1D8A947400FB0314 /* UIView+LayoutParams.swift */; };
+		CE65B1D91D9D250700A38A61 /* ALSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65B1D81D9D250700A38A61 /* ALSTableViewCell.swift */; };
 		CEDC4EAE1D8AA33300E1FEB7 /* ALSGravityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4EAD1D8AA33300E1FEB7 /* ALSGravityTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		CE62376C1D8A947400FB0314 /* UIView+StringTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+StringTag.swift"; sourceTree = "<group>"; };
 		CE62376D1D8A947400FB0314 /* ALSBaselineSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSBaselineSupport.swift; sourceTree = "<group>"; };
 		CE62376E1D8A947400FB0314 /* UIView+LayoutParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutParams.swift"; sourceTree = "<group>"; };
+		CE65B1D81D9D250700A38A61 /* ALSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSTableViewCell.swift; sourceTree = "<group>"; };
 		CEDC4EAD1D8AA33300E1FEB7 /* ALSGravityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSGravityTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 				CE62376E1D8A947400FB0314 /* UIView+LayoutParams.swift */,
 				CE6237491D8A92EF00FB0314 /* ALSLayouts.h */,
 				CE62374A1D8A92EF00FB0314 /* Info.plist */,
+				CE65B1D81D9D250700A38A61 /* ALSTableViewCell.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				CE6237731D8A947400FB0314 /* ALSLayoutParams.swift in Sources */,
 				CE6237741D8A947400FB0314 /* ALSLinearLayout.swift in Sources */,
 				CE6237701D8A947400FB0314 /* ALSFrameLayout.swift in Sources */,
+				CE65B1D91D9D250700A38A61 /* ALSTableViewCell.swift in Sources */,
 				CE6237791D8A947400FB0314 /* SynchronizedPool.swift in Sources */,
 				CE6237721D8A947400FB0314 /* ALSGravity+Stringify.swift in Sources */,
 				CE62377B1D8A947400FB0314 /* UIView+Compat.swift in Sources */,
