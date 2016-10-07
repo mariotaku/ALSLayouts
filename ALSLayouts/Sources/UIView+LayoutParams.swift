@@ -71,8 +71,8 @@ public extension UIView {
     }
     
     @IBInspectable internal var layoutMarginTrailing: CGFloat {
-        get { return self.layoutParams.marginTrailng }
-        set { self.layoutParams.marginTrailng = newValue }
+        get { return self.layoutParams.marginTrailing }
+        set { self.layoutParams.marginTrailing = newValue }
     }
     
     // Relative Layout params
@@ -135,8 +135,8 @@ public extension UIView {
     }
     
     @IBInspectable internal var layoutAlignTrailing: String? {
-        get { return self.layoutParams.alignTrailngTag }
-        set { self.layoutParams.alignTrailngTag = newValue }
+        get { return self.layoutParams.alignTrailingTag }
+        set { self.layoutParams.alignTrailingTag = newValue }
     }
     
     @IBInspectable internal var layoutAlignBaseline: String? {

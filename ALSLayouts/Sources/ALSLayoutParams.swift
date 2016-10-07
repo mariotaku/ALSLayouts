@@ -109,7 +109,7 @@ open class ALSLayoutParams {
      The trailing margin in points of the subview. Margin values should be positive.
      Call `setNeedsLayout()` after reassigning a new value to this field.
      */
-    open var marginTrailng: CGFloat = 0 {
+    open var marginTrailing: CGFloat = 0 {
         didSet { self.marginsChanged = true }
     }
     
@@ -176,7 +176,7 @@ open class ALSLayoutParams {
     /**
      Makes the trailing edge of this view match the trailing edge of the given anchor view string tag.
      */
-    open var alignTrailngTag: String? = nil
+    open var alignTrailingTag: String? = nil
     /**
      Positions the baseline of this view on the baseline of the given anchor view string tag.
      */
@@ -253,7 +253,7 @@ open class ALSLayoutParams {
         get { return self.getRule(ALSRelativeLayout.ALIGN_LEADING) }
         set { self.setRule(ALSRelativeLayout.ALIGN_LEADING, subject: newValue) }
     }
-    internal var alignTrailng: Int {
+    internal var alignTrailing: Int {
         get { return self.getRule(ALSRelativeLayout.ALIGN_TRAILING) }
         set { self.setRule(ALSRelativeLayout.ALIGN_TRAILING, subject: newValue) }
     }
@@ -331,7 +331,7 @@ open class ALSLayoutParams {
         alignLeft = UIView.getTag(byStringTag: alignLeftTag)
         alignRight = UIView.getTag(byStringTag: alignRightTag)
         alignLeading = UIView.getTag(byStringTag: alignLeadingTag)
-        alignTrailng = UIView.getTag(byStringTag: alignTrailngTag)
+        alignTrailing = UIView.getTag(byStringTag: alignTrailingTag)
         alignBaseline = UIView.getTag(byStringTag: alignBaselineTag)
         above = UIView.getTag(byStringTag: aboveTag)
         below = UIView.getTag(byStringTag: belowTag)
@@ -360,7 +360,7 @@ open class ALSLayoutParams {
             if (marginLeft != 0) {
                 marginAbsLeft = marginLeft
             } else if (layoutDirection == .rightToLeft) {
-                marginAbsLeft = marginTrailng
+                marginAbsLeft = marginTrailing
             } else {
                 marginAbsLeft = marginLeading
             }
@@ -370,7 +370,7 @@ open class ALSLayoutParams {
             } else if (layoutDirection == .rightToLeft) {
                 marginAbsRight = marginLeading
             } else {
-                marginAbsRight = marginTrailng
+                marginAbsRight = marginTrailing
             }
             marginsChanged = false
         }
