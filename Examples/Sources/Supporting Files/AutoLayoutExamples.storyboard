@@ -75,7 +75,7 @@
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="MatchParent"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutWeight">
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
@@ -161,8 +161,8 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Center"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layoutHidden" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
@@ -174,8 +174,8 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Trailing|Bottom"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
@@ -192,8 +192,8 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Leading|Bottom"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
@@ -210,8 +210,8 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Trailing|Top"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
@@ -228,8 +228,8 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Leading|Top"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>

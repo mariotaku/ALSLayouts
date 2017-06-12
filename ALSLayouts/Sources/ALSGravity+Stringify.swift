@@ -9,13 +9,13 @@
 import Foundation
 
 extension ALSGravity {
-    
+
     static func parse(_ str: String) -> Int {
         return str.components(separatedBy: "|").reduce(ALSGravity.NO_GRAVITY) { combined, gravityString -> Int in
             return combined | GravityString(rawValue: gravityString)!.intValue
         }
     }
-    
+
     static func format(_ gravity: Int) -> String {
         var strings = [String]()
         var value = gravity
@@ -30,46 +30,47 @@ extension ALSGravity {
         }
         return strings.joined(separator: "|")
     }
-    
-    enum GravityString: String {
-        case Top
-        case Bottom
-        case Left
-        case Right
-        case CenterVertical
-        case FillVertical
-        case CenterHorizontal
-        case FillHorizontal
-        case Center
-        case Fill
-        case ClipVertical
-        case ClipHorizontal
-        case Leading
-        case Trailing
 
-        
+    enum GravityString: String {
+        case top
+        case bottom
+        case left
+        case right
+        case centerVertical
+        case fillVertical
+        case centerHorizontal
+        case fillHorizontal
+        case center
+        case fill
+        case clipVertical
+        case clipHorizontal
+        case leading
+        case trailing
+
         var intValue: Int {
             get {
                 switch self {
-                case .Top: return ALSGravity.TOP
-                case .Bottom: return ALSGravity.BOTTOM
-                case .Left: return ALSGravity.LEFT
-                case .Right: return ALSGravity.RIGHT
-                case .CenterVertical: return ALSGravity.CENTER_VERTICAL
-                case .FillVertical: return ALSGravity.FILL_VERTICAL
-                case .CenterHorizontal: return ALSGravity.CENTER_HORIZONTAL
-                case .FillHorizontal: return ALSGravity.FILL_HORIZONTAL
-                case .Center: return ALSGravity.CENTER
-                case .Fill: return ALSGravity.FILL
-                case .ClipVertical: return ALSGravity.CLIP_VERTICAL
-                case .ClipHorizontal: return ALSGravity.CLIP_HORIZONTAL
-                case .Leading: return ALSGravity.LEADING
-                case .Trailing: return ALSGravity.TRAILING
+                case .top: return ALSGravity.TOP
+                case .bottom: return ALSGravity.BOTTOM
+                case .left: return ALSGravity.LEFT
+                case .right: return ALSGravity.RIGHT
+                case .centerVertical: return ALSGravity.CENTER_VERTICAL
+                case .fillVertical: return ALSGravity.FILL_VERTICAL
+                case .centerHorizontal: return ALSGravity.CENTER_HORIZONTAL
+                case .fillHorizontal: return ALSGravity.FILL_HORIZONTAL
+                case .center: return ALSGravity.CENTER
+                case .fill: return ALSGravity.FILL
+                case .clipVertical: return ALSGravity.CLIP_VERTICAL
+                case .clipHorizontal: return ALSGravity.CLIP_HORIZONTAL
+                case .leading: return ALSGravity.LEADING
+                case .trailing: return ALSGravity.TRAILING
                 }
             }
         }
-        
-        static let allValues: [GravityString] = [.Fill, .FillVertical, .FillHorizontal, .Center, .CenterVertical, .CenterHorizontal, .Leading, .Trailing, .Top, .Bottom, .Left, .Right, .ClipVertical, .ClipHorizontal]
+
+        static let allValues: [GravityString] = [.fill, .fillVertical, .fillHorizontal, .center, .centerVertical,
+                                                 .centerHorizontal, .leading, .trailing, .top, .bottom, .left, .right,
+                                                 .clipVertical, .clipHorizontal]
     }
-    
+
 }

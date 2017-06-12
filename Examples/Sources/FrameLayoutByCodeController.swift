@@ -20,8 +20,8 @@ class FrameLayoutByCodeController: UIViewController {
         label.text = "AutoLayout Sucks"
         label.textColor = UIColor.darkText
         layout.addSubview(label) { lp in
-            lp.widthMode = .WrapContent
-            lp.heightMode = .WrapContent
+            lp.widthMode = .wrapContent
+            lp.heightMode = .wrapContent
             lp.gravity = ALSGravity.CENTER
         }
     }

@@ -21,7 +21,7 @@ import UIKit
  *
  * Note that you cannot have a circular dependency between the size of the RelativeLayout and the
  * position of its children. For example, you cannot have a RelativeLayout whose height mode is set to
- * `WrapContent` and a child set to `alignParentBottom`.
+ * `wrapContent` and a child set to `alignParentBottom`.
  *
  * See the [Relative Layout](https://developer.android.com/guide/topics/ui/layout/relative.html) guide.
  *
@@ -210,9 +210,9 @@ open class ALSRelativeLayout: ALSBaseLayout {
             myHeight = heightSize
         }
         
-        if (widthMode == .StaticSize) {
+        if (widthMode == .staticSize) {
             width = myWidth
-        } else if (widthMode == .MatchParent) {
+        } else if (widthMode == .matchParent) {
             if let parent = superview , !(parent is ALSBaseLayout) {
                 width = parent.frame.width - parent.layoutMargins.left - parent.layoutMargins.right
             } else {
@@ -220,9 +220,9 @@ open class ALSRelativeLayout: ALSBaseLayout {
             }
         }
         
-        if (heightMode == .StaticSize) {
+        if (heightMode == .staticSize) {
             height = myHeight
-        } else if (heightMode == .MatchParent) {
+        } else if (heightMode == .matchParent) {
             if let parent = superview , !(parent is ALSBaseLayout) {
                 height = parent.frame.height - parent.layoutMargins.top - parent.layoutMargins.bottom
             } else {
@@ -248,8 +248,8 @@ open class ALSRelativeLayout: ALSBaseLayout {
             ignore = viewWithTag(ignoreGravity)
         }
         
-        let isWrapContentWidth = widthMode == .WrapContent
-        let isWrapContentHeight = heightMode == .WrapContent
+        let isWrapContentWidth = widthMode == .wrapContent
+        let isWrapContentHeight = heightMode == .wrapContent
         
         // We need to know our size for doing the correct computation of children positioning in RTL
         // mode but there is no practical way to get it instead of running the code below.
@@ -474,22 +474,22 @@ open class ALSRelativeLayout: ALSBaseLayout {
      * @param myHeight Height of the RelativeLayout
      */
     fileprivate func measureChild(_ child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
-        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: actualLayoutMargins.left, endPadding: actualLayoutMargins.right, mySize: myWidth)
+        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.widthDimension, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: actualLayoutMargins.left, endPadding: actualLayoutMargins.right, mySize: myWidth)
         
-        let childHeightMeasureSpec = getChildMeasureSpec(params.top, childEnd: params.bottom, childSize: params.height, childSizeMode: params.heightMode, startMargin: params.marginTop, endMargin: params.marginBottom, startPadding: actualLayoutMargins.top, endPadding: actualLayoutMargins.bottom, mySize: myHeight)
+        let childHeightMeasureSpec = getChildMeasureSpec(params.top, childEnd: params.bottom, childSize: params.heightDimension, childSizeMode: params.heightMode, startMargin: params.marginTop, endMargin: params.marginBottom, startPadding: actualLayoutMargins.top, endPadding: actualLayoutMargins.bottom, mySize: myHeight)
 
         params.measure(child, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
     
     fileprivate func measureChildHorizontal(_ child: UIView, params: ALSLayoutParams, myWidth: CGFloat, myHeight: CGFloat) {
-        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.width, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: actualLayoutMargins.left, endPadding: actualLayoutMargins.right, mySize: myWidth)
+        let childWidthMeasureSpec = getChildMeasureSpec(params.left, childEnd: params.right, childSize: params.widthDimension, childSizeMode: params.widthMode, startMargin: params.marginAbsLeft, endMargin: params.marginAbsRight, startPadding: actualLayoutMargins.left, endPadding: actualLayoutMargins.right, mySize: myWidth)
         
         var measuredHeight: CGFloat = 0
         var measuredHeightSpec: ALSLayoutParams.MeasureSpecMode = .unspecified
         if (myHeight < 0) {
-            if (params.heightMode == .StaticSize) {
+            if (params.heightMode == .staticSize) {
                 // Height mode is EXACTLY in Android source
-                measuredHeight = params.height
+                measuredHeight = params.heightDimension
                 measuredHeightSpec = .exactly
             } else {
                 // Negative values in a mySize/myWidth/myWidth value in
@@ -502,7 +502,7 @@ open class ALSRelativeLayout: ALSBaseLayout {
         } else {
             let maxHeight = max(0, myHeight - actualLayoutMargins.top - actualLayoutMargins.bottom - params.marginTop - params.marginBottom)
             
-            if (params.heightMode == .MatchParent) {
+            if (params.heightMode == .matchParent) {
                 measuredHeightSpec = .exactly
             } else {
                 measuredHeightSpec = .atMost
@@ -553,7 +553,7 @@ open class ALSRelativeLayout: ALSBaseLayout {
                 // Constraints fixed both edges, so child has an exact size.
                 childSpecSize = max(0, childEnd - childStart)
                 childSpecMode = .exactly
-            } else if (childSizeMode == .StaticSize) {
+            } else if (childSizeMode == .staticSize) {
                 // The child specified an exact size.
                 childSpecSize = childSize
                 childSpecMode = .exactly
@@ -588,7 +588,7 @@ open class ALSRelativeLayout: ALSBaseLayout {
             childSpecSize = max(0, maxAvailable)
         } else {
             switch (childSizeMode) {
-            case .StaticSize:
+            case .staticSize:
                 // Child wanted an exact size. Give as much as possible.
                 childSpecMode = .exactly
                 
@@ -600,12 +600,12 @@ open class ALSRelativeLayout: ALSBaseLayout {
                     childSpecSize = childSize
                 }
                 
-            case .MatchParent:
+            case .matchParent:
                 // Child wanted to be as big as possible. Give all available
                 // space.
                 childSpecMode = isUnspecified ? .unspecified : .exactly
                 childSpecSize = max(0, maxAvailable)
-            case .WrapContent:
+            case .wrapContent:
                 // Child wants to wrap content. Use AT_MOST to communicate
                 // available space if we know our max size.
                 if (maxAvailable >= 0) {

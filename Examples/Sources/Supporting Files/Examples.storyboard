@@ -34,8 +34,8 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Center"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutHidden" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
@@ -48,8 +48,8 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Trailing|Bottom"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
@@ -67,8 +67,8 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Leading|Bottom"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginBottom">
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
@@ -86,8 +86,8 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Leading|Top"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
@@ -105,8 +105,8 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutGravity" value="Trailing|Top"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
@@ -191,7 +191,7 @@
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="wrapContent"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -266,8 +266,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="name"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTop" value="profileImage"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImage"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignWithParentIfMissing" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutToLeadingOf" value="time"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTrailing">
@@ -286,8 +286,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="time"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="name"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IUe-oK-KDJ">
@@ -305,8 +305,8 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                                             <real key="value" value="4"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTrailing" value="time"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
@@ -314,7 +314,7 @@
                                             <color key="backgroundColor" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="wrapContent"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -372,7 +372,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
@@ -386,7 +386,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="MatchParent"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
@@ -397,7 +397,7 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="orientationString" value="Vertical"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="wrapContent"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -435,8 +435,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterInParent" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="centerLabel"/>
                                 </userDefinedRuntimeAttributes>
@@ -451,8 +451,8 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterHorizontal" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="belowCenterLabel"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="centerLabel"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                         <real key="value" value="8"/>
@@ -469,8 +469,8 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutCenterVertical" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="centerLabel"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginLeading">
                                         <real key="value" value="16"/>
@@ -490,8 +490,8 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutBelow" value="belowCenterLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignLeading" value="belowCenterLabel"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="fooLabel"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
@@ -547,8 +547,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTop" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentLeading" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="topLeadingLabel"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Align staticLabel baseline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVC-5a-dWy">
@@ -558,8 +558,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="topLeadingLabel"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="topLeadingLabel"/>
                                 </userDefinedRuntimeAttributes>
@@ -574,8 +574,8 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTop" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
@@ -661,7 +661,7 @@
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="MatchParent"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layoutWeight">
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>

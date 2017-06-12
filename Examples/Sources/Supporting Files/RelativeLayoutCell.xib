@@ -52,8 +52,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="name"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTop" value="profileImage"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutToTrailingOf" value="profileImage"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignWithParentIfMissing" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutToLeadingOf" value="time"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTrailing">
@@ -72,8 +72,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="stringTag" value="time"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignBaseline" value="name"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layoutAlignParentTrailing" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJE-OR-UZb">
@@ -91,8 +91,8 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layoutMarginTop">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="WrapContent"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="WrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutHeightMode" value="wrapContent"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layoutWidthMode" value="wrapContent"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layoutAlignTrailing" value="time"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
@@ -100,7 +100,7 @@
                         <color key="backgroundColor" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="ignoreLayoutMargins" value="YES"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="WrapContent"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="heightModeString" value="wrapContent"/>
                             <userDefinedRuntimeAttribute type="string" keyPath="widthModeString" value="MatchParent"/>
                         </userDefinedRuntimeAttributes>
                     </view>

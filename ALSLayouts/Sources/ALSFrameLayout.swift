@@ -113,7 +113,7 @@ open class ALSFrameLayout: ALSBaseLayout {
         let widthMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.widthMode ?? self.widthMode
         let heightMode: ALSLayoutParams.SizeMode = layoutParamsOrNull?.heightMode ?? self.heightMode
         
-        let measureMatchParentSubview = widthMode == .WrapContent || heightMode == .WrapContent
+        let measureMatchParentSubview = widthMode == .wrapContent || heightMode == .wrapContent
         matchParentSubviews.removeAll()
         
         let widthSpec: ALSLayoutParams.MeasureSpecMode = layoutParamsOrNull?.measuredWidthSpec ?? .exactly
@@ -137,7 +137,7 @@ open class ALSFrameLayout: ALSBaseLayout {
                 maxHeight = max(maxHeight, lp.measuredHeight + lp.marginTop + lp.marginBottom)
                 subviewState = ALSBaseLayout.combineMeasuredStates(subviewState, widthMode: lp.measuredWidthSpec, heightMode: lp.measuredHeightSpec)
                 if (measureMatchParentSubview) {
-                    if (lp.widthMode == .MatchParent || lp.heightMode == .MatchParent) {
+                    if (lp.widthMode == .matchParent || lp.heightMode == .matchParent) {
                         matchParentSubviews.append(subview)
                     }
                 }
@@ -162,19 +162,19 @@ open class ALSFrameLayout: ALSBaseLayout {
                 let lp = subview.layoutParams
                 
                 let subviewWidthMeasureSpec: ALSLayoutParams.MeasureSpec
-                if (lp.widthMode == .MatchParent) {
+                if (lp.widthMode == .matchParent) {
                     let width = max(0, widthMeasureSpec.0 - actualLayoutMargins.left - actualLayoutMargins.right - lp.marginAbsLeft - lp.marginAbsRight)
                     subviewWidthMeasureSpec = (width, .exactly)
                 } else {
-                    subviewWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(widthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight, childDimension: lp.width, childDimensionMode: lp.widthMode)
+                    subviewWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(widthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight, childDimension: lp.widthDimension, childDimensionMode: lp.widthMode)
                 }
                 
                 let subviewHeightMeasureSpec: ALSLayoutParams.MeasureSpec
-                if (lp.heightMode == .MatchParent) {
+                if (lp.heightMode == .matchParent) {
                     let height = max(0, heightMeasureSpec.0 - actualLayoutMargins.top - actualLayoutMargins.bottom - lp.marginTop - lp.marginBottom)
                     subviewHeightMeasureSpec = (height, .exactly)
                 } else {
-                    subviewHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(heightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom, childDimension: lp.height, childDimensionMode: lp.heightMode)
+                    subviewHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(heightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom, childDimension: lp.heightDimension, childDimensionMode: lp.heightMode)
                 }
                 
                 lp.measure(subview, widthSpec: subviewWidthMeasureSpec, heightSpec: subviewHeightMeasureSpec)
@@ -182,12 +182,12 @@ open class ALSFrameLayout: ALSBaseLayout {
         }
         
         var measuredSize = CGSize()
-        if (widthMode == .WrapContent) {
+        if (widthMode == .wrapContent) {
             measuredSize.width = maxWidth
         } else {
             measuredSize.width = widthMeasureSpec.0
         }
-        if (heightMode == .WrapContent) {
+        if (heightMode == .wrapContent) {
             measuredSize.height = maxHeight
         } else {
             measuredSize.height = heightMeasureSpec.0

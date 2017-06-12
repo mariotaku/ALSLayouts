@@ -20,13 +20,13 @@ open class ALSBaseLayout: UIView {
      
      - SeeAlso: `ALSLayoutParams.SizeMode`
      */
-    open var widthMode: ALSLayoutParams.SizeMode = .StaticSize
+    open var widthMode: ALSLayoutParams.SizeMode = .staticSize
     /**
      How height of this view measured, will be overriden by `layoutParams.heightMode` if possible.
      
      - SeeAlso: `ALSLayoutParams.SizeMode`
      */
-    open var heightMode: ALSLayoutParams.SizeMode = .StaticSize
+    open var heightMode: ALSLayoutParams.SizeMode = .staticSize
     
     /**
      When set to true, layoutMargins (padding) will be ignored.
@@ -181,11 +181,11 @@ open class ALSBaseLayout: UIView {
     
     internal func resolveSize(_ sizeMode: ALSLayoutParams.SizeMode, contentSize: CGFloat, frameSize: CGFloat, parentSize: CGFloat, margin: CGFloat) -> CGFloat {
         switch sizeMode {
-        case .StaticSize:
+        case .staticSize:
             return frameSize
-        case .WrapContent:
+        case .wrapContent:
             return contentSize
-        case .MatchParent:
+        case .matchParent:
             return parentSize - margin
         }
     }
@@ -193,8 +193,8 @@ open class ALSBaseLayout: UIView {
     func measureChildWithMargins(_ subview: UIView, parentWidthMeasureSpec: ALSLayoutParams.MeasureSpec, widthUsed: CGFloat,parentHeightMeasureSpec: ALSLayoutParams.MeasureSpec, heightUsed: CGFloat) {
         let lp = subview.layoutParams
         
-        let childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentWidthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight + widthUsed, childDimension: lp.width, childDimensionMode: lp.widthMode)
-        let childHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentHeightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom + heightUsed, childDimension: lp.height, childDimensionMode: lp.heightMode)
+        let childWidthMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentWidthMeasureSpec, padding: actualLayoutMargins.left + actualLayoutMargins.right + lp.marginAbsLeft + lp.marginAbsRight + widthUsed, childDimension: lp.widthDimension, childDimensionMode: lp.widthMode)
+        let childHeightMeasureSpec = ALSBaseLayout.getChildMeasureSpec(parentHeightMeasureSpec, padding: actualLayoutMargins.top + actualLayoutMargins.bottom + lp.marginTop + lp.marginBottom + heightUsed, childDimension: lp.heightDimension, childDimensionMode: lp.heightMode)
         
         lp.measure(subview, widthSpec: childWidthMeasureSpec, heightSpec: childHeightMeasureSpec)
     }
@@ -223,14 +223,14 @@ open class ALSBaseLayout: UIView {
         // Parent has imposed an exact size on us
         case .exactly:
             switch childDimensionMode {
-            case .StaticSize:
+            case .staticSize:
                 resultSize = childDimension
                 resultMode = .exactly
-            case .MatchParent:
+            case .matchParent:
                 // Child wants to be our size. So be it.
                 resultSize = size
                 resultMode = .exactly
-            case .WrapContent:
+            case .wrapContent:
                 // Child wants to determine its own size. It can't be
                 // bigger than us.
                 resultSize = size
@@ -239,16 +239,16 @@ open class ALSBaseLayout: UIView {
         // Parent has imposed a maximum size on us
         case .atMost:
             switch childDimensionMode {
-            case .StaticSize:
+            case .staticSize:
                 // Child wants a specific size... so be it
                 resultSize = childDimension
                 resultMode = .exactly
-            case .MatchParent:
+            case .matchParent:
                 // Child wants to be our size, but our size is not fixed.
                 // Constrain child to not be bigger than us.
                 resultSize = size
                 resultMode = .atMost
-            case .WrapContent:
+            case .wrapContent:
                 // Child wants to determine its own size. It can't be
                 // bigger than us.
                 resultSize = size
@@ -257,16 +257,16 @@ open class ALSBaseLayout: UIView {
         // Parent asked to see how big we want to be
         case .unspecified:
             switch childDimensionMode {
-            case .StaticSize:
+            case .staticSize:
                 // Child wants a specific size... let him have it
                 resultSize = childDimension
                 resultMode = .exactly
-            case .MatchParent:
+            case .matchParent:
                 // Child wants to be our size... find out how big it should
                 // be
                 resultSize = useZeroUnspecifiedMeasureSpec ? 0 : size
                 resultMode = .unspecified
-            case .WrapContent:
+            case .wrapContent:
                 // Child wants to determine its own size.... find out how
                 // big it should be
                 resultSize = useZeroUnspecifiedMeasureSpec ? 0 : size
