@@ -22,19 +22,19 @@ class ALSGravityTest: XCTestCase {
     }
     
     func testParse() {
-        XCTAssertEqual(ALSGravity.parse("Center"), ALSGravity.CENTER)
-        XCTAssertEqual(ALSGravity.parse("Left|Top"), ALSGravity.LEFT | ALSGravity.TOP)
+        XCTAssertEqual(ALSGravity.parse("center"), ALSGravity.CENTER)
+        XCTAssertEqual(ALSGravity.parse("left|top"), ALSGravity.LEFT | ALSGravity.TOP)
     }
     
     func testFormat() {
-        XCTAssertEqual(ALSGravity.format(ALSGravity.FILL), "Fill")
+        XCTAssertEqual(ALSGravity.format(ALSGravity.FILL), "fill")
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
-            XCTAssertEqual(ALSGravity.parse("Fill"), ALSGravity.FILL)
+            XCTAssertEqual(ALSGravity.parse("fill"), ALSGravity.FILL)
         }
     }
     
