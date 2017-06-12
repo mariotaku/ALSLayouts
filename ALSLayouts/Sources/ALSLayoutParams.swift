@@ -20,7 +20,7 @@ public class ALSLayoutParams {
      */
     public enum Size {
         /** Static size defined in code */
-        case staticSize(size: CGFloat)
+        case staticSize(CGFloat)
         /** Determines its size during measurement */
         case wrapContent
         /** Fills super view size as possible */
@@ -67,7 +67,7 @@ public class ALSLayoutParams {
             switch widthMode {
             case SizeMode.matchParent: return Size.matchParent
             case SizeMode.wrapContent: return Size.wrapContent
-            case SizeMode.staticSize: return Size.staticSize(size: widthDimension)
+            case SizeMode.staticSize: return Size.staticSize(widthDimension)
             }
         }
         set {
@@ -90,7 +90,7 @@ public class ALSLayoutParams {
             switch heightMode {
             case SizeMode.matchParent: return Size.matchParent
             case SizeMode.wrapContent: return Size.wrapContent
-            case SizeMode.staticSize: return Size.staticSize(size: heightDimension)
+            case SizeMode.staticSize: return Size.staticSize(heightDimension)
             }
         }
         set {
