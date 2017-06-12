@@ -3,7 +3,8 @@
 Auto Layout ~~Sucks~~ Substitution
 
 [![CI Status](http://img.shields.io/travis/mariotaku/ALSLayouts.svg?style=flat)](https://travis-ci.org/mariotaku/ALSLayouts)
-[![Version](https://img.shields.io/cocoapods/v/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
+[![Pod Version](https://img.shields.io/cocoapods/v/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 [![Platform](https://img.shields.io/cocoapods/p/ALSLayouts.svg?style=flat)](http://cocoapods.org/pods/ALSLayouts)
 
@@ -27,11 +28,20 @@ iOS 8 or later
 
 ## Installation
 
-ALSLayouts is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Carthage
+
+Add the following line to your Cartfile:
+
+```
+github "mariotaku/ALSLayouts" ~> x.y.z # Latest version above
+```
+
+### CocoaPods
+
+Add the following line to your Podfile:
 
 ```ruby
-pod 'ALSLayouts', '~> x.y,z' # Latest version above
+pod 'ALSLayouts', '~> x.y.z' # Latest version above
 ```
 
 ## Author
