@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import ALSLayouts_iOS_Examples
 
 class ALSLayouts_iOS_ExamplesTests: XCTestCase {
     
